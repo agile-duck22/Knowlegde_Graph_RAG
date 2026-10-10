@@ -48,7 +48,9 @@ class TestPostgresWriterLive:
     """Live PostgresWriter integration tests against container."""
 
     @pytest.mark.asyncio
-    async def test_live_document_and_chunks_upsert_idempotency(self, live_writer: PostgresWriter) -> None:
+    async def test_live_document_and_chunks_upsert_idempotency(
+        self, live_writer: PostgresWriter
+    ) -> None:
         doc_id = f"doc-live-{uuid.uuid4()}"
         doc = RawDocument(
             document_id=doc_id,
@@ -91,7 +93,9 @@ class TestPostgresWriterLive:
 
         # 6. Verify row in database
         async with live_writer.client.connection() as conn:
-            row = await conn.fetchrow("SELECT id, document_id, token_count FROM chunks WHERE id = $1", chunk_uuid)
+            row = await conn.fetchrow(
+                "SELECT id, document_id, token_count FROM chunks WHERE id = $1", chunk_uuid
+            )
             assert row is not None
             assert row["document_id"] == doc_id
 

@@ -54,7 +54,7 @@ RelationshipType = Literal[
 ]
 
 # Canonical ID prefixes keyed by entity type (mirrors ONTOLOGY.md §1)
-_CANONICAL_ID_PREFIX: dict[str, str] = {
+_CANONICAL_ID_PREFIX: dict[EntityType, str] = {
     "Service": "service",
     "Team": "team",
     "API": "api",
@@ -279,8 +279,7 @@ class ExtractedRelationship(BaseModel):
     def validate_canonical_id_format(cls, v: str) -> str:
         if not _CANONICAL_ID_RE.match(v):
             raise ValueError(
-                f"canonical_id '{v}' does not match required format "
-                "'<type_prefix>:<kebab-slug>'"
+                f"canonical_id '{v}' does not match required format '<type_prefix>:<kebab-slug>'"
             )
         return v
 

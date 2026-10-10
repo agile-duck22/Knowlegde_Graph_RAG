@@ -145,7 +145,15 @@ class TestAllowlists:
         assert len(_ALLOWED_ENTITY_TYPES) == 7
 
     def test_entity_types_values(self) -> None:
-        expected = {"Service", "Team", "API", "Database", "Repository", "Vulnerability", "Infrastructure"}
+        expected = {
+            "Service",
+            "Team",
+            "API",
+            "Database",
+            "Repository",
+            "Vulnerability",
+            "Infrastructure",
+        }
         assert _ALLOWED_ENTITY_TYPES == expected
 
     def test_relationship_types_count(self) -> None:
@@ -153,9 +161,16 @@ class TestAllowlists:
 
     def test_relationship_types_values(self) -> None:
         expected = {
-            "OWNED_BY", "DEPENDS_ON", "EXPOSES_API", "CALLS_API",
-            "READS_FROM", "WRITES_TO", "STORES_CODE", "AFFECTED_BY",
-            "DEPLOYED_ON", "PRODUCES_EVENTS",
+            "OWNED_BY",
+            "DEPENDS_ON",
+            "EXPOSES_API",
+            "CALLS_API",
+            "READS_FROM",
+            "WRITES_TO",
+            "STORES_CODE",
+            "AFFECTED_BY",
+            "DEPLOYED_ON",
+            "PRODUCES_EVENTS",
         }
         assert _ALLOWED_RELATIONSHIP_TYPES == expected
 
@@ -243,8 +258,10 @@ class TestDriverInitialisation:
             )
 
     def test_driver_created_with_default_settings(self) -> None:
-        with patch("src.db.neo4j.GraphDatabase.driver") as mock_gdb, \
-             patch("src.db.neo4j.get_settings") as mock_get:
+        with (
+            patch("src.db.neo4j.GraphDatabase.driver") as mock_gdb,
+            patch("src.db.neo4j.get_settings") as mock_get,
+        ):
             mock_get.return_value = _make_test_settings()
             mock_gdb.return_value = MagicMock()
             Neo4jClient()
@@ -261,7 +278,9 @@ class TestDriverInitialisation:
                 pass
         mock_driver.close.assert_called_once()
 
-    def test_driver_property_returns_driver(self, client: Neo4jClient, mock_driver: MagicMock) -> None:
+    def test_driver_property_returns_driver(
+        self, client: Neo4jClient, mock_driver: MagicMock
+    ) -> None:
         assert client.driver is mock_driver
 
 
@@ -315,14 +334,18 @@ class TestInitialiseSchema:
         calls = [c.args[0] for c in session.run.call_args_list]
         assert _CONSTRAINT_UNIQUE_ENTITY_ID in calls
 
-    def test_fulltext_index_ddl_is_executed(self, client: Neo4jClient, mock_driver: MagicMock) -> None:
+    def test_fulltext_index_ddl_is_executed(
+        self, client: Neo4jClient, mock_driver: MagicMock
+    ) -> None:
         session = mock_driver.session.return_value
         client.initialise_schema()
 
         calls = [c.args[0] for c in session.run.call_args_list]
         assert _INDEX_ENTITY_FULLTEXT in calls
 
-    def test_constraint_is_run_before_index(self, client: Neo4jClient, mock_driver: MagicMock) -> None:
+    def test_constraint_is_run_before_index(
+        self, client: Neo4jClient, mock_driver: MagicMock
+    ) -> None:
         session = mock_driver.session.return_value
         client.initialise_schema()
 
@@ -384,7 +407,10 @@ class TestWriteEntities:
     def test_returns_count_of_written_entities(
         self, client: Neo4jClient, mock_driver: MagicMock
     ) -> None:
-        entities = [_make_entity(), _make_entity(canonical_id="service:checkout-service", name="Checkout")]
+        entities = [
+            _make_entity(),
+            _make_entity(canonical_id="service:checkout-service", name="Checkout"),
+        ]
         result = client.write_entities(entities)
         assert result == 2
 

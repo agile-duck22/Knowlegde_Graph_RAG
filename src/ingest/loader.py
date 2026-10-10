@@ -18,9 +18,7 @@ from pydantic import BaseModel, ConfigDict, Field, field_validator
 class RawDocument(BaseModel):
     """Raw document record matching the ingestion data contract."""
 
-    document_id: str = Field(
-        ..., min_length=1, description="Unique, stable document identifier"
-    )
+    document_id: str = Field(..., min_length=1, description="Unique, stable document identifier")
     source_uri: str = Field(
         ..., min_length=1, description="Relative or absolute source document path/URI"
     )

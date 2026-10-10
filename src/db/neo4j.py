@@ -97,8 +97,7 @@ _ALLOWED_RELATIONSHIP_TYPES: frozenset[str] = frozenset(
 
 #: Uniqueness constraint on canonical entity ID (DATA_MODEL.md §3).
 _CONSTRAINT_UNIQUE_ENTITY_ID = (
-    "CREATE CONSTRAINT unique_entity_id IF NOT EXISTS "
-    "FOR (e:Entity) REQUIRE e.id IS UNIQUE"
+    "CREATE CONSTRAINT unique_entity_id IF NOT EXISTS FOR (e:Entity) REQUIRE e.id IS UNIQUE"
 )
 
 #: Fulltext search index on name and description (DATA_MODEL.md §3).
@@ -413,11 +412,7 @@ class Neo4jClient:
     def __init__(self, settings: Settings | None = None) -> None:
         """Initialise the client from *settings* (defaults to ``get_settings()``)."""
         cfg = settings or get_settings()
-        password = (
-            cfg.neo4j_password.get_secret_value()
-            if cfg.neo4j_password is not None
-            else ""
-        )
+        password = cfg.neo4j_password.get_secret_value() if cfg.neo4j_password is not None else ""
         self._driver: Neo4jDriver = GraphDatabase.driver(
             cfg.neo4j_uri,
             auth=(cfg.neo4j_user, password),
@@ -459,9 +454,7 @@ class Neo4jClient:
                     raise Neo4jConnectionError("Connectivity ping returned unexpected result")
             logger.info("Neo4j connectivity verified")
         except ServiceUnavailable as exc:
-            raise Neo4jConnectionError(
-                f"Cannot connect to Neo4j: {exc}"
-            ) from exc
+            raise Neo4jConnectionError(f"Cannot connect to Neo4j: {exc}") from exc
 
     # ------------------------------------------------------------------
     # Schema DDL
@@ -686,9 +679,7 @@ class Neo4jClient:
         tuple[int, int]
             ``(entities_written, relationships_written)``.
         """
-        entities_written = self.write_entities(
-            result.entities, batch_size=entity_batch_size
-        )
+        entities_written = self.write_entities(result.entities, batch_size=entity_batch_size)
         relationships_written = self.write_relationships(
             result.relationships, batch_size=relationship_batch_size
         )

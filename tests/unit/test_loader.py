@@ -105,7 +105,7 @@ class TestRawDocumentSchema:
     def test_immutable_frozen_model(self) -> None:
         doc = RawDocument.model_validate(_minimal_record())
         with pytest.raises((AttributeError, TypeError, ValidationError)):
-            doc.title = "changed"  # type: ignore[misc]
+            doc.title = "changed"
 
 
 # ---------------------------------------------------------------------------
@@ -172,9 +172,7 @@ class TestDocumentLoaderValid:
 
 
 class TestDocumentLoaderErrors:
-    def test_malformed_json_raises_value_error_with_line_number(
-        self, tmp_path: Path
-    ) -> None:
+    def test_malformed_json_raises_value_error_with_line_number(self, tmp_path: Path) -> None:
         path = tmp_path / "corpus.jsonl"
         with path.open("w") as f:
             f.write(json.dumps(_minimal_record("doc-good")) + "\n")

@@ -130,7 +130,9 @@ class ConsistencyReport:
         if self.mismatches:
             lines.append("--- Detailed Mismatches ---")
             for m in self.mismatches[:20]:  # Show first 20 in summary
-                lines.append(f"[{m.mismatch_type}] ({m.source_store}) ID: {m.identifier} -> {m.details}")
+                lines.append(
+                    f"[{m.mismatch_type}] ({m.source_store}) ID: {m.identifier} -> {m.details}"
+                )
             if len(self.mismatches) > 20:
                 lines.append(f"... and {len(self.mismatches) - 20} more mismatches.")
         return "\n".join(lines)
@@ -176,7 +178,9 @@ class DualStoreConsistencyValidator:
         DualStoreValidatorError
             If database access fails or connections cannot be established.
         """
-        logger.info("Starting dual-store provenance validation (scope=%s)...", document_id or "GLOBAL")
+        logger.info(
+            "Starting dual-store provenance validation (scope=%s)...", document_id or "GLOBAL"
+        )
         report = ConsistencyReport()
 
         try:
@@ -282,11 +286,15 @@ class DualStoreConsistencyValidator:
             # Set overall consistency boolean
             # A report is inconsistent if there are any orphaned graph chunks, malformed UUIDs, or broken entity links
             critical_mismatches = [
-                m for m in report.mismatches if m.mismatch_type in {
+                m
+                for m in report.mismatches
+                if m.mismatch_type
+                in {
                     "orphaned_graph_chunk",
                     "invalid_uuid_format",
                     "broken_entity_link",
-                } or (strict_orphan_check and m.mismatch_type == "unreferenced_postgres_chunk")
+                }
+                or (strict_orphan_check and m.mismatch_type == "unreferenced_postgres_chunk")
             ]
             report.is_consistent = len(critical_mismatches) == 0
 
@@ -299,7 +307,9 @@ class DualStoreConsistencyValidator:
 
         except (PostgresClientError, Neo4jClientError) as exc:
             logger.error("Database error during provenance validation: %s", exc, exc_info=True)
-            raise DualStoreValidatorError(f"Provenance validation failed due to database error: {exc}") from exc
+            raise DualStoreValidatorError(
+                f"Provenance validation failed due to database error: {exc}"
+            ) from exc
         except Exception as exc:
             logger.error("Unexpected error during provenance validation: %s", exc, exc_info=True)
             raise DualStoreValidatorError(f"Unexpected provenance validation error: {exc}") from exc

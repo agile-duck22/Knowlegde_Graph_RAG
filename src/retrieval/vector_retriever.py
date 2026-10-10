@@ -193,7 +193,9 @@ class VectorRetriever:
                 results: list[RetrievedChunk] = []
                 for row in rows:
                     raw_meta = row["metadata"]
-                    meta_dict = json.loads(raw_meta) if isinstance(raw_meta, str) else dict(raw_meta or {})
+                    meta_dict = (
+                        json.loads(raw_meta) if isinstance(raw_meta, str) else dict(raw_meta or {})
+                    )
                     results.append(
                         RetrievedChunk(
                             chunk_id=str(row["chunk_id"]),
@@ -206,7 +208,12 @@ class VectorRetriever:
                             metadata=meta_dict,
                         )
                     )
-                logger.debug("Vector search returned %d chunks (threshold=%.2f, limit=%d)", len(results), threshold, limit)
+                logger.debug(
+                    "Vector search returned %d chunks (threshold=%.2f, limit=%d)",
+                    len(results),
+                    threshold,
+                    limit,
+                )
                 return results
 
         except Exception as exc:
@@ -261,7 +268,9 @@ class VectorRetriever:
                 results: list[RetrievedChunk] = []
                 for row in rows:
                     raw_meta = row["metadata"]
-                    meta_dict = json.loads(raw_meta) if isinstance(raw_meta, str) else dict(raw_meta or {})
+                    meta_dict = (
+                        json.loads(raw_meta) if isinstance(raw_meta, str) else dict(raw_meta or {})
+                    )
                     results.append(
                         RetrievedChunk(
                             chunk_id=str(row["chunk_id"]),

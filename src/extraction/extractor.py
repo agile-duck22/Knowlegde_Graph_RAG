@@ -168,7 +168,11 @@ class ChunkExtractor:
             """Calculate wait time, respecting Retry-After header on RateLimitError if present."""
             if retry_state.outcome and retry_state.outcome.failed:
                 exc = retry_state.outcome.exception()
-                if isinstance(exc, anthropic.RateLimitError) and hasattr(exc, "response") and exc.response is not None:
+                if (
+                    isinstance(exc, anthropic.RateLimitError)
+                    and hasattr(exc, "response")
+                    and exc.response is not None
+                ):
                     retry_after = exc.response.headers.get("retry-after")
                     if retry_after:
                         try:
@@ -241,15 +245,21 @@ class ChunkExtractor:
         try:
             raw_data = json.loads(json_str)
         except Exception as json_err:
-            raise SchemaParseError(f"Failed to parse model response as JSON: {json_err}") from json_err
+            raise SchemaParseError(
+                f"Failed to parse model response as JSON: {json_err}"
+            ) from json_err
 
         if not isinstance(raw_data, dict):
-            raise SchemaParseError(f"Model response JSON root is not an object (got {type(raw_data).__name__})")
+            raise SchemaParseError(
+                f"Model response JSON root is not an object (got {type(raw_data).__name__})"
+            )
 
         # Validate against ChunkExtractionResult schema
         try:
             validated = ChunkExtractionResult.model_validate(raw_data)
         except ValidationError as val_err:
-            raise SchemaParseError(f"Model response failed Pydantic schema validation: {val_err}") from val_err
+            raise SchemaParseError(
+                f"Model response failed Pydantic schema validation: {val_err}"
+            ) from val_err
 
         return validated

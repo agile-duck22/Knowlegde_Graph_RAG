@@ -94,7 +94,9 @@ class EmbeddingGenerator:
         )
         return self._client
 
-    def _validate_and_normalize_vector(self, vector: Sequence[float], text_index: int) -> list[float]:
+    def _validate_and_normalize_vector(
+        self, vector: Sequence[float], text_index: int
+    ) -> list[float]:
         """Validate vector dimensionality and ensure all components are finite floats."""
         if len(vector) != self.dimensions:
             raise EmbeddingDimensionMismatchError(
@@ -199,7 +201,12 @@ class EmbeddingGenerator:
             except EmbeddingError:
                 raise
             except Exception as exc:
-                logger.error("Embedding API call failed for batch [%d:%d]: %s", batch_start, batch_start + len(batch), exc)
+                logger.error(
+                    "Embedding API call failed for batch [%d:%d]: %s",
+                    batch_start,
+                    batch_start + len(batch),
+                    exc,
+                )
                 raise EmbeddingProviderError(f"Embedding provider API call failed: {exc}") from exc
 
         return all_embeddings

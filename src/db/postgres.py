@@ -181,7 +181,9 @@ class PostgresClient:
                     raise PostgresConnectionError("PostgreSQL ping returned unexpected value")
             logger.info("PostgreSQL connectivity verified.")
         except Exception as exc:
-            raise PostgresConnectionError(f"PostgreSQL connectivity verification failed: {exc}") from exc
+            raise PostgresConnectionError(
+                f"PostgreSQL connectivity verification failed: {exc}"
+            ) from exc
 
     async def run_migrations(self, embedding_dim: int | None = None) -> None:
         """Apply idempotent DDL migrations to set up documents, chunks, and entity_links.

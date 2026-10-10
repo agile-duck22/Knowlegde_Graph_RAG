@@ -273,7 +273,9 @@ def test_schema_validation_failure_retried_then_fails() -> None:
         ],
     }
     mock_client = MagicMock()
-    mock_client.messages.create.return_value = _make_mock_response(json.dumps(invalid_schema_payload))
+    mock_client.messages.create.return_value = _make_mock_response(
+        json.dumps(invalid_schema_payload)
+    )
 
     settings = Settings(extraction_max_retries=1)
     extractor = ChunkExtractor(client=mock_client, settings=settings)

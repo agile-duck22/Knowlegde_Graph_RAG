@@ -45,9 +45,7 @@ def _make_mock_item(index: int, embedding: list[float]) -> MagicMock:
 
 def _make_mock_response(embeddings_list: list[list[float]]) -> MagicMock:
     response = MagicMock()
-    response.data = [
-        _make_mock_item(idx, emb) for idx, emb in enumerate(embeddings_list)
-    ]
+    response.data = [_make_mock_item(idx, emb) for idx, emb in enumerate(embeddings_list)]
     return response
 
 

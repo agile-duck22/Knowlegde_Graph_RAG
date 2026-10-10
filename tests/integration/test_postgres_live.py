@@ -61,7 +61,9 @@ class TestPostgresLiveIntegration:
         assert health["hnsw_index"] is True
 
     @pytest.mark.asyncio
-    async def test_04_relational_constraints_and_cascades(self, live_pg_client: PostgresClient) -> None:
+    async def test_04_relational_constraints_and_cascades(
+        self, live_pg_client: PostgresClient
+    ) -> None:
         """Test document -> chunk -> entity_link relational constraints and ON DELETE CASCADE."""
         import uuid
 
@@ -110,18 +112,26 @@ class TestPostgresLiveIntegration:
             )
 
             # 4. Verify presence
-            chunk_row = await conn.fetchrow("SELECT document_id FROM chunks WHERE id = $1", chunk_uuid)
+            chunk_row = await conn.fetchrow(
+                "SELECT document_id FROM chunks WHERE id = $1", chunk_uuid
+            )
             assert chunk_row is not None
             assert chunk_row["document_id"] == doc_id
 
-            link_row = await conn.fetchrow("SELECT canonical_entity_id FROM entity_links WHERE chunk_id = $1", chunk_uuid)
+            link_row = await conn.fetchrow(
+                "SELECT canonical_entity_id FROM entity_links WHERE chunk_id = $1", chunk_uuid
+            )
             assert link_row is not None
             assert link_row["canonical_entity_id"] == "service:test-svc"
 
             # 5. Delete document and verify cascade
             await conn.execute("DELETE FROM documents WHERE document_id = $1", doc_id)
 
-            remaining_chunks = await conn.fetchval("SELECT count(*) FROM chunks WHERE id = $1", chunk_uuid)
-            remaining_links = await conn.fetchval("SELECT count(*) FROM entity_links WHERE chunk_id = $1", chunk_uuid)
+            remaining_chunks = await conn.fetchval(
+                "SELECT count(*) FROM chunks WHERE id = $1", chunk_uuid
+            )
+            remaining_links = await conn.fetchval(
+                "SELECT count(*) FROM entity_links WHERE chunk_id = $1", chunk_uuid
+            )
             assert remaining_chunks == 0
             assert remaining_links == 0

@@ -182,7 +182,9 @@ def test_unknown_relationship_endpoint_raises_unknown_entity_error() -> None:
         provenance=DUMMY_PROV,
     )
     # Registering target alias resolves cleanly
-    resolver.register_alias("unregistered-target", "service:checkout-service", "Service", "Checkout Service")
+    resolver.register_alias(
+        "unregistered-target", "service:checkout-service", "Service", "Checkout Service"
+    )
     resolved = resolver.resolve_relationship(rel_unrecognized_mention)
     assert resolved.target_canonical_id == "service:checkout-service"
 

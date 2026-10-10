@@ -119,7 +119,7 @@ class TestExtractionProvenance:
     def test_frozen_immutability(self) -> None:
         p = _provenance()
         with pytest.raises((AttributeError, TypeError, ValidationError)):
-            p.chunk_id = "changed"  # type: ignore[misc]
+            p.chunk_id = "changed"
 
 
 # ===========================================================================
@@ -135,27 +135,47 @@ class TestExtractedEntityValid:
         assert e.confidence == 0.95
 
     def test_team_entity(self) -> None:
-        e = _entity(canonical_id="team:checkout-engineering", entity_type="Team", name="Checkout Engineering")
+        e = _entity(
+            canonical_id="team:checkout-engineering",
+            entity_type="Team",
+            name="Checkout Engineering",
+        )
         assert e.entity_type == "Team"
 
     def test_api_entity(self) -> None:
-        e = _entity(canonical_id="api:process-charge-v2", entity_type="API", name="Process Charge v2")
+        e = _entity(
+            canonical_id="api:process-charge-v2", entity_type="API", name="Process Charge v2"
+        )
         assert e.entity_type == "API"
 
     def test_database_entity(self) -> None:
-        e = _entity(canonical_id="database:customer-orders-pg", entity_type="Database", name="Customer Orders PG")
+        e = _entity(
+            canonical_id="database:customer-orders-pg",
+            entity_type="Database",
+            name="Customer Orders PG",
+        )
         assert e.entity_type == "Database"
 
     def test_repository_entity(self) -> None:
-        e = _entity(canonical_id="repo:payment-service-repo", entity_type="Repository", name="Payment Service Repo")
+        e = _entity(
+            canonical_id="repo:payment-service-repo",
+            entity_type="Repository",
+            name="Payment Service Repo",
+        )
         assert e.entity_type == "Repository"
 
     def test_vulnerability_entity(self) -> None:
-        e = _entity(canonical_id="vuln:cve-2024-21626", entity_type="Vulnerability", name="CVE-2024-21626")
+        e = _entity(
+            canonical_id="vuln:cve-2024-21626", entity_type="Vulnerability", name="CVE-2024-21626"
+        )
         assert e.entity_type == "Vulnerability"
 
     def test_infrastructure_entity(self) -> None:
-        e = _entity(canonical_id="infra:kafka-event-bus", entity_type="Infrastructure", name="Kafka Event Bus")
+        e = _entity(
+            canonical_id="infra:kafka-event-bus",
+            entity_type="Infrastructure",
+            name="Kafka Event Bus",
+        )
         assert e.entity_type == "Infrastructure"
 
     def test_aliases_default_empty(self) -> None:
@@ -189,7 +209,7 @@ class TestExtractedEntityValid:
     def test_frozen(self) -> None:
         e = _entity()
         with pytest.raises((AttributeError, TypeError, ValidationError)):
-            e.name = "changed"  # type: ignore[misc]
+            e.name = "changed"
 
 
 # ===========================================================================
@@ -554,7 +574,7 @@ class TestChunkExtractionResult:
             extraction_model="claude-3-5-sonnet-20241022",
         )
         with pytest.raises((AttributeError, TypeError, ValidationError)):
-            result.chunk_id = "changed"  # type: ignore[misc]
+            result.chunk_id = "changed"
 
 
 # ===========================================================================
@@ -710,14 +730,30 @@ class TestGetSystemPrompt:
 
     def test_contains_all_entity_types(self) -> None:
         prompt = get_system_prompt()
-        for entity_type in ("Service", "Team", "API", "Database", "Repository", "Vulnerability", "Infrastructure"):
+        for entity_type in (
+            "Service",
+            "Team",
+            "API",
+            "Database",
+            "Repository",
+            "Vulnerability",
+            "Infrastructure",
+        ):
             assert entity_type in prompt, f"Entity type '{entity_type}' missing from system prompt"
 
     def test_contains_all_relationship_types(self) -> None:
         prompt = get_system_prompt()
         for rel in (
-            "OWNED_BY", "DEPENDS_ON", "EXPOSES_API", "CALLS_API", "READS_FROM",
-            "WRITES_TO", "STORES_CODE", "AFFECTED_BY", "DEPLOYED_ON", "PRODUCES_EVENTS",
+            "OWNED_BY",
+            "DEPENDS_ON",
+            "EXPOSES_API",
+            "CALLS_API",
+            "READS_FROM",
+            "WRITES_TO",
+            "STORES_CODE",
+            "AFFECTED_BY",
+            "DEPLOYED_ON",
+            "PRODUCES_EVENTS",
         ):
             assert rel in prompt, f"Relationship type '{rel}' missing from system prompt"
 

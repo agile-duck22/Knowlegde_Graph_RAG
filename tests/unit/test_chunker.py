@@ -183,8 +183,7 @@ class TestDocumentChunkerChunk:
             prev_tail = chunks[i].content[-chunker.chunk_overlap :]
             next_head = chunks[i + 1].content[: len(prev_tail)]
             assert prev_tail == next_head, (
-                f"Overlap mismatch between chunk {i} and {i + 1}: "
-                f"{prev_tail!r} != {next_head!r}"
+                f"Overlap mismatch between chunk {i} and {i + 1}: {prev_tail!r} != {next_head!r}"
             )
 
     def test_zero_overlap_chunks_are_non_overlapping(self) -> None:
@@ -214,7 +213,7 @@ class TestDocumentChunkerChunk:
         chunker = DocumentChunker(chunk_size=20, chunk_overlap=5)
         doc = _make_doc(content="word " * 20, metadata={"key": "value"})
         chunks = chunker.chunk(doc)
-        chunks[0].metadata["injected"] = True  # type: ignore[index]
+        chunks[0].metadata["injected"] = True
         # Other chunks should not be affected
         for chunk in chunks[1:]:
             assert "injected" not in chunk.metadata

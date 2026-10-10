@@ -432,7 +432,10 @@ class TestNeo4jLiveIntegration:
             for rtype in rel_types:
                 result = session.run(
                     f"MATCH (s:Entity {{id: $s_id}})-[r:{rtype}]->(t:Entity {{id: $t_id}}) RETURN r",  # noqa: S608
-                    {"s_id": f"service:{_PREFIX}-source-node", "t_id": f"infra:{_PREFIX}-target-node"},
+                    {
+                        "s_id": f"service:{_PREFIX}-source-node",
+                        "t_id": f"infra:{_PREFIX}-target-node",
+                    },
                 )
                 assert result.single() is not None, f"Relationship :{rtype} not found in Neo4j"
 

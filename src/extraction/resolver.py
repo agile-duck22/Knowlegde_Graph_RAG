@@ -65,9 +65,7 @@ _SERVICE_SUFFIX_RE = re.compile(
 _CVE_RE = re.compile(r"(?:cve[-_\s]*)?(\d{4}[-_]\d{4,7})", re.IGNORECASE)
 
 # Prefix to EntityType map (inverse of _CANONICAL_ID_PREFIX)
-_PREFIX_TO_ENTITY_TYPE: dict[str, EntityType] = {
-    v: k for k, v in _CANONICAL_ID_PREFIX.items()  # type: ignore[misc]
-}
+_PREFIX_TO_ENTITY_TYPE: dict[str, EntityType] = {v: k for k, v in _CANONICAL_ID_PREFIX.items()}
 
 
 def normalize_alias_key(raw_name: str) -> str:
@@ -122,13 +120,29 @@ DEFAULT_ALIAS_MAP: dict[str, tuple[str, EntityType, str]] = {
     "oauth service": ("service:auth-service", "Service", "Authentication Service"),
     "inventory svc": ("service:inventory-service", "Service", "Inventory Reservation Service"),
     "inventory service": ("service:inventory-service", "Service", "Inventory Reservation Service"),
-    "stock reservation service": ("service:inventory-service", "Service", "Inventory Reservation Service"),
+    "stock reservation service": (
+        "service:inventory-service",
+        "Service",
+        "Inventory Reservation Service",
+    ),
     "catalog svc": ("service:catalog-service", "Service", "Product Catalog Service"),
     "catalog service": ("service:catalog-service", "Service", "Product Catalog Service"),
     "product registry": ("service:catalog-service", "Service", "Product Catalog Service"),
-    "notification svc": ("service:notification-service", "Service", "Notification Dispatch Service"),
-    "notification service": ("service:notification-service", "Service", "Notification Dispatch Service"),
-    "comms dispatcher": ("service:notification-service", "Service", "Notification Dispatch Service"),
+    "notification svc": (
+        "service:notification-service",
+        "Service",
+        "Notification Dispatch Service",
+    ),
+    "notification service": (
+        "service:notification-service",
+        "Service",
+        "Notification Dispatch Service",
+    ),
+    "comms dispatcher": (
+        "service:notification-service",
+        "Service",
+        "Notification Dispatch Service",
+    ),
     "billing svc": ("service:billing-service", "Service", "Billing and Invoicing Service"),
     "billing service": ("service:billing-service", "Service", "Billing and Invoicing Service"),
     "ledger engine": ("service:billing-service", "Service", "Billing and Invoicing Service"),
@@ -139,10 +153,18 @@ DEFAULT_ALIAS_MAP: dict[str, tuple[str, EntityType, str]] = {
     "sms relay service": ("service:sms-relay-service", "Service", "SMS Relay Gateway"),
     "twilio gateway": ("service:sms-relay-service", "Service", "SMS Relay Gateway"),
     "tax svc": ("service:tax-calculator-service", "Service", "Tax Calculation Service"),
-    "tax calculator service": ("service:tax-calculator-service", "Service", "Tax Calculation Service"),
+    "tax calculator service": (
+        "service:tax-calculator-service",
+        "Service",
+        "Tax Calculation Service",
+    ),
     "avalara adapter": ("service:tax-calculator-service", "Service", "Tax Calculation Service"),
     "user dir": ("service:user-directory-service", "Service", "User Directory Service"),
-    "user directory service": ("service:user-directory-service", "Service", "User Directory Service"),
+    "user directory service": (
+        "service:user-directory-service",
+        "Service",
+        "User Directory Service",
+    ),
     "account registry": ("service:user-directory-service", "Service", "User Directory Service"),
     "cart svc": ("service:cart-service", "Service", "Shopping Cart Service"),
     "cart service": ("service:cart-service", "Service", "Shopping Cart Service"),
@@ -150,9 +172,17 @@ DEFAULT_ALIAS_MAP: dict[str, tuple[str, EntityType, str]] = {
     "search indexer": ("service:search-indexer", "Service", "Search Pipeline Indexer"),
     "elastic ingestion": ("service:search-indexer", "Service", "Search Pipeline Indexer"),
     "data pipeline": ("service:data-pipeline-service", "Service", "Data Pipeline Ingestion Engine"),
-    "data pipeline service": ("service:data-pipeline-service", "Service", "Data Pipeline Ingestion Engine"),
+    "data pipeline service": (
+        "service:data-pipeline-service",
+        "Service",
+        "Data Pipeline Ingestion Engine",
+    ),
     "etl engine": ("service:data-pipeline-service", "Service", "Data Pipeline Ingestion Engine"),
-    "analytics aggregator": ("service:analytics-aggregator", "Service", "Analytics Aggregator Service"),
+    "analytics aggregator": (
+        "service:analytics-aggregator",
+        "Service",
+        "Analytics Aggregator Service",
+    ),
     "bi metric engine": ("service:analytics-aggregator", "Service", "Analytics Aggregator Service"),
     # Teams
     "core checkout": ("team:checkout-engineering", "Team", "Checkout Engineering Team"),
@@ -163,18 +193,30 @@ DEFAULT_ALIAS_MAP: dict[str, tuple[str, EntityType, str]] = {
     "iam team": ("team:identity-access", "Team", "Identity and Access Management Team"),
     "auth team": ("team:identity-access", "Team", "Identity and Access Management Team"),
     "identity team": ("team:identity-access", "Team", "Identity and Access Management Team"),
-    "identity and access management team": ("team:identity-access", "Team", "Identity and Access Management Team"),
+    "identity and access management team": (
+        "team:identity-access",
+        "Team",
+        "Identity and Access Management Team",
+    ),
     "data infra": ("team:data-platform", "Team", "Data Platform Team"),
     "data platform eng": ("team:data-platform", "Team", "Data Platform Team"),
     "data platform team": ("team:data-platform", "Team", "Data Platform Team"),
     "notification team": ("team:notification-messaging", "Team", "Notification and Messaging Team"),
     "comms team": ("team:notification-messaging", "Team", "Notification and Messaging Team"),
     "messaging eng": ("team:notification-messaging", "Team", "Notification and Messaging Team"),
-    "notification and messaging team": ("team:notification-messaging", "Team", "Notification and Messaging Team"),
+    "notification and messaging team": (
+        "team:notification-messaging",
+        "Team",
+        "Notification and Messaging Team",
+    ),
     "warehouse team": ("team:inventory-fulfillment", "Team", "Inventory and Fulfillment Team"),
     "inventory eng": ("team:inventory-fulfillment", "Team", "Inventory and Fulfillment Team"),
     "logistics team": ("team:inventory-fulfillment", "Team", "Inventory and Fulfillment Team"),
-    "inventory and fulfillment team": ("team:inventory-fulfillment", "Team", "Inventory and Fulfillment Team"),
+    "inventory and fulfillment team": (
+        "team:inventory-fulfillment",
+        "Team",
+        "Inventory and Fulfillment Team",
+    ),
     "search team": ("team:catalog-search", "Team", "Catalog and Search Team"),
     "catalog eng": ("team:catalog-search", "Team", "Catalog and Search Team"),
     "discovery team": ("team:catalog-search", "Team", "Catalog and Search Team"),
@@ -182,19 +224,35 @@ DEFAULT_ALIAS_MAP: dict[str, tuple[str, EntityType, str]] = {
     "security team": ("team:security-secops", "Team", "Enterprise Security and SecOps Team"),
     "infosec": ("team:security-secops", "Team", "Enterprise Security and SecOps Team"),
     "secops": ("team:security-secops", "Team", "Enterprise Security and SecOps Team"),
-    "enterprise security and secops team": ("team:security-secops", "Team", "Enterprise Security and SecOps Team"),
+    "enterprise security and secops team": (
+        "team:security-secops",
+        "Team",
+        "Enterprise Security and SecOps Team",
+    ),
     "support eng": ("team:customer-support-eng", "Team", "Customer Support Engineering Team"),
     "care tech": ("team:customer-support-eng", "Team", "Customer Support Engineering Team"),
-    "customer support engineering team": ("team:customer-support-eng", "Team", "Customer Support Engineering Team"),
+    "customer support engineering team": (
+        "team:customer-support-eng",
+        "Team",
+        "Customer Support Engineering Team",
+    ),
     "finance tech": ("team:billing-finance", "Team", "Billing and Finance Tech Team"),
     "billing eng": ("team:billing-finance", "Team", "Billing and Finance Tech Team"),
     "ledger team": ("team:billing-finance", "Team", "Billing and Finance Tech Team"),
-    "billing and finance tech team": ("team:billing-finance", "Team", "Billing and Finance Tech Team"),
+    "billing and finance tech team": (
+        "team:billing-finance",
+        "Team",
+        "Billing and Finance Tech Team",
+    ),
     "infra team": ("team:cloud-infrastructure", "Team", "Cloud Infrastructure and SRE Team"),
     "sre": ("team:cloud-infrastructure", "Team", "Cloud Infrastructure and SRE Team"),
     "devops": ("team:cloud-infrastructure", "Team", "Cloud Infrastructure and SRE Team"),
     "platform sre": ("team:cloud-infrastructure", "Team", "Cloud Infrastructure and SRE Team"),
-    "cloud infrastructure and sre team": ("team:cloud-infrastructure", "Team", "Cloud Infrastructure and SRE Team"),
+    "cloud infrastructure and sre team": (
+        "team:cloud-infrastructure",
+        "Team",
+        "Cloud Infrastructure and SRE Team",
+    ),
     # Databases
     "postgres": ("database:postgres-16", "Database", "PostgreSQL Database"),
     "postgresql": ("database:postgres-16", "Database", "PostgreSQL Database"),
@@ -203,19 +261,39 @@ DEFAULT_ALIAS_MAP: dict[str, tuple[str, EntityType, str]] = {
     "payment vault pg": ("database:payment-vault-pg", "Database", "Payment Vault Database"),
     "user directory pg": ("database:user-directory-pg", "Database", "User Directory Database"),
     "inventory pg": ("database:inventory-pg", "Database", "Inventory Database"),
-    "financial ledger pg": ("database:financial-ledger-pg", "Database", "Financial Ledger Database"),
+    "financial ledger pg": (
+        "database:financial-ledger-pg",
+        "Database",
+        "Financial Ledger Database",
+    ),
     "notification pg": ("database:notification-pg", "Database", "Notification Database"),
     "auth session redis": ("database:auth-session-redis", "Database", "Auth Session Redis Cache"),
     "cart redis": ("database:cart-redis", "Database", "Cart Redis Cache"),
     "catalog mongodb": ("database:catalog-mongodb", "Database", "Catalog MongoDB Store"),
-    "search elasticsearch": ("database:search-elasticsearch", "Database", "Search Elasticsearch Cluster"),
-    "analytics clickhouse": ("database:analytics-clickhouse", "Database", "Analytics ClickHouse Warehouse"),
+    "search elasticsearch": (
+        "database:search-elasticsearch",
+        "Database",
+        "Search Elasticsearch Cluster",
+    ),
+    "analytics clickhouse": (
+        "database:analytics-clickhouse",
+        "Database",
+        "Analytics ClickHouse Warehouse",
+    ),
     # Infrastructure
     "kafka": ("infra:kafka-event-bus", "Infrastructure", "Kafka Event Bus"),
     "kafka event bus": ("infra:kafka-event-bus", "Infrastructure", "Kafka Event Bus"),
     "kafka event cluster": ("infra:kafka-event-bus", "Infrastructure", "Kafka Event Bus"),
-    "k8s prod cluster us east": ("infra:k8s-prod-cluster-us-east", "Infrastructure", "K8s Prod Cluster US East"),
-    "k8s prod cluster us west": ("infra:k8s-prod-cluster-us-west", "Infrastructure", "K8s Prod Cluster US West"),
+    "k8s prod cluster us east": (
+        "infra:k8s-prod-cluster-us-east",
+        "Infrastructure",
+        "K8s Prod Cluster US East",
+    ),
+    "k8s prod cluster us west": (
+        "infra:k8s-prod-cluster-us-west",
+        "Infrastructure",
+        "K8s Prod Cluster US West",
+    ),
     "pci isolated vpc": ("infra:pci-isolated-vpc", "Infrastructure", "PCI Isolated VPC"),
     # APIs
     "process charge v2": ("api:process-charge-v2", "API", "Process Charge API v2"),
@@ -266,7 +344,9 @@ class EntityResolver:
     def register_entity(self, entity: ExtractedEntity) -> None:
         """Register an extracted entity along with all its declared aliases."""
         # Register canonical_id itself
-        self.register_alias(entity.canonical_id, entity.canonical_id, entity.entity_type, entity.name)
+        self.register_alias(
+            entity.canonical_id, entity.canonical_id, entity.entity_type, entity.name
+        )
         # Register display name
         self.register_alias(entity.name, entity.canonical_id, entity.entity_type, entity.name)
         # Register all aliases
@@ -374,7 +454,10 @@ class EntityResolver:
 
         # B. Service suffix stripping
         for suffix_pat in [
-            re.compile(r"\s+\b(service|svc|core|engine|dispatcher|gateway|relay|adapter|indexer|aggregator)\b$", re.IGNORECASE),
+            re.compile(
+                r"\s+\b(service|svc|core|engine|dispatcher|gateway|relay|adapter|indexer|aggregator)\b$",
+                re.IGNORECASE,
+            ),
             _SERVICE_SUFFIX_RE,
         ]:
             svc_stripped = suffix_pat.sub("", raw).strip()
@@ -447,7 +530,11 @@ class EntityResolver:
 
         # Normalize any aliases within the entity as well
         normalized_aliases = sorted(
-            {a.strip() for a in entity.aliases if a.strip() and a.strip().lower() != target.canonical_id}
+            {
+                a.strip()
+                for a in entity.aliases
+                if a.strip() and a.strip().lower() != target.canonical_id
+            }
         )
 
         return ExtractedEntity(

@@ -87,7 +87,7 @@ class TestVectorRetrieverUnit:
         assert "(1 - (c.embedding <=> $1::vector)) >= $2" in sql_query
         assert "LIMIT $3" in sql_query
         assert args[1] == 0.70  # similarity threshold passed as parameter
-        assert args[2] == 3     # top_k passed as parameter
+        assert args[2] == 3  # top_k passed as parameter
 
     @pytest.mark.asyncio
     async def test_search_with_document_id_and_metadata_filter(
@@ -130,7 +130,9 @@ class TestVectorRetrieverUnit:
 
         # Pass 768 dimensions instead of 1536
         wrong_vec = [0.1] * 768
-        with pytest.raises(InvalidQueryVectorError, match="dimension 768 does not match expected 1536"):
+        with pytest.raises(
+            InvalidQueryVectorError, match="dimension 768 does not match expected 1536"
+        ):
             await retriever.search(wrong_vec)
 
     @pytest.mark.asyncio

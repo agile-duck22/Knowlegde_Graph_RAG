@@ -252,10 +252,12 @@ class IngestionPipeline:
                     )
                     report.failed_documents += 1
                     report.document_results.append(doc_res)
-                    report.errors.append({
-                        "document_id": doc.document_id,
-                        "error": str(exc),
-                    })
+                    report.errors.append(
+                        {
+                            "document_id": doc.document_id,
+                            "error": str(exc),
+                        }
+                    )
 
         finally:
             if owns_client and client_to_use is not None:
@@ -330,7 +332,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         return 1
 
     pipeline = IngestionPipeline(settings=settings)
-    logger.info("Starting ingestion from '%s' (dry_run=%s, limit=%s)", corpus_path, args.dry_run, args.limit)
+    logger.info(
+        "Starting ingestion from '%s' (dry_run=%s, limit=%s)", corpus_path, args.dry_run, args.limit
+    )
 
     try:
         report = pipeline.run(

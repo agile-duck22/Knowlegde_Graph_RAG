@@ -100,8 +100,12 @@ class PostgresWriter:
                 logger.debug("Upserted document id='%s'", document.document_id)
                 return str(res)
         except Exception as exc:
-            logger.error("Failed to upsert document id='%s': %s", document.document_id, exc, exc_info=True)
-            raise PostgresWriterError(f"Failed to upsert document '{document.document_id}': {exc}") from exc
+            logger.error(
+                "Failed to upsert document id='%s': %s", document.document_id, exc, exc_info=True
+            )
+            raise PostgresWriterError(
+                f"Failed to upsert document '{document.document_id}': {exc}"
+            ) from exc
 
     async def upsert_documents_batch(
         self,
@@ -220,17 +224,19 @@ class PostgresWriter:
                         chunk = item.chunk
                         chunk_uuid = uuid.UUID(chunk.chunk_id)
                         emb_str = str(item.embedding) if item.embedding is not None else None
-                        records.append((
-                            chunk_uuid,
-                            chunk.document_id,
-                            chunk.chunk_index,
-                            chunk.content,
-                            chunk.char_length,  # approx token count/char len
-                            chunk.char_start,
-                            chunk.char_end,
-                            json.dumps(chunk.metadata),
-                            emb_str,
-                        ))
+                        records.append(
+                            (
+                                chunk_uuid,
+                                chunk.document_id,
+                                chunk.chunk_index,
+                                chunk.content,
+                                chunk.char_length,  # approx token count/char len
+                                chunk.char_start,
+                                chunk.char_end,
+                                json.dumps(chunk.metadata),
+                                emb_str,
+                            )
+                        )
 
                     async with conn.transaction():
                         await conn.executemany(sql, records)
@@ -295,8 +301,12 @@ class PostgresWriter:
                     await conn.executemany(insert_sql, records)
             return len(records)
         except Exception as exc:
-            logger.error("Failed to write entity links for chunk '%s': %s", chunk_id, exc, exc_info=True)
-            raise PostgresWriterError(f"Failed to write entity links for chunk '{chunk_id}': {exc}") from exc
+            logger.error(
+                "Failed to write entity links for chunk '%s': %s", chunk_id, exc, exc_info=True
+            )
+            raise PostgresWriterError(
+                f"Failed to write entity links for chunk '{chunk_id}': {exc}"
+            ) from exc
 
     # ------------------------------------------------------------------
     # Atomic document & chunks write bundle
@@ -383,26 +393,30 @@ class PostgresWriter:
                             chunk = item.chunk
                             c_uuid = uuid.UUID(chunk.chunk_id)
                             emb_str = str(item.embedding) if item.embedding is not None else None
-                            chunk_records.append((
-                                c_uuid,
-                                chunk.document_id,
-                                chunk.chunk_index,
-                                chunk.content,
-                                chunk.char_length,
-                                chunk.char_start,
-                                chunk.char_end,
-                                json.dumps(chunk.metadata),
-                                emb_str,
-                            ))
+                            chunk_records.append(
+                                (
+                                    c_uuid,
+                                    chunk.document_id,
+                                    chunk.chunk_index,
+                                    chunk.content,
+                                    chunk.char_length,
+                                    chunk.char_start,
+                                    chunk.char_end,
+                                    json.dumps(chunk.metadata),
+                                    emb_str,
+                                )
+                            )
 
                             for ent in item.entities:
-                                all_link_records.append((
-                                    c_uuid,
-                                    ent.canonical_id,
-                                    ent.entity_type,
-                                    ent.name,
-                                    float(ent.confidence),
-                                ))
+                                all_link_records.append(
+                                    (
+                                        c_uuid,
+                                        ent.canonical_id,
+                                        ent.entity_type,
+                                        ent.name,
+                                        float(ent.confidence),
+                                    )
+                                )
 
                         await conn.executemany(chunk_sql, chunk_records)
 
@@ -425,5 +439,9 @@ class PostgresWriter:
             return len(chunk_items), total_links
 
         except Exception as exc:
-            logger.error("Failed to write document bundle '%s': %s", document.document_id, exc, exc_info=True)
-            raise PostgresWriterError(f"Failed to write document bundle '{document.document_id}': {exc}") from exc
+            logger.error(
+                "Failed to write document bundle '%s': %s", document.document_id, exc, exc_info=True
+            )
+            raise PostgresWriterError(
+                f"Failed to write document bundle '{document.document_id}': {exc}"
+            ) from exc
