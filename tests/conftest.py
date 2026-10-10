@@ -114,7 +114,7 @@ def mock_neo4j_driver() -> MagicMock:
 class _AsyncContextManagerMock:
     """Helper for async context managers like pool.acquire()."""
 
-    def __init__(self, target: Any):
+    def __init__(self, target: Any) -> None:
         self.target = target
 
     async def __aenter__(self) -> Any:
