@@ -1,0 +1,81 @@
+# Python / Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+env.bak/
+venv.bak/
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+*.cert
+secrets.json
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.nox/
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Type Checking & Tooling
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.ruff_cache/
+
+# Databases & Local Storage
+data/neo4j/
+data/postgres/
+data/raw/*.pdf
+data/raw/*.docx
+data/embeddings_cache/
+*.db
+*.sqlite3
+
+# Benchmarks & Temporary Outputs
+benchmark_results/
+logs/
+tmp/
+scratch/

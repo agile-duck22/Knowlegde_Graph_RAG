@@ -1,0 +1,49 @@
+# Docker Compose specification for Knowledge Graph RAG storage infrastructure
+# Services: PostgreSQL 16 (pgvector) & Neo4j 5.x Community
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    container_name: kgr-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-kgr_db}
+      POSTGRES_USER: ${POSTGRES_USER:-kgr_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-kgr_password}
+    ports:
+      - "127.0.0.1:5432:5432"
+    volumes:
+      - kgr_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-kgr_user} -d ${POSTGRES_DB:-kgr_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  neo4j:
+    image: neo4j:5.18-community
+    container_name: kgr-neo4j
+    restart: unless-stopped
+    environment:
+      NEO4J_AUTH: neo4j/${NEO4J_PASSWORD:-neo4j_password}
+      NEO4J_PLUGINS: '["apoc"]'
+      NEO4J_dbms_memory_heap_initial__size: 512m
+      NEO4J_dbms_memory_heap_max__size: 1G
+    ports:
+      - "127.0.0.1:7474:7474" # HTTP Browser UI (Localhost only)
+      - "127.0.0.1:7687:7687" # Bolt Protocol (Localhost only)
+    volumes:
+      - kgr_neo4jdata:/data
+    healthcheck:
+      test: ["CMD-SHELL", "cypher-shell -u neo4j -p ${NEO4J_PASSWORD:-neo4j_password} 'RETURN 1'"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+volumes:
+  kgr_pgdata:
+    name: kgr_pgdata
+  kgr_neo4jdata:
+    name: kgr_neo4jdata
