@@ -29,7 +29,7 @@
 - **Phase 0 (Scaffolding)**: `DONE` (`TASK-001`–`TASK-004` all verified & passing)
 - **Phase 1 (Ingestion & Graph)**: `DONE` (`TASK-101`–`TASK-107` all verified & passing)
 - **Phase 2 (pgvector & Vector Search)**: `DONE` (`TASK-201`–`TASK-205` all verified & passing)
-- **Phase 3 (Routing & Cypher Templates)**: `TODO` (`TASK-301`–`TASK-305`)
+- **Phase 3 (Routing & Cypher Templates)**: `DONE` (`TASK-301` ✅, `TASK-302` ✅, `TASK-303` ✅, `TASK-304` ✅, `TASK-305` ✅)
 - **Phase 4 (Synthesis & Citations)**: `TODO`
 - **Phase 5 (Evaluation & Benchmarks)**: `TODO`
 
@@ -44,5 +44,5 @@
 
 ## 5. Last Completed Task & Next Recommended Action
 
-- **Last Completed Task**: [`TASK-205`](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/TASKS.md#phase-2-postgresql--pgvector-indexing--vector-search) — Built Dual-Store Provenance & Consistency Validator test suite (`src/validation/provenance_check.py`, `src/validation/__init__.py`). Features: actual canonical chunk UUID cross-store parity comparison between Neo4j (`source_chunk_ids`, `provenance_chunk_id`) and PostgreSQL (`chunks.id`), orphaned graph relationship detection, unreferenced PostgreSQL chunk detection, malformed UUID validation, and PostgreSQL `entity_links` bridge integrity checks. Verified via 7 offline unit tests and 2 live integration tests against local Docker containers (`kgr-neo4j` and `kgr-postgres`), `ruff` clean, `mypy` clean.
-- **Next Recommended Action**: Phase 2 is complete. Review Phase 2 database and retrieval components before proceeding to Phase Gate approval for Phase 3 (`TASK-301`: Parameterized Cypher Query Template Catalog).
+- **Last Completed Task**: [`TASK-305`](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/TASKS.md#phase-3-query-routing--safe-cypher-templates) — Implemented Router Engine (`src/routing/router.py`, `src/routing/__init__.py`). Features: `RouterEngine` coordinating `QueryIntentClassifier`, `EntityLinker`, `SafeGraphRetriever`, and `VectorRetriever`. Supports `GRAPH_ONLY`, `VECTOR_ONLY`, `HYBRID`, and `OUT_OF_SCOPE` query intents with robust fallback logic when entities cannot be resolved or linked. Typed data contracts (`RoutedQueryRequest`, `RoutedQueryResponse`, `GraphExecutionDetails`, `VectorExecutionDetails`, `RetrievalRoutingError`). Verified via 17 unit tests with mocks, `ruff` clean, `mypy` clean. Full test suite: 342 unit tests passed (89% line coverage), 25 integration tests passed.
+- **Next Recommended Action**: Conduct Phase 3 Gate Review and proceed with Phase 4 ([`TASK-401`](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/TASKS.md#phase-4-hybrid-retrieval-synthesis--citation-validation) — Context Normalizer & Token Budget Manager).

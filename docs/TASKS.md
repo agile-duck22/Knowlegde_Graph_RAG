@@ -57,11 +57,11 @@ This document is the authoritative task backlog for the Knowledge Graph RAG plat
 
 | Task ID | Description | Priority | Dependencies | Expected Modules | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `TASK-301` | Create audited Parameterized Cypher Query Template catalog with depth and node limits | P0 | `TASK-106` | `src/retrieval/cypher_templates.py` | `TODO` |
-| `TASK-302` | Implement Safe Graph Retriever executing approved Cypher templates | P0 | `TASK-301` | `src/retrieval/graph_retriever.py` | `TODO` |
-| `TASK-303` | Implement Query Intent Classifier (Graph vs Vector vs Hybrid vs Out-of-Scope) | P0 | `TASK-003` | `src/routing/intent_classifier.py` | `TODO` |
-| `TASK-304` | Implement Entity Linker matching question terms to canonical Neo4j entity IDs | P0 | `TASK-105` | `src/routing/entity_linker.py` | `TODO` |
-| `TASK-305` | Integrate Router Engine coordinating classification, linking, and retrieval delegation | P0 | `TASK-302`, `TASK-303`, `TASK-304` | `src/routing/router.py` | `TODO` |
+| `TASK-301` | Create audited Parameterized Cypher Query Template catalog with depth and node limits | P0 | `TASK-106` | `src/retrieval/cypher_templates.py` | `DONE` |
+| `TASK-302` | Implement Safe Graph Retriever executing approved Cypher templates | P0 | `TASK-301` | `src/retrieval/graph_retriever.py` | `DONE` |
+| `TASK-303` | Implement Query Intent Classifier (Graph vs Vector vs Hybrid vs Out-of-Scope) | P0 | `TASK-003` | `src/routing/intent_classifier.py` | `DONE` |
+| `TASK-304` | Implement Entity Linker matching question terms to canonical Neo4j entity IDs | P0 | `TASK-105` | `src/routing/entity_linker.py` | `DONE` |
+| `TASK-305` | Integrate Router Engine coordinating classification, linking, and retrieval delegation | P0 | `TASK-302`, `TASK-303`, `TASK-304` | `src/routing/router.py` | `DONE` |
 
 ### Phase 4: Hybrid Retrieval, Synthesis & Citation Validation
 *Objective: Combine retrieved subgraphs and vector chunks, synthesize answers with Claude, and enforce citation integrity.*
