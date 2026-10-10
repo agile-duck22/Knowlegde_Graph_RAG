@@ -27,9 +27,9 @@
 ## 3. Implementation Status Summary
 
 - **Phase 0 (Scaffolding)**: `DONE` (`TASK-001`–`TASK-004` all verified & passing)
-- **Phase 1 (Ingestion & Graph)**: `DONE` (`TASK-101` ✅, `TASK-102` ✅, `TASK-103` ✅, `TASK-104` ✅, `TASK-105` ✅, `TASK-106` ✅, `TASK-107` ✅)
-- **Phase 2 (pgvector & Vector Search)**: `TODO`
-- **Phase 3 (Routing & Cypher Templates)**: `TODO`
+- **Phase 1 (Ingestion & Graph)**: `DONE` (`TASK-101`–`TASK-107` all verified & passing)
+- **Phase 2 (pgvector & Vector Search)**: `DONE` (`TASK-201`–`TASK-205` all verified & passing)
+- **Phase 3 (Routing & Cypher Templates)**: `TODO` (`TASK-301`–`TASK-305`)
 - **Phase 4 (Synthesis & Citations)**: `TODO`
 - **Phase 5 (Evaluation & Benchmarks)**: `TODO`
 
@@ -44,5 +44,5 @@
 
 ## 5. Last Completed Task & Next Recommended Action
 
-- **Last Completed Task**: [`TASK-107`](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/TASKS.md#phase-1-corpus-ontology-extraction--graph-persistence) — Implemented end-to-end graph store ingestion pipeline and CLI ([`src/ingest/pipeline.py`](file:///c:/Users/workp/OneDrive/Desktop/kgr/src/ingest/pipeline.py)). Connects DocumentLoader -> DocumentChunker -> ChunkExtractor -> EntityResolver -> Neo4jClient. Features: document-level error tracking without silent failure, dry-run mode, limit option, resource lifecycle management (Neo4j driver cleanup), summary reporting. Verified with 13 offline unit tests and live integration test against local Neo4j container (`tests/integration/test_pipeline_live.py`). Phase 1 is fully complete.
-- **Next Recommended Task**: **Phase Gate Confirmation** — Request user confirmation to begin Phase 2 ([`TASK-201`](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/TASKS.md#phase-2-postgresql--pgvector-indexing--vector-search) — PostgreSQL DDL migration scripts and HNSW index creation).
+- **Last Completed Task**: [`TASK-205`](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/TASKS.md#phase-2-postgresql--pgvector-indexing--vector-search) — Built Dual-Store Provenance & Consistency Validator test suite (`src/validation/provenance_check.py`, `src/validation/__init__.py`). Features: actual canonical chunk UUID cross-store parity comparison between Neo4j (`source_chunk_ids`, `provenance_chunk_id`) and PostgreSQL (`chunks.id`), orphaned graph relationship detection, unreferenced PostgreSQL chunk detection, malformed UUID validation, and PostgreSQL `entity_links` bridge integrity checks. Verified via 7 offline unit tests and 2 live integration tests against local Docker containers (`kgr-neo4j` and `kgr-postgres`), `ruff` clean, `mypy` clean.
+- **Next Recommended Action**: Phase 2 is complete. Review Phase 2 database and retrieval components before proceeding to Phase Gate approval for Phase 3 (`TASK-301`: Parameterized Cypher Query Template Catalog).

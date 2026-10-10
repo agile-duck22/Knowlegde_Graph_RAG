@@ -46,11 +46,11 @@ This document is the authoritative task backlog for the Knowledge Graph RAG plat
 
 | Task ID | Description | Priority | Dependencies | Expected Modules | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `TASK-201` | Create PostgreSQL DDL migration scripts (tables: `documents`, `chunks`, `entity_links`) and HNSW index creation | P0 | `TASK-002` | `src/db/migrations/`, `src/db/postgres.py` | `TODO` |
-| `TASK-202` | Implement Embedding Generator client supporting configurable models with batching | P0 | `TASK-003` | `src/embeddings/client.py` | `TODO` |
-| `TASK-203` | Implement PostgreSQL chunk and vector embedding writer with idempotent upserts | P0 | `TASK-201`, `TASK-202` | `src/db/postgres_writer.py` | `TODO` |
-| `TASK-204` | Implement Vector Retriever with cosine distance search, top-$k$, and metadata filtering | P0 | `TASK-203` | `src/retrieval/vector_retriever.py` | `TODO` |
-| `TASK-205` | Build Dual-Store Provenance & Consistency Validator test suite | P1 | `TASK-106`, `TASK-203` | `src/validation/provenance_check.py` | `TODO` |
+| `TASK-201` | Create PostgreSQL DDL migration scripts (tables: `documents`, `chunks`, `entity_links`) and HNSW index creation | P0 | `TASK-002` | `src/db/migrations/`, `src/db/postgres.py` | `DONE` |
+| `TASK-202` | Implement Embedding Generator client supporting configurable models with batching | P0 | `TASK-003` | `src/embeddings/client.py` | `DONE` |
+| `TASK-203` | Implement PostgreSQL chunk and vector embedding writer with idempotent upserts | P0 | `TASK-201`, `TASK-202` | `src/db/postgres_writer.py` | `DONE` |
+| `TASK-204` | Implement Vector Retriever with cosine distance search, top-$k$, and metadata filtering | P0 | `TASK-203` | `src/retrieval/vector_retriever.py` | `DONE` |
+| `TASK-205` | Build Dual-Store Provenance & Consistency Validator test suite | P1 | `TASK-106`, `TASK-203` | `src/validation/provenance_check.py` | `DONE` |
 
 ### Phase 3: Query Routing & Safe Cypher Templates
 *Objective: Implement query intent classifier, entity linker, and parameterized Cypher query template library.*
