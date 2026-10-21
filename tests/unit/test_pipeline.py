@@ -38,6 +38,7 @@ from src.ingest.pipeline import (
     build_parser,
     main,
 )
+from src.llm.client import MultiProviderClient
 
 
 @pytest.fixture
@@ -278,11 +279,17 @@ class TestIngestionPipeline:
         sample_documents: list[RawDocument],
         mock_extractor: MagicMock,
         mock_neo4j_client: MagicMock,
+        mock_postgres_client: MagicMock,
+        mock_postgres_writer: MagicMock,
+        mock_embedding_generator: MagicMock,
     ) -> None:
         pipeline = IngestionPipeline(
             settings=mock_pipeline_settings,
             extractor=mock_extractor,
             neo4j_client=mock_neo4j_client,
+            postgres_client=mock_postgres_client,
+            postgres_writer=mock_postgres_writer,
+            embedding_generator=mock_embedding_generator,
         )
 
         report = pipeline.run(documents=sample_documents, limit=1)
@@ -489,6 +496,7 @@ class TestIngestionPipeline:
         mock_neo4j_instance = MagicMock()
         mock_neo4j_instance.verify_connectivity.return_value = None
         mock_neo4j_instance.initialise_schema.return_value = None
+        mock_neo4j_instance.write_chunk_result.return_value = (2, 1)
         mock_neo4j_instance.close.side_effect = RuntimeError("Neo4j driver close failed")
 
         mock_pg_instance = MagicMock()
@@ -524,6 +532,9 @@ class TestIngestionPipeline:
         with patch("anthropic.Anthropic") as mock_anthropic_cls:
             extractor = pipeline._get_extractor()
             assert isinstance(extractor, ChunkExtractor)
+            assert isinstance(extractor.client, MultiProviderClient)
+            assert extractor.client._anthropic_client is None
+            extractor.client._get_anthropic_client()
             mock_anthropic_cls.assert_called_once()
 
 

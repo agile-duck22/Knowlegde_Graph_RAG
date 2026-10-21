@@ -118,7 +118,8 @@ class TestSQLInjectionDefense:
         mock_client = MagicMock()
         mock_client.connection.return_value.__aenter__.return_value = mock_conn
 
-        retriever = VectorRetriever(client=mock_client)
+        test_settings = Settings(_env_file=None, embedding_dimensions=384)
+        retriever = VectorRetriever(client=mock_client, settings=test_settings)
         adversarial_doc_id = "doc-1'; DROP TABLE chunks; --"
         query_vec = [0.1] * 384
 
