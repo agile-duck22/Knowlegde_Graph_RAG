@@ -456,10 +456,10 @@ class ContextNormalizer:
             # Process downstream infrastructure
             for inf in record.get("infrastructures") or []:
                 if isinstance(inf, dict) and inf.get("id"):
-                    inf_id = str(inf["id"]).strip()
-                    inf_name = str(inf.get("name") or inf_id).strip()
-                    inf_rel = str(inf.get("rel") or "DEPLOYED_ON").strip()
-                    inf_chunks = [
+                    down_inf_id = str(inf["id"]).strip()
+                    down_inf_name = str(inf.get("name") or down_inf_id).strip()
+                    down_inf_rel = str(inf.get("rel") or "DEPLOYED_ON").strip()
+                    down_inf_chunks = [
                         str(c).strip()
                         for c in (inf.get("chunk_ids") or default_chunk_ids)
                         if str(c).strip()
@@ -470,10 +470,10 @@ class ContextNormalizer:
                             source_name=str(
                                 record.get("downstream_service_name") or down_svc_id
                             ).strip(),
-                            relationship_type=inf_rel,
-                            target_id=inf_id,
-                            target_name=inf_name,
-                            source_chunk_ids=inf_chunks,
+                            relationship_type=down_inf_rel,
+                            target_id=down_inf_id,
+                            target_name=down_inf_name,
+                            source_chunk_ids=down_inf_chunks,
                         )
                     )
 
