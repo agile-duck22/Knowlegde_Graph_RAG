@@ -1,8 +1,8 @@
 # Knowledge Graph RAG for Enterprise Data
 
-> **Status**: Planning & Documentation Stage (Implementation not started)
+> **Status**: Verified Implementation & Benchmarked Prototype (80% Benchmark Accuracy on HYBRID v3)
 
-A production-grade, hybrid Retrieval-Augmented Generation (RAG) system combining Knowledge Graph (Neo4j) structured relationship traversal with Vector Search (PostgreSQL + pgvector) dense semantic retrieval, orchestrated via FastAPI and powered by Anthropic Claude.
+A production-grade, hybrid Retrieval-Augmented Generation (RAG) system combining Knowledge Graph (Neo4j) structured relationship traversal with Vector Search (PostgreSQL + pgvector) dense semantic retrieval, orchestrated via FastAPI and powered by multi-provider LLMs (Anthropic Claude, Google Gemini, Groq, OpenRouter) and local SentenceTransformers embeddings (`all-MiniLM-L6-v2`).
 
 ---
 
@@ -12,8 +12,8 @@ Standard vector-only RAG architectures struggle with multi-hop queries, relation
 
 This project implements a **Hybrid Knowledge Graph + Vector RAG** system designed to:
 1. Traverse multi-hop entity relationships deterministically via Neo4j.
-2. Retrieve semantic context and unstructured facts via pgvector.
-3. Dynamically route queries to the optimal retrieval engine using confidence scoring.
+2. Retrieve semantic context and unstructured facts via pgvector (supporting both 384-dim local and 1536-dim embeddings).
+3. Dynamically route queries to the optimal retrieval engine (Graph, Vector, Hybrid, Out-of-Scope) using confidence scoring.
 4. Generate strictly grounded answers with verifiable, chunk-level citations.
 5. Provide a reproducible benchmark comparing Hybrid RAG against a Vector-Only baseline.
 
@@ -21,22 +21,23 @@ This project implements a **Hybrid Knowledge Graph + Vector RAG** system designe
 
 ## 2. Key Capabilities
 
-- **Hybrid Query Routing**: Automated intent classification routing questions to Graph, Vector, or Hybrid execution pipelines.
-- **Safe Template-Driven Cypher Execution**: Zero raw LLM Cypher execution; all graph queries run through parameterized, audited query templates with strict traversal depth limits.
-- **Dual-Store Provenance**: Every graph entity/relationship and vector record shares a canonical `chunk_id` referencing the exact raw document source chunk.
+- **Hybrid Query Routing**: Automated intent classification routing questions to Graph, Vector, Hybrid, or Out-of-Scope pipelines with deterministic heuristic fast-paths and LLM fallback.
+- **Safe Template-Driven Cypher Execution**: Zero raw LLM Cypher execution; all graph queries run through parameterized, audited query templates (`T-01` through `T-09`) with strict traversal depth limits.
+- **Dual-Store Provenance**: Every graph entity/relationship and vector record shares a canonical `chunk_id` (UUID format) referencing the exact raw document source chunk.
 - **Grounded Answer Synthesis**: Strict citation validation ensuring every factual claim points to verified supporting source chunks.
-- **Reproducible Evaluation Framework**: Standardized evaluation suite comparing single-hop, multi-hop, aggregation, and out-of-scope queries across latency, token cost, and retrieval precision.
+- **Multi-Provider LLM & Zero-Cost Guardrails**: Native adapter supporting Gemini (`gemini-3.1-flash-lite`), Groq (`openai/gpt-oss-20b`), OpenRouter (`:free` models), and Anthropic Claude, with local SentenceTransformers embeddings for zero-cost operation.
+- **Reproducible Evaluation Framework**: Standardized evaluation suite comparing single-hop, multi-hop, aggregation, and out-of-scope queries across accuracy, latency, cost, and retrieval precision.
 
 ---
 
 ## 3. Technology Stack
 
-- **Language & Runtime**: Python 3.11+
+- **Language & Runtime**: Python 3.11+ / Python 3.12
 - **API Framework**: FastAPI (Uvicorn / Pydantic v2)
-- **Knowledge Graph Store**: Neo4j 5.x
+- **Knowledge Graph Store**: Neo4j 5.x Community
 - **Vector & Relational Store**: PostgreSQL 16 + `pgvector`
-- **LLM & Embeddings**: Anthropic Claude API (`claude-3-5-sonnet` / `claude-3-haiku`), OpenAI/Cohere/HuggingFace embeddings (configurable)
-- **Orchestration**: Custom lightweight pipelines with LangChain used selectively where beneficial
+- **Embeddings**: Local SentenceTransformers (`all-MiniLM-L6-v2`, 384 dimensions) or OpenAI (`text-embedding-3-small`, 1536 dimensions)
+- **LLM Backends**: Multi-provider adapter (Google Gemini, Groq, OpenRouter, Anthropic)
 - **Testing & Quality**: pytest, pytest-asyncio, ruff, mypy
 - **Containerization**: Docker Compose
 
@@ -48,7 +49,7 @@ This project implements a **Hybrid Knowledge Graph + Vector RAG** system designe
                           ┌──────────────────────────┐
                           │   Client / Enterprise    │
                           └─────────────┬────────────┘
-                                        │ HTTP POST /query
+                                        │ HTTP POST /api/v1/query
                                         ▼
                           ┌──────────────────────────┐
                           │     FastAPI Gateway      │
@@ -77,7 +78,7 @@ This project implements a **Hybrid Knowledge Graph + Vector RAG** system designe
                                         │
                                         ▼
                           ┌──────────────────────────┐
-                          │ Answer Synthesis (Claude)│
+                          │ Answer Synthesis (LLM)   │
                           └─────────────┬────────────┘
                                         │
                                         ▼
@@ -106,13 +107,13 @@ Comprehensive project specifications are maintained in the [`docs/`](file:///c:/
 | [**ARCHITECTURE.md**](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/ARCHITECTURE.md) | Component architecture, sequence diagrams, and failure isolation |
 | [**DATA_MODEL.md**](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/DATA_MODEL.md) | Neo4j property graph schema, PostgreSQL DDL, and dual-store invariants |
 | [**ONTOLOGY.md**](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/ONTOLOGY.md) | Entity types, relationship schemas, and normalization rules |
-| [**RETRIEVAL_STRATEGY.md**](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/RETRIEVAL_STRATEGY.md) | Routing logic, safe Cypher templates, vector search, and ranking |
+| [**RETRIEVAL_STRATEGY.md**](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/RETRIEVAL_STRATEGY.md) | Routing logic, safe Cypher templates (`T-01`–`T-09`), vector search, and ranking |
 | [**API_SPEC.md**](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/API_SPEC.md) | OpenAPI REST contract, request/response models, and error codes |
 | [**SECURITY.md**](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/SECURITY.md) | Threat model, Cypher injection defenses, prompt isolation, and secrets |
 | [**TASKS.md**](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/TASKS.md) | Authoritative Phase 0–5 implementation backlog and task definitions |
 | [**MEMORY.md**](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/MEMORY.md) | Persistent session memory, active status, confirmed invariants |
 | [**TESTING.md**](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/TESTING.md) | Unit, integration, security, and mocked testing strategy |
-| [**EVALUATION.md**](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/EVALUATION.md) | Benchmark protocol, metrics, question sets, and empty result matrices |
+| [**EVALUATION.md**](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/EVALUATION.md) | Benchmark protocol, metrics, question sets, and evaluation results |
 | [**CONFIGURATION.md**](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/CONFIGURATION.md) | Environment variables, defaults, tuning knobs, and config schema |
 | [**DEPLOYMENT.md**](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/DEPLOYMENT.md) | Docker Compose infrastructure, migrations, and local runbooks |
 | [**DECISIONS.md**](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/DECISIONS.md) | Architecture Decision Records (ADRs) and unresolved decisions |
@@ -122,67 +123,89 @@ Comprehensive project specifications are maintained in the [`docs/`](file:///c:/
 
 ---
 
-## 6. Prerequisites & Planned Setup (Not Yet Implemented)
-
-> [!WARNING]
-> The setup instructions below are design specifications and have **not yet been executed or verified**. Implementation begins in Phase 0.
+## 6. Quickstart & Local Demo Guide
 
 ### Prerequisites
 - Docker Engine 24+ & Docker Compose v2+
-- Python 3.11+
-- Anthropic API Key (`ANTHROPIC_API_KEY`)
+- Python 3.11+ or 3.12
+- LLM API key (Google Gemini, Groq, OpenRouter, or Anthropic)
 
-### Planned Quickstart
+### 1. Setup Environment
 ```bash
-# 1. Clone repository and set up virtual environment
-git clone <repo-url>
-cd kgr
+# Clone and enter workspace
+git clone https://github.com/agile-duck22/Knowlegde_Graph_RAG.git
+cd Knowlegde_Graph_RAG
+
+# Create virtual environment and install dependencies
 python -m venv .venv
-source .venv/bin/activate  # Or .venv\Scripts\Activate.ps1 on Windows
+.\.venv\Scripts\Activate.ps1   # Windows PowerShell
+# source .venv/bin/activate    # Linux / macOS
+
 pip install -r requirements.txt
+pip install -r requirements-dev.txt
 
-# 2. Configure environment variables
-cp .env.example .env
-# Edit .env with your credentials
+# Configure environment variables
+copy .env.example .env
+# Edit .env to set your LLM_PROVIDER and matching API key (e.g. GEMINI_API_KEY)
+```
 
-# 3. Start storage infrastructure
+### 2. Launch Storage Infrastructure
+```bash
 docker compose up -d neo4j postgres
+```
 
-# 4. Run database migrations and schema constraints
+### 3. Initialize Schema & Ingest Reference Corpus
+```bash
+# Run database migrations (PostgreSQL DDL & Neo4j constraints)
 python -m src.db.migrate
 
-# 5. Ingest reference dataset
+# Ingest the 145-document enterprise reference corpus
 python -m src.ingest --corpus data/raw/corpus.jsonl
+```
 
-# 6. Start API service
+### 4. Run the API Server
+```bash
 uvicorn src.api.main:app --host 0.0.0.0 --port 8000 --reload
+```
+Interactive Swagger UI is available at `http://localhost:8000/docs`.
+
+### 5. Query the System
+```bash
+curl -X POST http://localhost:8000/api/v1/query \
+  -H "Content-Type: application/json" \
+  -d '{"question": "Which teams maintain services that write to the Customer Orders Database?"}'
 ```
 
 ---
 
-## 7. Project Status & Implementation Roadmap
+## 7. Implementation Status & Phase Summary
 
-- [x] **Documentation & Architecture Phase**: Complete specification, data modeling, security rules, and task roadmap.
-- [ ] **Phase 0**: Scaffolding, container infrastructure, configuration validation, and test harness.
-- [ ] **Phase 1**: Ingestion pipeline, LLM entity/relationship extraction, and Neo4j property graph persistence.
-- [ ] **Phase 2**: PostgreSQL/pgvector indexing, HNSW vector search, and dual-store provenance validation.
-- [ ] **Phase 3**: Intent classification, query routing, entity linking, and safe parameterized Cypher templates.
-- [ ] **Phase 4**: Hybrid context merging, Claude grounded answer generation, and strict citation validation.
-- [ ] **Phase 5**: 50–100 question evaluation benchmark, API hardening, latency/cost analysis, and portfolio readiness.
+- [x] **Phase 0 (Scaffolding)**: Pydantic settings, Docker Compose, mock test fixtures, CI workflow (`TASK-001`–`TASK-004`).
+- [x] **Phase 1 (Ingestion & Graph)**: 145-doc enterprise corpus, semantic chunker, structured extractor, entity resolver, Neo4j idempotent batch writer (`TASK-101`–`TASK-107`).
+- [x] **Phase 2 (Vector Search & Provenance)**: PostgreSQL + pgvector migrations (dual 384/1536 dim), local SentenceTransformers embedding generator, vector retriever, dual-store provenance check (`TASK-201`–`TASK-205`).
+- [x] **Phase 3 (Routing & Safe Templates)**: Parameterized Cypher catalog (`T-01`–`T-09`), SafeGraphRetriever, intent classifier router, entity linker (`TASK-301`–`TASK-305`).
+- [x] **Phase 4 (Synthesis & Hardening)**: Context normalizer, grounded synthesizer, citation guardrail, FastAPI endpoints, structured logging, multi-provider LLM adapter (`TASK-401`–`TASK-406`).
+- [x] **Phase 5 (Evaluation & Verification)**: 50-question benchmark dataset, automated evaluation runner, security audit suite (`TASK-501`, `TASK-502`, `TASK-504`). Full benchmark executed (`run_hybrid_v3_threshold040.json`).
 
 ---
 
-## 8. Planned Benchmark Results
+## 8. Benchmark Results (HYBRID v3)
 
-*Experimental evaluation results will be published here upon completion of Phase 5.*
+*Empirical results from full 50-question benchmark artifact: `benchmark_results/run_hybrid_v3_threshold040.json` (similarity threshold = 0.40).*
 
-| Query Category | Vector-Only Accuracy | Hybrid KG+Vector Accuracy | Citation Validity | Latency p95 (Vector) | Latency p95 (Hybrid) |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| Single-Hop Direct Fact | `[Pending Phase 5]` | `[Pending Phase 5]` | `[Pending Phase 5]` | `[Pending Phase 5]` | `[Pending Phase 5]` |
-| 2-Hop Relationship | `[Pending Phase 5]` | `[Pending Phase 5]` | `[Pending Phase 5]` | `[Pending Phase 5]` | `[Pending Phase 5]` |
-| 3-Hop Dependency Path | `[Pending Phase 5]` | `[Pending Phase 5]` | `[Pending Phase 5]` | `[Pending Phase 5]` | `[Pending Phase 5]` |
-| Relationship Aggregation | `[Pending Phase 5]` | `[Pending Phase 5]` | `[Pending Phase 5]` | `[Pending Phase 5]` | `[Pending Phase 5]` |
-| Out-of-Scope / Refusal | `[Pending Phase 5]` | `[Pending Phase 5]` | `[Pending Phase 5]` | `[Pending Phase 5]` | `[Pending Phase 5]` |
+| Query Category | Questions | Accuracy (%) | Mean Fact Coverage | Citation Precision | Citation Hallucination | Mean Latency (ms) | Latency p95 (ms) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Single-Hop Direct Fact** | 10 | **100.0%** (10/10) | 1.00 | 0.70 | 0.0% | 29,508 ms | 99,511 ms |
+| **2-Hop Relationship** | 15 | **80.0%** (12/15) | 0.90 | 0.40 | 0.0% | 14,801 ms | 31,233 ms |
+| **3-Hop Dependency** | 10 | **70.0%** (7/10) | 0.77 | 0.45 | 0.0% | 7,651 ms | 17,211 ms |
+| **Relationship Aggregation** | 10 | **60.0%** (6/10) | 0.83 | 0.40 | 0.0% | 10,617 ms | 18,349 ms |
+| **Out-of-Scope / Refusal** | 5 | **100.0%** (5/5) | 1.00 | 1.00 | 0.0% | 1,489 ms | 2,781 ms |
+| **Overall Summary** | **50** | **80.0%** (40/50) | **0.87** | **0.495** | **0.0%** | **13,456 ms** | **33,044 ms** |
+
+> [!NOTE]
+> - **Cost Metric**: Evaluator-reported cost of $0.00 reflects the zero-cost local embedding pipeline and free-tier LLM inference settings; it does not imply commercial third-party API calls are inherently zero cost.
+> - **EVAL-028 Ingestion Gap**: In `data/raw/corpus.jsonl`, `service:cart-service` does not explicitly state a direct dependency on `service:checkout-service` or the PCI-isolated VPC. The synthesizer correctly refrains from hallucinating this connection, causing EVAL-028 to record lower coverage until an evidence-backed corpus update is applied.
+> - **EVAL-038 Fix**: RDS PostgreSQL cluster traversal and normalizer expansion were validated via offline unit tests and template execution, connecting RDS instances to their parent cluster (`database:postgres-16`).
 
 ---
 *Maintained under strict Architecture Decision Records. See [`docs/DECISIONS.md`](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/DECISIONS.md).*

@@ -6,33 +6,40 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
-## [Unreleased] - Implementation Roadmap
+## [0.5.0-benchmark] - 2026-10-21
+### Added
+- **`TASK-501` to `TASK-505` Implementation**:
+  - Full 50-question benchmark dataset in `data/eval/benchmark_questions.json` covering single-hop, 2-hop, 3-hop, aggregation, and out-of-scope categories.
+  - Automated evaluation runner `src/eval/runner.py` and evaluation metric calculation `src/eval/metrics.py`.
+  - Full benchmark execution artifact `benchmark_results/run_hybrid_v3_threshold040.json` achieving **80.0% overall accuracy** (40/50 cases correct), 87% fact coverage, and 0% citation hallucination rate at similarity threshold 0.40.
+  - End-to-end security audit suite `tests/security/test_security_audit.py` verifying Cypher injection defense, SQL injection defense, indirect prompt injection framing, DoS limits, and key masking.
+  - Synchronized repository documentation (`README.md`, `docs/TASKS.md`, `docs/MEMORY.md`, `docs/EVALUATION.md`).
 
-### Planned - Phase 5: Evaluation & Portfolio Release
-- Comprehensive 50-question evaluation benchmark execution.
-- Empirical comparison report between Vector-Only and Hybrid KG+Vector RAG.
-- Security audit and vulnerability scanning.
+## [0.4.0-synthesis] - 2026-10-12
+### Added
+- **`TASK-401` to `TASK-406` Implementation**:
+  - Context normalizer and token budget manager `src/synthesis/normalizer.py` merging graph and vector contexts.
+  - Grounded answer synthesizer `src/synthesis/synthesizer.py` with bracketed chunk citations.
+  - Citation guardrail `src/synthesis/citation_validator.py` scrubbing unretrieved citations.
+  - FastAPI application endpoints `src/api/main.py` and `src/api/routes.py` (`/health`, `/ready`, `/api/v1/query`).
+  - Multi-provider LLM adapter `src/llm/client.py` supporting Gemini, Groq, OpenRouter, and Anthropic with fail-closed allowlists.
+  - Structured JSON telemetry logging in `src/observability/logging.py` with API key redaction.
 
-### Planned - Phase 4: Synthesis & Citation Guardrail
-- Grounded answer synthesis with Claude 3.5 Sonnet.
-- Automated citation validation against retrieved candidate chunks.
-- FastAPI endpoints (`/health`, `/ready`, `/api/v1/query`).
+## [0.3.0-routing] - 2026-10-11
+### Added
+- **`TASK-301` to `TASK-305` Implementation**:
+  - Parameterized Cypher query catalog `src/retrieval/cypher_templates.py` (`T-01` to `T-09`).
+  - Safe graph retriever `src/retrieval/graph_retriever.py` with parameter enforcement and depth bounds.
+  - Query intent classifier `src/routing/intent_classifier.py` and entity linker `src/routing/entity_linker.py`.
+  - Centralized router coordinator `src/routing/router.py`.
 
-### Planned - Phase 3: Query Routing & Safe Cypher Templates
-- Query intent classification (Graph vs. Vector vs. Hybrid vs. Out-of-Scope).
-- Entity linking to canonical graph nodes.
-- Parameterized Cypher query template library with strict depth limits.
-
-### Planned - Phase 2: PostgreSQL / pgvector & Dual-Store Sync
-- PostgreSQL DDL migrations and HNSW vector index setup.
-- Embedding generation client with batching and retry logic.
-- Dual-store provenance validation suite.
-
-### Planned - Phase 1: Corpus, Extraction & Neo4j Ingestion
-- Reference enterprise architecture dataset (100+ documents).
-- Document chunker with canonical UUID `chunk_id` generation.
-- Structured LLM extraction and entity normalization.
-- Neo4j idempotent batch Cypher writes.
+## [0.2.1-pgvector] - 2026-10-10
+### Added
+- **`TASK-201` to `TASK-205` Implementation**:
+  - PostgreSQL schema migrations for `documents`, `chunks`, `entity_links`, and dual-dimension vector columns (384-dim and 1536-dim).
+  - SentenceTransformers local embedding generator supporting `all-MiniLM-L6-v2`.
+  - Vector retriever `src/retrieval/vector_retriever.py` with cosine distance search and dynamic column selection.
+  - Dual-store provenance check test suite `src/validation/provenance_check.py`.
 
 ## [0.1.1-scaffold] - 2026-10-09
 ### Added

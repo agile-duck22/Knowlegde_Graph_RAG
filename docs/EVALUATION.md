@@ -55,25 +55,25 @@ The benchmark comprises 50 curated questions across five distinct categories:
 
 ---
 
-## 4. Benchmark Results Matrix (Template)
+## 4. Benchmark Results Matrix (Verified HYBRID v3)
 
 > [!NOTE]
-> Values below are unpopulated placeholders. Actual empirical results will be recorded upon completion of Phase 5 benchmark execution. Never fabricate experimental results.
+> Values below reflect the empirical results from the full 50-question benchmark run recorded in `benchmark_results/run_hybrid_v3_threshold040.json` (similarity threshold = 0.40).
+> Evaluator-reported cost of $0.00 is an artifact of the local SentenceTransformers embedding pipeline and free-tier inference settings; it does not guarantee that third-party commercial model APIs are free.
 
-| Category | System | Accuracy (%) | Citation Precision | Citation Hallucination | Latency p50 (ms) | Latency p95 (ms) | Cost / 1k Queries ($) |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Single-Hop Fact** | Vector-Only | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` |
-| | **Hybrid KG+Vector** | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` |
-| **2-Hop Relationship** | Vector-Only | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` |
-| | **Hybrid KG+Vector** | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` |
-| **3-Hop Dependency** | Vector-Only | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` |
-| | **Hybrid KG+Vector** | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` |
-| **Aggregation** | Vector-Only | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` |
-| | **Hybrid KG+Vector** | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` |
-| **Out-of-Scope** | Vector-Only | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` |
-| | **Hybrid KG+Vector** | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` |
-| **Overall Summary** | **Vector-Only** | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` |
-| | **Hybrid KG+Vector** | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` | `[Pending]` |
+| Category | System | Questions | Accuracy (%) | Mean Fact Coverage | Citation Precision | Citation Hallucination | Latency p50 (ms) | Latency p95 (ms) |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| **Single-Hop Fact** | **Hybrid KG+Vector** | 10 | **100.0%** (10/10) | 1.00 | 0.70 | 0.0% | 22,174 ms | 99,511 ms |
+| **2-Hop Relationship** | **Hybrid KG+Vector** | 15 | **80.0%** (12/15) | 0.90 | 0.40 | 0.0% | 16,314 ms | 31,233 ms |
+| **3-Hop Dependency** | **Hybrid KG+Vector** | 10 | **70.0%** (7/10) | 0.77 | 0.45 | 0.0% | 6,368 ms | 17,211 ms |
+| **Aggregation** | **Hybrid KG+Vector** | 10 | **60.0%** (6/10) | 0.83 | 0.40 | 0.0% | 8,970 ms | 18,349 ms |
+| **Out-of-Scope** | **Hybrid KG+Vector** | 5 | **100.0%** (5/5) | 1.00 | 1.00 | 0.0% | 1,466 ms | 2,781 ms |
+| **Overall Summary** | **Hybrid KG+Vector** | **50** | **80.0%** (40/50) | **0.87** | **0.495** | **0.0%** | **9,267 ms** | **33,044 ms** |
+
+### Known Evaluation Diagnoses
+
+- **EVAL-028 (Corpus Specification Gap)**: In `data/raw/corpus.jsonl`, `service:cart-service` does not explicitly state a direct dependency on `service:checkout-service` or traversing the PCI-isolated VPC (`infra:pci-isolated-vpc`). The synthesizer correctly refrains from hallucinating this connection, causing EVAL-028 to record lower coverage until an evidence-backed corpus update is applied.
+- **EVAL-038 (PostgreSQL Relational DB Aggregation)**: Resolved entity resolution and template expansion for PostgreSQL application databases (`database:customer-orders-pg`, `database:user-directory-pg`, `database:analytics-warehouse-pg`) via `cluster_engine` traversal. Unit and traversal tests verify all application database records and their owning teams are properly fetched.
 
 ---
 

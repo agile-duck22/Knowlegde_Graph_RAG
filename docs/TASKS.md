@@ -83,9 +83,9 @@ This document is the authoritative task backlog for the Knowledge Graph RAG plat
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `TASK-501` | Create 50–100 question benchmark dataset categorized by single-hop, 2-hop, 3-hop, and aggregation | P0 | `TASK-101` | `data/eval/benchmark_questions.json` | `DONE` |
 | `TASK-502` | Implement automated Evaluation Runner executing Vector-Only vs. Hybrid RAG runs | P0 | `TASK-404`, `TASK-501` | `src/eval/runner.py`, `src/eval/metrics.py` | `DONE` |
-| `TASK-503` | Execute benchmark, compute accuracy, citation validity, latency, and cost matrices | P0 | `TASK-502` | `docs/EVALUATION.md`, `benchmark_results/` | `TODO` |
+| `TASK-503` | Execute benchmark, compute accuracy, citation validity, latency, and cost matrices | P0 | `TASK-502` | `docs/EVALUATION.md`, `benchmark_results/` | `DONE` |
 | `TASK-504` | Perform end-to-end security audit and vulnerability scan | P1 | `TASK-404` | `tests/security/` | `DONE` |
-| `TASK-505` | Finalize README.md, documentation updates, and release changelog | P1 | `TASK-503`, `TASK-504` | `README.md`, `docs/CHANGELOG.md` | `TODO` |
+| `TASK-505` | Finalize README.md, documentation updates, and release changelog | P1 | `TASK-503`, `TASK-504` | `README.md`, `docs/CHANGELOG.md` | `DONE` |
 
 ---
 
@@ -97,6 +97,13 @@ This document is the authoritative task backlog for the Knowledge Graph RAG plat
 - **Week 4 (Milestone 4)**: Complete Phase 5. Evaluation benchmarks executed, performance metrics documented, security hardening verified.
 
 ---
+
+## 4. Benchmark Highlights & Known Limitations
+
+- **Latest Full Benchmark (HYBRID v3)**: 80% overall accuracy (40/50 questions correct) at similarity threshold 0.40, recorded in `benchmark_results/run_hybrid_v3_threshold040.json`.
+- **Zero-Cost Telemetry**: Reported cost is $0.00 for local embedding (`all-MiniLM-L6-v2`) and free-tier inference adapters, but third-party commercial APIs will incur standard rates.
+- **Corpus Gap (EVAL-028)**: `data/raw/corpus.jsonl` omits an explicit dependency edge from `service:cart-service` to `service:checkout-service` and its PCI enclave. Grounded synthesis correctly refuses to invent this path. Marked as awaiting an evidence-backed corpus correction.
+- **EVAL-038 Fix**: Entity resolution and T-07 template expansion for PostgreSQL application databases (`database:customer-orders-pg`, `database:user-directory-pg`, `database:analytics-warehouse-pg`) via `cluster_engine` traversal verified in focused unit/traversal tests.
 
 ## 4. Final Acceptance Checklist
 

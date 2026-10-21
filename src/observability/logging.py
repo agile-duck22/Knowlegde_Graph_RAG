@@ -14,7 +14,9 @@ import re
 from datetime import UTC, datetime
 from typing import Any
 
-# Sensitive pattern regexes
+_GROQ_KEY_PATTERN = re.compile(r"gsk_[A-Za-z0-9_\-]{20,}", re.IGNORECASE)
+_GEMINI_KEY_PATTERN = re.compile(r"AIzaSy[A-Za-z0-9_\-]{30,}", re.IGNORECASE)
+_OPENROUTER_KEY_PATTERN = re.compile(r"sk-or-v1-[A-Za-z0-9_\-]{20,}", re.IGNORECASE)
 _AUTH_BEARER_PATTERN = re.compile(r"Bearer\s+([A-Za-z0-9_\-\.]+)", re.IGNORECASE)
 _ANTHROPIC_KEY_PATTERN = re.compile(r"sk-ant-[A-Za-z0-9_\-]+", re.IGNORECASE)
 _OPENAI_KEY_PATTERN = re.compile(r"sk-[A-Za-z0-9_\-]{20,}", re.IGNORECASE)
@@ -34,6 +36,9 @@ def redact_sensitive_text(text: str) -> str:
         return text
 
     sanitized = _AUTH_BEARER_PATTERN.sub("Bearer [REDACTED]", text)
+    sanitized = _GROQ_KEY_PATTERN.sub("[REDACTED_GROQ_KEY]", sanitized)
+    sanitized = _GEMINI_KEY_PATTERN.sub("[REDACTED_GEMINI_KEY]", sanitized)
+    sanitized = _OPENROUTER_KEY_PATTERN.sub("[REDACTED_OPENROUTER_KEY]", sanitized)
     sanitized = _ANTHROPIC_KEY_PATTERN.sub("[REDACTED_ANTHROPIC_KEY]", sanitized)
     sanitized = _OPENAI_KEY_PATTERN.sub("[REDACTED_OPENAI_KEY]", sanitized)
     sanitized = _NEO4J_URI_PASSWORD_PATTERN.sub(r"\1***\3", sanitized)
