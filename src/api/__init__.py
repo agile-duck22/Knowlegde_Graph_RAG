@@ -35,4 +35,3 @@ __all__ = [
     "router",
     "set_service_container",
 ]
-

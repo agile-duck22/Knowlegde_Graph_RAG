@@ -44,12 +44,12 @@ from src.retrieval.cypher_templates import (
     TEMPLATE_DATABASE_PRODUCERS_CONSUMERS,
     TEMPLATE_DIRECT_NEIGHBORHOOD,
     TEMPLATE_ENTITY_LOOKUP_BY_ID,
+    TEMPLATE_INCOMING_SERVICE_DEPENDENTS,
     TEMPLATE_INFRASTRUCTURE_DEPLOYMENTS,
     TEMPLATE_MULTI_HOP_DEPENDENCY,
     TEMPLATE_SERVICE_DEPENDENCY_CHAIN,
     TEMPLATE_TEAM_OWNERSHIP_SERVICES,
     TEMPLATE_VULNERABILITY_BLAST_RADIUS,
-    TEMPLATE_INCOMING_SERVICE_DEPENDENTS,
     CypherTemplateCatalog,
 )
 from src.retrieval.graph_retriever import (
@@ -378,7 +378,11 @@ class RouterEngine:
                 query_text,
             )
             effective_mode = QueryIntent.HYBRID
-        elif effective_mode == QueryIntent.GRAPH_ONLY and self._vector_retriever is not None and req.retrieval_override is None:
+        elif (
+            effective_mode == QueryIntent.GRAPH_ONLY
+            and self._vector_retriever is not None
+            and req.retrieval_override is None
+        ):
             # Multi-hop and relationship queries in enterprise systems frequently require supporting
             # textual documentation, specifications, or architectural context. When both retrievers are
             # available and no explicit caller override was provided, run dual retrieval.

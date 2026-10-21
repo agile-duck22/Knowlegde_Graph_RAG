@@ -182,4 +182,3 @@ def set_service_container(container: ServiceContainer | None) -> None:
     """Override the global service container for unit tests."""
     global _GLOBAL_CONTAINER
     _GLOBAL_CONTAINER = container
-

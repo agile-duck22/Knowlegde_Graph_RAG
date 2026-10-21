@@ -13,7 +13,7 @@ from __future__ import annotations
 
 import re
 from typing import Any
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 from fastapi.testclient import TestClient
@@ -25,33 +25,17 @@ from src.embeddings.client import EmbeddingConfigurationError, EmbeddingGenerato
 from src.extraction.prompts import build_extraction_messages
 from src.llm import (
     DisallowedModelError,
-    MissingAPIKeyError,
     MultiProviderClient,
-    is_model_allowed,
 )
-from src.observability.logging import redact_sensitive_text, sanitize_log_dict
+from src.observability.logging import redact_sensitive_text
 from src.retrieval.cypher_templates import (
     CypherTemplateCatalog,
-    TEMPLATE_DATABASE_PRODUCERS_CONSUMERS,
-    TEMPLATE_DIRECT_NEIGHBORHOOD,
-    TEMPLATE_ENTITY_LOOKUP_BY_ID,
-    TEMPLATE_INFRASTRUCTURE_DEPLOYMENTS,
-    TEMPLATE_MULTI_HOP_DEPENDENCY,
-    TEMPLATE_SERVICE_DEPENDENCY_CHAIN,
-    TEMPLATE_TEAM_OWNERSHIP_SERVICES,
-    TEMPLATE_VULNERABILITY_BLAST_RADIUS,
 )
 from src.retrieval.graph_retriever import SafeGraphRetriever
 from src.retrieval.vector_retriever import VectorRetriever
-from src.routing.intent_classifier import CLASSIFICATION_SYSTEM_PROMPT
 from src.synthesis.synthesizer import (
-    DraftAnswer,
-    GroundedAnswerSynthesizer,
-    SynthesisRequest,
     build_synthesis_user_prompt,
 )
-from src.synthesis.normalizer import NormalizedChunkItem, NormalizedContext
-
 
 # ===========================================================================
 # 1. Cypher Injection Defense & Parameterization Audit
@@ -68,7 +52,9 @@ class TestCypherInjectionDefense:
             template_id = template.template_id
             # Must not contain raw Python format markers or concatenated f-strings
             assert "%s" not in query_str, f"Template {template_id} contains raw %s format marker"
-            assert "{}" not in query_str, f"Template {template_id} contains empty {{}} format marker"
+            assert "{}" not in query_str, (
+                f"Template {template_id} contains empty {{}} format marker"
+            )
 
             # All dynamic variable references must use Cypher $ parameter prefix
             parameter_references = re.findall(r"\$([a-zA-Z0-9_]+)", query_str)
@@ -201,11 +187,24 @@ class TestPromptInjectionDefense:
     def test_routing_system_prompt_instructs_strict_user_query_tagging(self) -> None:
         """Verify intent classifier framing strictly requires <user_query> delineation."""
         from src.routing.intent_classifier import QueryIntentClassifier
-        classifier = QueryIntentClassifier(use_llm=False)
-        # Verify that user_message frames input in <user_query> tags
+
+        mock_client = MagicMock()
+        mock_response = MagicMock()
+        mock_block = MagicMock()
+        mock_block.text = '{"mode": "GRAPH_ONLY", "confidence": 0.9, "reasoning": "test", "suggested_template_id": "T-01", "extracted_entities": []}'
+        mock_response.content = [mock_block]
+        mock_client.messages.create.return_value = mock_response
+
+        classifier = QueryIntentClassifier(anthropic_client=mock_client, use_llm=True)
         untrusted_query = "Drop database; SELECT * from secrets"
-        framed = f"<user_query>\n{untrusted_query}\n</user_query>"
-        assert "<user_query>" in framed and untrusted_query in framed
+        classifier.classify(untrusted_query)
+
+        mock_client.messages.create.assert_called_once()
+        call_kwargs = mock_client.messages.create.call_args[1]
+        user_content = call_kwargs["messages"][0]["content"]
+        assert "<user_query>" in user_content
+        assert "</user_query>" in user_content
+        assert untrusted_query in user_content
 
 
 # ===========================================================================
@@ -234,7 +233,9 @@ class TestDoSAndResourceLimits:
     def test_cypher_templates_mandate_limit_clause(self) -> None:
         """Verify every single Cypher template enforces a LIMIT clause to prevent out-of-memory errors."""
         for template in CypherTemplateCatalog.list_templates():
-            assert "LIMIT" in template.cypher, f"Template {template.template_id} missing LIMIT clause"
+            assert "LIMIT" in template.cypher, (
+                f"Template {template.template_id} missing LIMIT clause"
+            )
 
 
 # ===========================================================================

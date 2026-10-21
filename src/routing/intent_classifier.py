@@ -41,12 +41,12 @@ from src.retrieval.cypher_templates import (
     TEMPLATE_DATABASE_PRODUCERS_CONSUMERS,
     TEMPLATE_DIRECT_NEIGHBORHOOD,
     TEMPLATE_ENTITY_LOOKUP_BY_ID,
+    TEMPLATE_INCOMING_SERVICE_DEPENDENTS,
     TEMPLATE_INFRASTRUCTURE_DEPLOYMENTS,
     TEMPLATE_MULTI_HOP_DEPENDENCY,
     TEMPLATE_SERVICE_DEPENDENCY_CHAIN,
     TEMPLATE_TEAM_OWNERSHIP_SERVICES,
     TEMPLATE_VULNERABILITY_BLAST_RADIUS,
-    TEMPLATE_INCOMING_SERVICE_DEPENDENTS,
 )
 
 logger = logging.getLogger(__name__)
@@ -177,7 +177,10 @@ _OUT_OF_SCOPE_PATTERNS: Final[list[re.Pattern[str]]] = [
     re.compile(r"\b(weather|forecast|temperature|rain|snow)\b", re.IGNORECASE),
     re.compile(r"\b(recipe|cook|bake|ingredients|dinner|lunch|breakfast)\b", re.IGNORECASE),
     re.compile(r"\b(poem|rhyme|song|lyrics|joke|riddle|story|fiction)\b", re.IGNORECASE),
-    re.compile(r"\b(world cup|super bowl|olympics|nba|nfl|fifa|game score|final score|sports)\b", re.IGNORECASE),
+    re.compile(
+        r"\b(world cup|super bowl|olympics|nba|nfl|fifa|game score|final score|sports)\b",
+        re.IGNORECASE,
+    ),
     re.compile(
         r"\b(president|prime minister|election|politician|celebrity|actor|movie)\b", re.IGNORECASE
     ),
@@ -243,7 +246,8 @@ _GRAPH_PATTERNS: Final[list[tuple[re.Pattern[str], str | None]]] = [
     # 1-hop neighborhood / external API dependencies (T-01)
     (
         re.compile(
-            r"\b(connected to|relations(hip)?s of|neighbors? of|linked to|carrier gateways?|external apis?)\b", re.IGNORECASE
+            r"\b(connected to|relations(hip)?s of|neighbors? of|linked to|carrier gateways?|external apis?)\b",
+            re.IGNORECASE,
         ),
         TEMPLATE_DIRECT_NEIGHBORHOOD,
     ),
@@ -645,7 +649,11 @@ class QueryIntentClassifier:
         # Guard: If query contains explicit enterprise security terms (CVEs, vulnerabilities), do not permit OUT_OF_SCOPE
         if mode == QueryIntent.OUT_OF_SCOPE:
             has_security_signal = bool(
-                re.search(r"\b(?:cve-\d{4}-\d+|vulnerab\w*|breakout|security|cvss)\b", query, re.IGNORECASE)
+                re.search(
+                    r"\b(?:cve-\d{4}-\d+|vulnerab\w*|breakout|security|cvss)\b",
+                    query,
+                    re.IGNORECASE,
+                )
             )
             if has_security_signal:
                 logger.warning(

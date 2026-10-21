@@ -459,29 +459,39 @@ def test_select_best_template_compatible_and_incompatible() -> None:
 
     # Compatible combinations with explicit suggestion
     assert (
-        _select_best_template_for_entity("database:customer-orders-pg", TEMPLATE_DATABASE_PRODUCERS_CONSUMERS)
+        _select_best_template_for_entity(
+            "database:customer-orders-pg", TEMPLATE_DATABASE_PRODUCERS_CONSUMERS
+        )
         == TEMPLATE_DATABASE_PRODUCERS_CONSUMERS
     )
     assert (
-        _select_best_template_for_entity("team:checkout-engineering", TEMPLATE_TEAM_OWNERSHIP_SERVICES)
+        _select_best_template_for_entity(
+            "team:checkout-engineering", TEMPLATE_TEAM_OWNERSHIP_SERVICES
+        )
         == TEMPLATE_TEAM_OWNERSHIP_SERVICES
     )
     assert (
-        _select_best_template_for_entity("service:checkout-service", TEMPLATE_SERVICE_DEPENDENCY_CHAIN)
+        _select_best_template_for_entity(
+            "service:checkout-service", TEMPLATE_SERVICE_DEPENDENCY_CHAIN
+        )
         == TEMPLATE_SERVICE_DEPENDENCY_CHAIN
     )
 
     # Incompatible combination: LLM suggests T-06 (database) for a service entity
     # Must reject T-06 and safely fall back to service default (T-05)
     assert (
-        _select_best_template_for_entity("service:notification-service", TEMPLATE_DATABASE_PRODUCERS_CONSUMERS)
+        _select_best_template_for_entity(
+            "service:notification-service", TEMPLATE_DATABASE_PRODUCERS_CONSUMERS
+        )
         == TEMPLATE_SERVICE_DEPENDENCY_CHAIN
     )
 
     # Incompatible combination: LLM suggests T-04 (vuln) for a database entity
     # Must reject T-04 and safely fall back to database default (T-06)
     assert (
-        _select_best_template_for_entity("database:notification-pg", TEMPLATE_VULNERABILITY_BLAST_RADIUS)
+        _select_best_template_for_entity(
+            "database:notification-pg", TEMPLATE_VULNERABILITY_BLAST_RADIUS
+        )
         == TEMPLATE_DATABASE_PRODUCERS_CONSUMERS
     )
 

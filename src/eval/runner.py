@@ -29,7 +29,6 @@ from pydantic import BaseModel, ConfigDict, Field
 from src.api.dependencies import (
     ServiceContainer,
     create_service_container,
-    get_service_container,
 )
 from src.config import Settings, get_settings
 from src.eval.metrics import (

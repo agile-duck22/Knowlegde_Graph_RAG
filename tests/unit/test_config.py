@@ -125,7 +125,12 @@ def test_missing_anthropic_key_in_development_is_allowed() -> None:
 def test_missing_anthropic_key_in_production_raises_error() -> None:
     """Security: In production mode, missing active provider key must raise ValidationError."""
     with pytest.raises(ValidationError):
-        Settings(_env_file=None, environment="production", llm_provider="anthropic", anthropic_api_key=None)
+        Settings(
+            _env_file=None,
+            environment="production",
+            llm_provider="anthropic",
+            anthropic_api_key=None,
+        )
 
 
 def test_cached_settings_factory() -> None:

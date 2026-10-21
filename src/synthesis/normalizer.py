@@ -309,7 +309,9 @@ class ContextNormalizer:
         if isinstance(rec_chunk_ids, str):
             rec_chunk_ids = [rec_chunk_ids]
         elif not isinstance(rec_chunk_ids, list):
-            rec_chunk_ids = list(rec_chunk_ids) if isinstance(rec_chunk_ids, Sequence) else list[Any]()
+            rec_chunk_ids = (
+                list(rec_chunk_ids) if isinstance(rec_chunk_ids, Sequence) else list[Any]()
+            )
         clean_chunk_ids = [str(c).strip() for c in rec_chunk_ids if str(c).strip()]
 
         if src_id and tgt_id:
@@ -338,7 +340,11 @@ class ContextNormalizer:
                 or record.get("source_chunk_ids")
                 or default_chunk_ids
             )
-            clean_t_chunks = [str(c).strip() for c in t_chunk_ids if str(c).strip()] if isinstance(t_chunk_ids, (list, tuple, set)) else clean_chunk_ids
+            clean_t_chunks = (
+                [str(c).strip() for c in t_chunk_ids if str(c).strip()]
+                if isinstance(t_chunk_ids, (list, tuple, set))
+                else clean_chunk_ids
+            )
             triples.append(
                 NormalizedGraphTriple(
                     source_id=str(team_id).strip(),
@@ -370,11 +376,13 @@ class ContextNormalizer:
         vuln_svc_id = record.get("vulnerable_service_id")
         if vuln_id and vuln_svc_id and not (src_id and tgt_id):
             v_chunk_ids = (
-                record.get("vuln_chunk_ids")
-                or record.get("source_chunk_ids")
-                or default_chunk_ids
+                record.get("vuln_chunk_ids") or record.get("source_chunk_ids") or default_chunk_ids
             )
-            clean_v_chunks = [str(c).strip() for c in v_chunk_ids if str(c).strip()] if isinstance(v_chunk_ids, (list, tuple, set)) else clean_chunk_ids
+            clean_v_chunks = (
+                [str(c).strip() for c in v_chunk_ids if str(c).strip()]
+                if isinstance(v_chunk_ids, (list, tuple, set))
+                else clean_chunk_ids
+            )
             triples.append(
                 NormalizedGraphTriple(
                     source_id=str(vuln_svc_id).strip(),
@@ -386,18 +394,24 @@ class ContextNormalizer:
                 )
             )
             # Process repositories storing code for the impacted service
-            for repo in (record.get("repositories") or []):
+            for repo in record.get("repositories") or []:
                 if isinstance(repo, dict) and repo.get("id"):
                     repo_id = str(repo["id"]).strip()
                     repo_name = str(repo.get("name") or repo_id).strip()
-                    r_chunks = [str(c).strip() for c in (repo.get("chunk_ids") or default_chunk_ids) if str(c).strip()]
+                    r_chunks = [
+                        str(c).strip()
+                        for c in (repo.get("chunk_ids") or default_chunk_ids)
+                        if str(c).strip()
+                    ]
                     triples.append(
                         NormalizedGraphTriple(
                             source_id=repo_id,
                             source_name=repo_name,
                             relationship_type="STORES_CODE",
                             target_id=str(vuln_svc_id).strip(),
-                            target_name=str(record.get("vulnerable_service_name") or vuln_svc_id).strip(),
+                            target_name=str(
+                                record.get("vulnerable_service_name") or vuln_svc_id
+                            ).strip(),
                             source_chunk_ids=r_chunks,
                         )
                     )
@@ -417,16 +431,22 @@ class ContextNormalizer:
                 )
             )
             # Process downstream datastores
-            for ds in (record.get("datastores") or []):
+            for ds in record.get("datastores") or []:
                 if isinstance(ds, dict) and ds.get("id"):
                     ds_id = str(ds["id"]).strip()
                     ds_name = str(ds.get("name") or ds_id).strip()
                     ds_rel = str(ds.get("rel") or "READS_FROM").strip()
-                    ds_chunks = [str(c).strip() for c in (ds.get("chunk_ids") or default_chunk_ids) if str(c).strip()]
+                    ds_chunks = [
+                        str(c).strip()
+                        for c in (ds.get("chunk_ids") or default_chunk_ids)
+                        if str(c).strip()
+                    ]
                     triples.append(
                         NormalizedGraphTriple(
                             source_id=str(down_svc_id).strip(),
-                            source_name=str(record.get("downstream_service_name") or down_svc_id).strip(),
+                            source_name=str(
+                                record.get("downstream_service_name") or down_svc_id
+                            ).strip(),
                             relationship_type=ds_rel,
                             target_id=ds_id,
                             target_name=ds_name,
@@ -434,16 +454,22 @@ class ContextNormalizer:
                         )
                     )
             # Process downstream infrastructure
-            for inf in (record.get("infrastructures") or []):
+            for inf in record.get("infrastructures") or []:
                 if isinstance(inf, dict) and inf.get("id"):
                     inf_id = str(inf["id"]).strip()
                     inf_name = str(inf.get("name") or inf_id).strip()
                     inf_rel = str(inf.get("rel") or "DEPLOYED_ON").strip()
-                    inf_chunks = [str(c).strip() for c in (inf.get("chunk_ids") or default_chunk_ids) if str(c).strip()]
+                    inf_chunks = [
+                        str(c).strip()
+                        for c in (inf.get("chunk_ids") or default_chunk_ids)
+                        if str(c).strip()
+                    ]
                     triples.append(
                         NormalizedGraphTriple(
                             source_id=str(down_svc_id).strip(),
-                            source_name=str(record.get("downstream_service_name") or down_svc_id).strip(),
+                            source_name=str(
+                                record.get("downstream_service_name") or down_svc_id
+                            ).strip(),
                             relationship_type=inf_rel,
                             target_id=inf_id,
                             target_name=inf_name,
@@ -475,16 +501,22 @@ class ContextNormalizer:
                 )
             )
             # Process caller datastores
-            for ds in (record.get("datastores") or []):
+            for ds in record.get("datastores") or []:
                 if isinstance(ds, dict) and ds.get("id"):
                     ds_id = str(ds["id"]).strip()
                     ds_name = str(ds.get("name") or ds_id).strip()
                     ds_rel = str(ds.get("rel") or "WRITES_TO").strip()
-                    ds_chunks = [str(c).strip() for c in (ds.get("chunk_ids") or default_chunk_ids) if str(c).strip()]
+                    ds_chunks = [
+                        str(c).strip()
+                        for c in (ds.get("chunk_ids") or default_chunk_ids)
+                        if str(c).strip()
+                    ]
                     triples.append(
                         NormalizedGraphTriple(
                             source_id=str(caller_svc_id).strip(),
-                            source_name=str(record.get("caller_service_name") or caller_svc_id).strip(),
+                            source_name=str(
+                                record.get("caller_service_name") or caller_svc_id
+                            ).strip(),
                             relationship_type=ds_rel,
                             target_id=ds_id,
                             target_name=ds_name,
@@ -496,9 +528,13 @@ class ContextNormalizer:
         db_id = record.get("database_id")
         if db_id and not (src_id and tgt_id):
             db_name = str(record.get("database_name") or db_id).strip()
-            for r in (record.get("readers") or []):
+            for r in record.get("readers") or []:
                 if isinstance(r, dict) and r.get("service_id"):
-                    r_chunks = [str(c).strip() for c in (r.get("chunk_ids") or default_chunk_ids) if str(c).strip()]
+                    r_chunks = [
+                        str(c).strip()
+                        for c in (r.get("chunk_ids") or default_chunk_ids)
+                        if str(c).strip()
+                    ]
                     triples.append(
                         NormalizedGraphTriple(
                             source_id=str(r["service_id"]).strip(),
@@ -509,9 +545,13 @@ class ContextNormalizer:
                             source_chunk_ids=r_chunks,
                         )
                     )
-            for w in (record.get("writers") or []):
+            for w in record.get("writers") or []:
                 if isinstance(w, dict) and w.get("service_id"):
-                    w_chunks = [str(c).strip() for c in (w.get("chunk_ids") or default_chunk_ids) if str(c).strip()]
+                    w_chunks = [
+                        str(c).strip()
+                        for c in (w.get("chunk_ids") or default_chunk_ids)
+                        if str(c).strip()
+                    ]
                     triples.append(
                         NormalizedGraphTriple(
                             source_id=str(w["service_id"]).strip(),
@@ -528,11 +568,15 @@ class ContextNormalizer:
         if inf_id and not (src_id and tgt_id):
             inf_name = str(record.get("infra_name") or inf_id).strip()
             # 1. Infra owner teams
-            for o in (record.get("owners") or []):
+            for o in record.get("owners") or []:
                 if isinstance(o, dict) and o.get("team_id"):
                     o_team_id = str(o["team_id"]).strip()
                     o_team_name = str(o.get("team_name") or o_team_id).strip()
-                    o_chunks = [str(c).strip() for c in (o.get("chunk_ids") or default_chunk_ids) if str(c).strip()]
+                    o_chunks = [
+                        str(c).strip()
+                        for c in (o.get("chunk_ids") or default_chunk_ids)
+                        if str(c).strip()
+                    ]
                     triples.append(
                         NormalizedGraphTriple(
                             source_id=str(inf_id).strip(),
@@ -544,10 +588,14 @@ class ContextNormalizer:
                         )
                     )
             # 2. Deployed components
-            for d in (record.get("deployed_components") or []):
+            for d in record.get("deployed_components") or []:
                 if isinstance(d, dict) and (d.get("entity_id") or d.get("entity_name")):
                     comp_id = str(d.get("entity_id") or d.get("entity_name")).strip()
-                    d_chunks = [str(c).strip() for c in (d.get("chunk_ids") or default_chunk_ids) if str(c).strip()]
+                    d_chunks = [
+                        str(c).strip()
+                        for c in (d.get("chunk_ids") or default_chunk_ids)
+                        if str(c).strip()
+                    ]
                     triples.append(
                         NormalizedGraphTriple(
                             source_id=comp_id,
@@ -559,14 +607,18 @@ class ContextNormalizer:
                         )
                     )
             # 3. Connected workloads (client services accessing deployed datastores and their owning teams)
-            for w in (record.get("connected_workloads") or []):
+            for w in record.get("connected_workloads") or []:
                 if isinstance(w, dict) and w.get("service_id"):
                     svc_id = str(w["service_id"]).strip()
                     svc_name = str(w.get("service_name") or svc_id).strip()
                     tgt_db_id = str(w.get("target_id") or "").strip()
                     tgt_db_name = str(w.get("target_name") or tgt_db_id).strip()
                     rel_type_db = str(w.get("rel") or "READS_FROM").strip()
-                    w_chunks = [str(c).strip() for c in (w.get("chunk_ids") or default_chunk_ids) if str(c).strip()]
+                    w_chunks = [
+                        str(c).strip()
+                        for c in (w.get("chunk_ids") or default_chunk_ids)
+                        if str(c).strip()
+                    ]
                     if tgt_db_id:
                         triples.append(
                             NormalizedGraphTriple(

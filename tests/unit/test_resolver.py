@@ -121,7 +121,12 @@ def test_alias_normalization_table_from_ontology() -> None:
         assert res.canonical_id == "service:cart-service"
         assert res.entity_type == "Service"
 
-    for alias in ["customer orders database", "customer orders db", "customer order database", "customer order db"]:
+    for alias in [
+        "customer orders database",
+        "customer orders db",
+        "customer order database",
+        "customer order db",
+    ]:
         res = resolver.resolve_mention(alias)
         assert res.canonical_id == "database:customer-orders-pg"
         assert res.entity_type == "Database"

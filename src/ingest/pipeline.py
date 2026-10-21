@@ -287,7 +287,9 @@ class IngestionPipeline:
             # Postgres Client & Writer setup
             if self.postgres_writer is not None:
                 pg_writer_to_use = self.postgres_writer
-                pg_client_to_use = self.postgres_client or getattr(self.postgres_writer, "client", None)
+                pg_client_to_use = self.postgres_client or getattr(
+                    self.postgres_writer, "client", None
+                )
             else:
                 if self.postgres_client is not None:
                     pg_client_to_use = self.postgres_client
@@ -336,15 +338,17 @@ class IngestionPipeline:
                             # Generate dense embeddings for all chunks of the document
                             chunk_texts = [c.content for c in raw_chunks]
                             chunk_embeddings = (
-                                embedding_gen.generate_batch(chunk_texts)
-                                if chunk_texts
-                                else []
+                                embedding_gen.generate_batch(chunk_texts) if chunk_texts else []
                             )
 
                             # Bundle chunks, embeddings, and resolved entities
                             chunk_write_items: list[ChunkWriteInput] = []
                             for c_idx, raw_chunk in enumerate(raw_chunks):
-                                emb = chunk_embeddings[c_idx] if c_idx < len(chunk_embeddings) else None
+                                emb = (
+                                    chunk_embeddings[c_idx]
+                                    if c_idx < len(chunk_embeddings)
+                                    else None
+                                )
                                 ents = (
                                     resolved_chunk_results[c_idx].entities
                                     if c_idx < len(resolved_chunk_results)
@@ -358,9 +362,10 @@ class IngestionPipeline:
                                     )
                                 )
 
-                            chunks_upserted, links_written = await pg_writer_to_use.write_document_bundle(
-                                doc, chunk_write_items
-                            )
+                            (
+                                chunks_upserted,
+                                links_written,
+                            ) = await pg_writer_to_use.write_document_bundle(doc, chunk_write_items)
                             doc_res.postgres_chunks_count = chunks_upserted
                             doc_res.postgres_links_count = links_written
                             report.total_postgres_chunks_written += chunks_upserted

@@ -144,7 +144,10 @@ def test_normalize_graph_results_t04_repositories(normalizer: ContextNormalizer)
             }
         ],
         record_count=1,
-        source_chunk_ids=["c4444444-4444-4444-4444-444444444444", "c5555555-5555-5555-5555-555555555555"],
+        source_chunk_ids=[
+            "c4444444-4444-4444-4444-444444444444",
+            "c5555555-5555-5555-5555-555555555555",
+        ],
         entity_ids=["vuln:cve-2024-3094", "service:auth-service", "repo:auth-service-repo"],
     )
 
@@ -236,7 +239,11 @@ def test_normalize_graph_results_t09_incoming_dependents(normalizer: ContextNorm
         ],
         record_count=1,
         source_chunk_ids=["c9999999-9999-9999-9999-999999999999"],
-        entity_ids=["service:user-directory-service", "service:auth-service", "database:auth-session-redis"],
+        entity_ids=[
+            "service:user-directory-service",
+            "service:auth-service",
+            "database:auth-session-redis",
+        ],
     )
 
     inp = NormalizationInput(graph_results=[graph_res])

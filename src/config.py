@@ -98,7 +98,8 @@ class Settings(BaseSettings):
     embedding_provider: Literal[
         "openai", "sentence_transformers", "huggingface", "local", "cohere"
     ] = Field(
-        default="openai", description="Vector embedding provider (openai, sentence_transformers, huggingface, local, cohere)"
+        default="openai",
+        description="Vector embedding provider (openai, sentence_transformers, huggingface, local, cohere)",
     )
     embedding_model: str = Field(
         default="text-embedding-3-small", description="Vector embedding model name"

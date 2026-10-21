@@ -307,10 +307,26 @@ DEFAULT_ALIAS_MAP: dict[str, tuple[str, EntityType, str]] = {
         "Analytics ClickHouse Warehouse",
     ),
     # Infrastructure
-    "elasticache redis": ("infra:aws-elasticache-redis", "Infrastructure", "AWS ElastiCache Redis Cluster"),
-    "aws elasticache redis": ("infra:aws-elasticache-redis", "Infrastructure", "AWS ElastiCache Redis Cluster"),
-    "aws elasticache": ("infra:aws-elasticache-redis", "Infrastructure", "AWS ElastiCache Redis Cluster"),
-    "elasticache": ("infra:aws-elasticache-redis", "Infrastructure", "AWS ElastiCache Redis Cluster"),
+    "elasticache redis": (
+        "infra:aws-elasticache-redis",
+        "Infrastructure",
+        "AWS ElastiCache Redis Cluster",
+    ),
+    "aws elasticache redis": (
+        "infra:aws-elasticache-redis",
+        "Infrastructure",
+        "AWS ElastiCache Redis Cluster",
+    ),
+    "aws elasticache": (
+        "infra:aws-elasticache-redis",
+        "Infrastructure",
+        "AWS ElastiCache Redis Cluster",
+    ),
+    "elasticache": (
+        "infra:aws-elasticache-redis",
+        "Infrastructure",
+        "AWS ElastiCache Redis Cluster",
+    ),
     "kafka": ("infra:kafka-event-bus", "Infrastructure", "Kafka Event Bus"),
     "kafka event bus": ("infra:kafka-event-bus", "Infrastructure", "Kafka Event Bus"),
     "kafka event cluster": ("infra:kafka-event-bus", "Infrastructure", "Kafka Event Bus"),
@@ -325,12 +341,36 @@ DEFAULT_ALIAS_MAP: dict[str, tuple[str, EntityType, str]] = {
         "K8s Prod Cluster US West",
     ),
     "pci isolated vpc": ("infra:pci-isolated-vpc", "Infrastructure", "PCI Isolated VPC"),
-    "rds postgres": ("infra:aws-rds-postgres-cluster", "Infrastructure", "AWS RDS PostgreSQL Multi-AZ Cluster"),
-    "aws rds cluster": ("infra:aws-rds-postgres-cluster", "Infrastructure", "AWS RDS PostgreSQL Multi-AZ Cluster"),
-    "aws rds postgres cluster": ("infra:aws-rds-postgres-cluster", "Infrastructure", "AWS RDS PostgreSQL Multi-AZ Cluster"),
-    "rds postgresql cluster": ("infra:aws-rds-postgres-cluster", "Infrastructure", "AWS RDS PostgreSQL Multi-AZ Cluster"),
-    "postgresql databases": ("infra:aws-rds-postgres-cluster", "Infrastructure", "AWS RDS PostgreSQL Multi-AZ Cluster"),
-    "relational postgresql databases": ("infra:aws-rds-postgres-cluster", "Infrastructure", "AWS RDS PostgreSQL Multi-AZ Cluster"),
+    "rds postgres": (
+        "infra:aws-rds-postgres-cluster",
+        "Infrastructure",
+        "AWS RDS PostgreSQL Multi-AZ Cluster",
+    ),
+    "aws rds cluster": (
+        "infra:aws-rds-postgres-cluster",
+        "Infrastructure",
+        "AWS RDS PostgreSQL Multi-AZ Cluster",
+    ),
+    "aws rds postgres cluster": (
+        "infra:aws-rds-postgres-cluster",
+        "Infrastructure",
+        "AWS RDS PostgreSQL Multi-AZ Cluster",
+    ),
+    "rds postgresql cluster": (
+        "infra:aws-rds-postgres-cluster",
+        "Infrastructure",
+        "AWS RDS PostgreSQL Multi-AZ Cluster",
+    ),
+    "postgresql databases": (
+        "infra:aws-rds-postgres-cluster",
+        "Infrastructure",
+        "AWS RDS PostgreSQL Multi-AZ Cluster",
+    ),
+    "relational postgresql databases": (
+        "infra:aws-rds-postgres-cluster",
+        "Infrastructure",
+        "AWS RDS PostgreSQL Multi-AZ Cluster",
+    ),
     # APIs
     "process charge v2": ("api:process-charge-v2", "API", "Process Charge API v2"),
     "v2 charge": ("api:process-charge-v2", "API", "Process Charge API v2"),
