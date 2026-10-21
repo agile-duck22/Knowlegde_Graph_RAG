@@ -155,8 +155,8 @@ class TestPostgresClientUnit:
         mock_postgres_settings: Settings,
     ) -> None:
         mock_conn = AsyncMock()
-        # Mock responses for vector extension, 3 tables, and 1 index
-        mock_conn.fetchval.side_effect = [True, True, True, True, True]
+        # Mock responses for vector extension, 3 tables, 2 indexes, and 1 column
+        mock_conn.fetchval.side_effect = [True, True, True, True, True, True, True]
 
         mock_pool = MagicMock()
         mock_pool.acquire.return_value.__aenter__.return_value = mock_conn
@@ -170,3 +170,5 @@ class TestPostgresClientUnit:
         assert health["chunks"] is True
         assert health["entity_links"] is True
         assert health["hnsw_index"] is True
+        assert health["hnsw_384_index"] is True
+        assert health["embedding_384_column"] is True

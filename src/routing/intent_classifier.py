@@ -31,7 +31,7 @@ import json
 import logging
 import re
 from enum import StrEnum
-from typing import Final
+from typing import Any, Final
 
 import anthropic
 from pydantic import BaseModel, ConfigDict, Field
@@ -46,6 +46,7 @@ from src.retrieval.cypher_templates import (
     TEMPLATE_SERVICE_DEPENDENCY_CHAIN,
     TEMPLATE_TEAM_OWNERSHIP_SERVICES,
     TEMPLATE_VULNERABILITY_BLAST_RADIUS,
+    TEMPLATE_INCOMING_SERVICE_DEPENDENTS,
 )
 
 logger = logging.getLogger(__name__)
@@ -137,6 +138,7 @@ Your task is to analyze the user's query and classify it into exactly ONE of fou
 
 4. `OUT_OF_SCOPE`:
    - General trivia, weather, sports, personal questions, recipes, casual chit-chat, or queries completely unrelated to enterprise software architecture, services, teams, databases, APIs, repositories, infrastructure, or security vulnerabilities.
+   - NOTE: Enterprise security vulnerabilities, CVEs, container breakouts, severities, or security advisories affecting software components are ALWAYS IN-SCOPE (classify as VECTOR_ONLY, GRAPH_ONLY, or HYBRID). NEVER classify them as OUT_OF_SCOPE.
    - Examples:
      * "What is the weather in Tokyo?"
      * "Write a poem about dogs."
@@ -152,6 +154,7 @@ If the query matches or benefits from a graph traversal, select the best matchin
 - `T-06`: Database Producers & Consumers (services reading from or writing to a database)
 - `T-07`: Infrastructure Deployments (components deployed on or producing events to infrastructure)
 - `T-08`: Entity Lookup by ID or Name (exact canonical entity lookup)
+- `T-09`: Incoming Service Dependents (caller services that depend on a service and their databases)
 
 ## Output Format
 Respond ONLY with a valid JSON object matching this schema. Do not include markdown code blocks, backticks, or any additional text:
@@ -159,7 +162,7 @@ Respond ONLY with a valid JSON object matching this schema. Do not include markd
   "mode": "GRAPH_ONLY" | "VECTOR_ONLY" | "HYBRID" | "OUT_OF_SCOPE",
   "confidence": <float between 0.0 and 1.0>,
   "reasoning": "<short concise explanation>",
-  "suggested_template_id": "<T-01..T-08 or null>",
+  "suggested_template_id": "<T-01..T-09 or null>",
   "extracted_entities": ["<entity_name_or_identifier_1>", ...]
 }
 """
@@ -174,7 +177,7 @@ _OUT_OF_SCOPE_PATTERNS: Final[list[re.Pattern[str]]] = [
     re.compile(r"\b(weather|forecast|temperature|rain|snow)\b", re.IGNORECASE),
     re.compile(r"\b(recipe|cook|bake|ingredients|dinner|lunch|breakfast)\b", re.IGNORECASE),
     re.compile(r"\b(poem|rhyme|song|lyrics|joke|riddle|story|fiction)\b", re.IGNORECASE),
-    re.compile(r"\b(world cup|super bowl|olympics|nba|nfl|fifa|score|sports)\b", re.IGNORECASE),
+    re.compile(r"\b(world cup|super bowl|olympics|nba|nfl|fifa|game score|final score|sports)\b", re.IGNORECASE),
     re.compile(
         r"\b(president|prime minister|election|politician|celebrity|actor|movie)\b", re.IGNORECASE
     ),
@@ -182,6 +185,10 @@ _OUT_OF_SCOPE_PATTERNS: Final[list[re.Pattern[str]]] = [
     re.compile(r"^\s*(hi|hello|hey|howdy|greetings)\b", re.IGNORECASE),
     re.compile(r"\b(how are you|good morning|good evening|good afternoon)\b", re.IGNORECASE),
     re.compile(r"\b(who are you|what is your name|tell me a joke)\b", re.IGNORECASE),
+    re.compile(
+        r"\b(ignore (all )?previous instructions|system prompt|database root password|jailbreak)\b",
+        re.IGNORECASE,
+    ),
 ]
 
 # Patterns indicating graph-centric structural queries
@@ -217,18 +224,26 @@ _GRAPH_PATTERNS: Final[list[tuple[re.Pattern[str], str | None]]] = [
         ),
         TEMPLATE_DATABASE_PRODUCERS_CONSUMERS,
     ),
-    # Infrastructure deployments (T-07)
+    # Incoming service dependents (T-09)
     (
         re.compile(
-            r"\b(deployed on|infrastructure|cluster|kubernetes|k8s|kafka topic|event bus|broker)\b",
+            r"\b(services that depend on|services depending on|dependents of|callers of)\b",
+            re.IGNORECASE,
+        ),
+        TEMPLATE_INCOMING_SERVICE_DEPENDENTS,
+    ),
+    # Infrastructure deployments and caching (T-07)
+    (
+        re.compile(
+            r"\b(deployed on|infrastructure|cluster|kubernetes|k8s|kafka topic|event bus|broker|caching technologies|caching|elasticache|redis)\b",
             re.IGNORECASE,
         ),
         TEMPLATE_INFRASTRUCTURE_DEPLOYMENTS,
     ),
-    # 1-hop neighborhood / relationships (T-01)
+    # 1-hop neighborhood / external API dependencies (T-01)
     (
         re.compile(
-            r"\b(connected to|relations(hip)?s of|neighbors? of|linked to)\b", re.IGNORECASE
+            r"\b(connected to|relations(hip)?s of|neighbors? of|linked to|carrier gateways?|external apis?)\b", re.IGNORECASE
         ),
         TEMPLATE_DIRECT_NEIGHBORHOOD,
     ),
@@ -426,8 +441,9 @@ class QueryIntentClassifier:
     def __init__(
         self,
         settings: Settings | None = None,
-        anthropic_client: anthropic.Anthropic | None = None,
+        anthropic_client: anthropic.Anthropic | Any | None = None,
         use_llm: bool = True,
+        client: Any | None = None,
     ) -> None:
         """Initialize the QueryIntentClassifier.
 
@@ -439,9 +455,11 @@ class QueryIntentClassifier:
             Optional Anthropic client interface for testing/dependency injection.
         use_llm:
             Whether to attempt LLM-based classification before heuristic fallback.
+        client:
+            Optional multi-provider or mocked client interface for testing/dependency injection.
         """
         self._settings = settings or Settings()
-        self._client = anthropic_client
+        self._client = anthropic_client if anthropic_client is not None else client
         self._use_llm = use_llm
         self._confidence_threshold = self._settings.router_confidence_threshold
 
@@ -501,7 +519,16 @@ class QueryIntentClassifier:
             return heuristic_res
 
         # 4. If LLM is disabled or no client / API key available, return heuristic result
-        if not self._use_llm or (self._client is None and self._settings.anthropic_api_key is None):
+        routing_provider = self._settings.get_routing_provider()
+        key = self._settings.get_api_key_for_provider(routing_provider)
+        if not self._use_llm or (
+            self._client is None
+            and (
+                key is None
+                or not key.get_secret_value()
+                or key.get_secret_value().startswith("your_")
+            )
+        ):
             return heuristic_res
 
         # 5. Attempt LLM-assisted classification with prompt injection defense
@@ -524,30 +551,27 @@ class QueryIntentClassifier:
                 method=ClassificationMethod.FALLBACK,
             )
 
-    def _get_client(self) -> anthropic.Anthropic:
-        """Get or initialize the Anthropic client."""
+    def _get_client(self) -> Any:
+        """Get or initialize the LLM client (injected client or multi-provider adapter)."""
         if self._client is not None:
             return self._client
 
-        api_key = self._settings.anthropic_api_key
-        if api_key is None:
-            raise ValueError("Anthropic API key is not configured in settings.")
+        from src.llm import create_llm_client
 
-        self._client = anthropic.Anthropic(
-            api_key=api_key.get_secret_value(),
-            timeout=self._settings.request_timeout_seconds,
-        )
+        provider = self._settings.get_routing_provider()
+        self._client = create_llm_client(self._settings, provider=provider)
         return self._client
 
     def _classify_with_llm(self, query: str) -> IntentClassificationResult:
-        """Execute LLM classification request against Anthropic Claude."""
+        """Execute LLM classification request against multi-provider LLM adapter."""
         client = self._get_client()
 
         # Wrap untrusted user query in XML tags for injection defense
         user_message = f"<user_query>\n{query}\n</user_query>"
+        model = self._settings.get_routing_model()
 
         response = client.messages.create(
-            model=self._settings.routing_model,
+            model=model,
             max_tokens=self._settings.max_completion_tokens,
             system=CLASSIFICATION_SYSTEM_PROMPT,
             messages=[{"role": "user", "content": user_message}],
@@ -609,13 +633,27 @@ class QueryIntentClassifier:
                 TEMPLATE_DATABASE_PRODUCERS_CONSUMERS,
                 TEMPLATE_INFRASTRUCTURE_DEPLOYMENTS,
                 TEMPLATE_ENTITY_LOOKUP_BY_ID,
+                TEMPLATE_INCOMING_SERVICE_DEPENDENTS,
             ):
                 suggested_template_id = None
 
-        extracted_entities = data.get("extracted_entities", [])
-        if not isinstance(extracted_entities, list):
-            extracted_entities = []
-        extracted_entities = [str(e).strip() for e in extracted_entities if e]
+        raw_entities = data.get("extracted_entities", [])
+        extracted_entities: list[str] = (
+            [str(e).strip() for e in raw_entities if e] if isinstance(raw_entities, list) else []
+        )
+
+        # Guard: If query contains explicit enterprise security terms (CVEs, vulnerabilities), do not permit OUT_OF_SCOPE
+        if mode == QueryIntent.OUT_OF_SCOPE:
+            has_security_signal = bool(
+                re.search(r"\b(?:cve-\d{4}-\d+|vulnerab\w*|breakout|security|cvss)\b", query, re.IGNORECASE)
+            )
+            if has_security_signal:
+                logger.warning(
+                    "Query '%s' was classified as OUT_OF_SCOPE by LLM but contains enterprise vulnerability/security signals. Overriding to HYBRID.",
+                    query,
+                )
+                mode = QueryIntent.HYBRID
+                suggested_template_id = suggested_template_id or TEMPLATE_VULNERABILITY_BLAST_RADIUS
 
         # Enforce confidence threshold rule: if confidence < threshold, route to HYBRID
         if mode != QueryIntent.OUT_OF_SCOPE and confidence < self._confidence_threshold:

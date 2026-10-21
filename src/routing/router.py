@@ -49,6 +49,7 @@ from src.retrieval.cypher_templates import (
     TEMPLATE_SERVICE_DEPENDENCY_CHAIN,
     TEMPLATE_TEAM_OWNERSHIP_SERVICES,
     TEMPLATE_VULNERABILITY_BLAST_RADIUS,
+    TEMPLATE_INCOMING_SERVICE_DEPENDENTS,
     CypherTemplateCatalog,
 )
 from src.retrieval.graph_retriever import (
@@ -166,6 +167,7 @@ _TEMPLATE_PARAM_KEYS: dict[str, str] = {
     TEMPLATE_TEAM_OWNERSHIP_SERVICES: "team_id",
     TEMPLATE_VULNERABILITY_BLAST_RADIUS: "vuln_id",
     TEMPLATE_SERVICE_DEPENDENCY_CHAIN: "service_id",
+    TEMPLATE_INCOMING_SERVICE_DEPENDENTS: "service_id",
     TEMPLATE_DATABASE_PRODUCERS_CONSUMERS: "database_id",
     TEMPLATE_INFRASTRUCTURE_DEPLOYMENTS: "infra_id",
     TEMPLATE_ENTITY_LOOKUP_BY_ID: "entity_id",
@@ -183,26 +185,79 @@ def _build_template_params(
     return params
 
 
+# Map templates to allowed canonical entity ID prefixes based on their Cypher signatures
+_TEMPLATE_COMPATIBLE_PREFIXES: dict[str, set[str]] = {
+    TEMPLATE_TEAM_OWNERSHIP_SERVICES: {"team"},
+    TEMPLATE_VULNERABILITY_BLAST_RADIUS: {"vuln"},
+    TEMPLATE_SERVICE_DEPENDENCY_CHAIN: {"service"},
+    TEMPLATE_INCOMING_SERVICE_DEPENDENTS: {"service"},
+    TEMPLATE_DATABASE_PRODUCERS_CONSUMERS: {"database"},
+    TEMPLATE_INFRASTRUCTURE_DEPLOYMENTS: {"infra"},
+    # Generic entity templates that accept any entity type
+    TEMPLATE_DIRECT_NEIGHBORHOOD: {"service", "team", "api", "database", "repo", "vuln", "infra"},
+    TEMPLATE_MULTI_HOP_DEPENDENCY: {"service", "team", "api", "database", "repo", "vuln", "infra"},
+    TEMPLATE_ENTITY_LOOKUP_BY_ID: {"service", "team", "api", "database", "repo", "vuln", "infra"},
+}
+
+# Default canonical prefix mapping to preferred template
+_PREFIX_TO_DEFAULT_TEMPLATE: dict[str, str] = {
+    "team": TEMPLATE_TEAM_OWNERSHIP_SERVICES,
+    "vuln": TEMPLATE_VULNERABILITY_BLAST_RADIUS,
+    "database": TEMPLATE_DATABASE_PRODUCERS_CONSUMERS,
+    "infra": TEMPLATE_INFRASTRUCTURE_DEPLOYMENTS,
+    "service": TEMPLATE_SERVICE_DEPENDENCY_CHAIN,
+}
+
+
+def _is_entity_compatible_with_template(canonical_id: str, template_id: str) -> bool:
+    """Check if the canonical entity ID's type prefix is compatible with the Cypher template."""
+    prefix = canonical_id.split(":", 1)[0].lower() if ":" in canonical_id else ""
+    allowed_prefixes = _TEMPLATE_COMPATIBLE_PREFIXES.get(template_id)
+    if allowed_prefixes is None:
+        return False
+    # If the entity has no prefix, it is only compatible with generic templates (T-01, T-02, T-08)
+    if not prefix:
+        return template_id in (
+            TEMPLATE_DIRECT_NEIGHBORHOOD,
+            TEMPLATE_MULTI_HOP_DEPENDENCY,
+            TEMPLATE_ENTITY_LOOKUP_BY_ID,
+        )
+    return prefix in allowed_prefixes
+
+
 def _select_best_template_for_entity(
     canonical_id: str, suggested_template: str | None = None
-) -> str:
-    """Choose the most appropriate Cypher template based on entity type and suggested template."""
-    if suggested_template and CypherTemplateCatalog.has_template(suggested_template):
-        return suggested_template
+) -> str | None:
+    """Choose the most appropriate Cypher template based on entity type and suggested template.
 
+    Returns None if no compatible template exists for the entity.
+    """
     prefix = canonical_id.split(":", 1)[0].lower() if ":" in canonical_id else ""
-    if prefix == "team":
-        return TEMPLATE_TEAM_OWNERSHIP_SERVICES
-    elif prefix == "vuln":
-        return TEMPLATE_VULNERABILITY_BLAST_RADIUS
-    elif prefix == "database":
-        return TEMPLATE_DATABASE_PRODUCERS_CONSUMERS
-    elif prefix == "infra":
-        return TEMPLATE_INFRASTRUCTURE_DEPLOYMENTS
-    elif prefix == "service":
-        return TEMPLATE_SERVICE_DEPENDENCY_CHAIN
 
-    return TEMPLATE_DIRECT_NEIGHBORHOOD
+    # 1. If LLM suggested a template, check if it exists and is compatible with entity type
+    if suggested_template and CypherTemplateCatalog.has_template(suggested_template):
+        if _is_entity_compatible_with_template(canonical_id, suggested_template):
+            return suggested_template
+        logger.debug(
+            "Suggested template '%s' is incompatible with entity '%s' (prefix '%s'). Falling back.",
+            suggested_template,
+            canonical_id,
+            prefix,
+        )
+
+    # 2. Check prefix-specific default template
+    if prefix in _PREFIX_TO_DEFAULT_TEMPLATE:
+        candidate = _PREFIX_TO_DEFAULT_TEMPLATE[prefix]
+        if _is_entity_compatible_with_template(canonical_id, candidate):
+            return candidate
+
+    # 3. Compatible fallback to generic neighborhood template (T-01)
+    if _is_entity_compatible_with_template(canonical_id, TEMPLATE_DIRECT_NEIGHBORHOOD):
+        return TEMPLATE_DIRECT_NEIGHBORHOOD
+
+    # 4. No compatible template found; safe skip
+    logger.warning("No compatible Cypher template found for entity '%s'.", canonical_id)
+    return None
 
 
 # ---------------------------------------------------------------------------
@@ -323,6 +378,11 @@ class RouterEngine:
                 query_text,
             )
             effective_mode = QueryIntent.HYBRID
+        elif effective_mode == QueryIntent.GRAPH_ONLY and self._vector_retriever is not None and req.retrieval_override is None:
+            # Multi-hop and relationship queries in enterprise systems frequently require supporting
+            # textual documentation, specifications, or architectural context. When both retrievers are
+            # available and no explicit caller override was provided, run dual retrieval.
+            effective_mode = QueryIntent.HYBRID
 
         # 4. Step 3: Retrieval Delegation
         graph_results: list[GraphQueryResult] = []
@@ -427,6 +487,13 @@ class RouterEngine:
 
         for canon_id in canonical_ids:
             template_id = _select_best_template_for_entity(canon_id, suggested_template)
+            if template_id is None:
+                logger.warning(
+                    "Skipping graph query for entity '%s': no compatible template found.",
+                    canon_id,
+                )
+                continue
+
             last_template_used = template_id
             params = _build_template_params(template_id, canon_id, limit=limit)
 

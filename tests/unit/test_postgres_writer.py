@@ -181,10 +181,48 @@ class TestPostgresWriterUnit:
         mock_conn.executemany.assert_called_once()
         records = mock_conn.executemany.call_args[0][1]
         assert len(records) == 1
-        # Check canonical UUID object and embedding vector serialization
+        # Check canonical UUID object and embedding vector serialization (1536 in records[0][8], None in records[0][9])
         assert isinstance(records[0][0], uuid.UUID)
         assert records[0][8] is not None
         assert records[0][8].startswith("[")
+        assert records[0][9] is None
+
+    @pytest.mark.asyncio
+    async def test_upsert_chunks_batch_with_384_embeddings(
+        self,
+        mock_postgres_settings: Settings,
+        sample_chunk_input: ChunkWriteInput,
+    ) -> None:
+        mock_tx = MagicMock()
+        mock_tx.__aenter__ = AsyncMock(return_value=None)
+        mock_tx.__aexit__ = AsyncMock(return_value=None)
+
+        mock_conn = AsyncMock()
+        mock_conn.transaction = MagicMock(return_value=mock_tx)
+
+        mock_pool = MagicMock()
+        mock_pool.acquire.return_value.__aenter__.return_value = mock_conn
+        mock_pool.acquire.return_value.__aexit__.return_value = None
+
+        client = PostgresClient(settings=mock_postgres_settings, pool=mock_pool)
+        writer = PostgresWriter(client=client)
+
+        # Create input with 384-dim vector
+        chunk_384 = ChunkWriteInput(
+            chunk=sample_chunk_input.chunk,
+            embedding=[0.01] * 384,
+            entities=sample_chunk_input.entities,
+        )
+
+        count = await writer.upsert_chunks_batch([chunk_384], batch_size=10)
+        assert count == 1
+        mock_conn.executemany.assert_called_once()
+        records = mock_conn.executemany.call_args[0][1]
+        assert len(records) == 1
+        # 1536-dim column is None, 384-dim column is populated
+        assert records[0][8] is None
+        assert records[0][9] is not None
+        assert records[0][9].startswith("[")
 
     @pytest.mark.asyncio
     async def test_write_entity_links_success(

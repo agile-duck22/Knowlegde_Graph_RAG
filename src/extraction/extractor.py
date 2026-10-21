@@ -22,6 +22,7 @@ import re
 from typing import TYPE_CHECKING, Any
 
 import anthropic
+import openai
 from pydantic import ValidationError
 from tenacity import (
     RetryCallState,
@@ -32,10 +33,20 @@ from tenacity import (
     wait_random_exponential,
 )
 
-from src.config import Settings
+from src.config import Settings, get_settings
 from src.extraction.prompts import build_extraction_messages, get_system_prompt
 from src.extraction.schemas import ChunkExtractionResult
 from src.ingest.chunker import TextChunk
+from src.llm import create_llm_client
+from src.llm.exceptions import (
+    DisallowedModelError,
+    MissingAPIKeyError,
+    ProviderAuthenticationError,
+    ProviderRateLimitError,
+    ProviderServerError,
+    ProviderTimeoutError,
+    UnsupportedProviderError,
+)
 
 if TYPE_CHECKING:
     pass
@@ -63,6 +74,13 @@ RETRYABLE_API_EXCEPTIONS = (
     anthropic.ServiceUnavailableError,
     anthropic.APITimeoutError,
     anthropic.APIConnectionError,
+    openai.RateLimitError,
+    openai.InternalServerError,
+    openai.APITimeoutError,
+    openai.APIConnectionError,
+    ProviderRateLimitError,
+    ProviderTimeoutError,
+    ProviderServerError,
 )
 
 # Errors that must fail immediately without retry
@@ -73,6 +91,15 @@ NON_RETRYABLE_API_EXCEPTIONS = (
     anthropic.NotFoundError,
     anthropic.RequestTooLargeError,
     anthropic.UnprocessableEntityError,
+    openai.AuthenticationError,
+    openai.PermissionDeniedError,
+    openai.BadRequestError,
+    openai.NotFoundError,
+    openai.UnprocessableEntityError,
+    MissingAPIKeyError,
+    DisallowedModelError,
+    UnsupportedProviderError,
+    ProviderAuthenticationError,
 )
 
 
@@ -91,15 +118,18 @@ def _extract_json_string(text: str) -> str:
 
 
 class ChunkExtractor:
-    """Extracts entities and relationships from text chunks using Claude and validates with Pydantic."""
+    """Extracts entities and relationships from text chunks using Claude/multi-provider and validates with Pydantic."""
 
     def __init__(
         self,
-        client: anthropic.Anthropic,
-        settings: Settings,
+        client: anthropic.Anthropic | Any | None = None,
+        settings: Settings | None = None,
     ) -> None:
-        self.client = client
-        self.settings = settings
+        self.settings = settings or get_settings()
+        provider = self.settings.get_extraction_provider()
+        self.client = (
+            client if client is not None else create_llm_client(self.settings, provider=provider)
+        )
 
     def extract(self, chunk: TextChunk) -> ChunkExtractionResult:
         """Extract ontology-conforming entities and relationships from a text chunk.
@@ -169,11 +199,19 @@ class ChunkExtractor:
             if retry_state.outcome and retry_state.outcome.failed:
                 exc = retry_state.outcome.exception()
                 if (
-                    isinstance(exc, anthropic.RateLimitError)
+                    isinstance(
+                        exc,
+                        (
+                            anthropic.RateLimitError,
+                            openai.RateLimitError,
+                            ProviderRateLimitError,
+                        ),
+                    )
                     and hasattr(exc, "response")
                     and exc.response is not None
                 ):
-                    retry_after = exc.response.headers.get("retry-after")
+                    headers = getattr(exc.response, "headers", {})
+                    retry_after = headers.get("retry-after") if hasattr(headers, "get") else None
                     if retry_after:
                         try:
                             # If retry-after is float/int seconds
@@ -207,7 +245,7 @@ class ChunkExtractor:
             ) from exc
         except NON_RETRYABLE_API_EXCEPTIONS as exc:
             raise NonRetryableExtractionError(
-                f"Non-retryable Anthropic API error ({type(exc).__name__}) during extraction for chunk_id={chunk.chunk_id}"
+                f"Non-retryable API error ({type(exc).__name__}) during extraction for chunk_id={chunk.chunk_id}: {exc}"
             ) from exc
         except SchemaParseError as exc:
             # If retryer ran out of attempts and reraised SchemaParseError
@@ -226,9 +264,10 @@ class ChunkExtractor:
         system_prompt: str,
         user_message: dict[str, Any],
     ) -> ChunkExtractionResult:
-        """Execute a single call to Claude API and parse/validate response."""
+        """Execute a single call to LLM API and parse/validate response."""
+        model = self.settings.get_extraction_model()
         response = self.client.messages.create(
-            model=self.settings.llm_model,
+            model=model,
             max_tokens=self.settings.max_completion_tokens,
             system=system_prompt,
             messages=[user_message],  # type: ignore[list-item]
@@ -237,7 +276,7 @@ class ChunkExtractor:
 
         # Extract text content from response
         if not response.content or not hasattr(response.content[0], "text"):
-            raise SchemaParseError("Anthropic response contained no text content blocks")
+            raise SchemaParseError("LLM response contained no text content blocks")
 
         response_text = response.content[0].text
         json_str = _extract_json_string(response_text)

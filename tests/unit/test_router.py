@@ -173,7 +173,11 @@ async def test_route_graph_only_query_success(
         entity_ids=["team:checkout-engineering", "service:checkout-service"],
     )
 
-    result = await router.route_and_retrieve(query)
+    req = RoutingRequest(
+        query=query,
+        retrieval_override=QueryIntent.GRAPH_ONLY,
+    )
+    result = await router.route_and_retrieve(req)
 
     assert result.mode == QueryIntent.GRAPH_ONLY
     assert result.has_graph_data is True
@@ -390,7 +394,7 @@ async def test_route_with_precomputed_query_vector(
     mock_linker.link_query.return_value = EntityLinkingResult(
         query="Explain authentication", links=[]
     )
-    mock_vector_retriever.search.return_value = []
+    mock_vector_retriever.search.return_value = list[RetrievedChunk]()
 
     custom_vec = [0.5] * 1536
     await router.route_and_retrieve("Explain authentication", query_vector=custom_vec)
@@ -427,8 +431,91 @@ async def test_route_graph_retrieval_failure_encapsulation(
     )
     mock_graph_retriever.execute_template.side_effect = RuntimeError("Neo4j node timeout")
 
-    result = await router.route_and_retrieve("Show blast radius for vuln:cve-2024-21626")
+    req = RoutingRequest(
+        query="Show blast radius for vuln:cve-2024-21626",
+        retrieval_override=QueryIntent.GRAPH_ONLY,
+    )
+    result = await router.route_and_retrieve(req)
 
     assert result.mode == QueryIntent.GRAPH_ONLY
     assert result.has_graph_data is False
     assert "Graph retrieval failed" in (result.error_message or "")
+
+
+# ===========================================================================
+# 6. Template Compatibility & Threshold Propagation Tests
+# ===========================================================================
+
+
+def test_select_best_template_compatible_and_incompatible() -> None:
+    from src.retrieval.cypher_templates import (
+        TEMPLATE_DATABASE_PRODUCERS_CONSUMERS,
+        TEMPLATE_DIRECT_NEIGHBORHOOD,
+        TEMPLATE_SERVICE_DEPENDENCY_CHAIN,
+        TEMPLATE_TEAM_OWNERSHIP_SERVICES,
+        TEMPLATE_VULNERABILITY_BLAST_RADIUS,
+    )
+    from src.routing.router import _select_best_template_for_entity
+
+    # Compatible combinations with explicit suggestion
+    assert (
+        _select_best_template_for_entity("database:customer-orders-pg", TEMPLATE_DATABASE_PRODUCERS_CONSUMERS)
+        == TEMPLATE_DATABASE_PRODUCERS_CONSUMERS
+    )
+    assert (
+        _select_best_template_for_entity("team:checkout-engineering", TEMPLATE_TEAM_OWNERSHIP_SERVICES)
+        == TEMPLATE_TEAM_OWNERSHIP_SERVICES
+    )
+    assert (
+        _select_best_template_for_entity("service:checkout-service", TEMPLATE_SERVICE_DEPENDENCY_CHAIN)
+        == TEMPLATE_SERVICE_DEPENDENCY_CHAIN
+    )
+
+    # Incompatible combination: LLM suggests T-06 (database) for a service entity
+    # Must reject T-06 and safely fall back to service default (T-05)
+    assert (
+        _select_best_template_for_entity("service:notification-service", TEMPLATE_DATABASE_PRODUCERS_CONSUMERS)
+        == TEMPLATE_SERVICE_DEPENDENCY_CHAIN
+    )
+
+    # Incompatible combination: LLM suggests T-04 (vuln) for a database entity
+    # Must reject T-04 and safely fall back to database default (T-06)
+    assert (
+        _select_best_template_for_entity("database:notification-pg", TEMPLATE_VULNERABILITY_BLAST_RADIUS)
+        == TEMPLATE_DATABASE_PRODUCERS_CONSUMERS
+    )
+
+    # Entity without prefix falls back to generic neighborhood template (T-01)
+    assert (
+        _select_best_template_for_entity("unknown_entity_id", TEMPLATE_DATABASE_PRODUCERS_CONSUMERS)
+        == TEMPLATE_DIRECT_NEIGHBORHOOD
+    )
+
+
+@pytest.mark.asyncio
+async def test_route_propagates_similarity_threshold_override(
+    router: RouterEngine,
+    mock_classifier: MagicMock,
+    mock_linker: MagicMock,
+    mock_vector_retriever: AsyncMock,
+) -> None:
+    mock_classifier.classify.return_value = IntentClassificationResult(
+        query="What is the refund policy?",
+        mode=QueryIntent.VECTOR_ONLY,
+        confidence=0.9,
+        reasoning="Policy question",
+    )
+    mock_linker.link_query.return_value = EntityLinkingResult(
+        query="What is the refund policy?", links=[]
+    )
+    mock_vector_retriever.search.return_value = []
+
+    req = RoutingRequest(
+        query="What is the refund policy?",
+        similarity_threshold=0.40,
+    )
+    await router.route_and_retrieve(req)
+
+    mock_vector_retriever.search.assert_called_once()
+    kwargs = mock_vector_retriever.search.call_args[1]
+    assert kwargs["similarity_threshold"] == 0.40

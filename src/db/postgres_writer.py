@@ -194,15 +194,14 @@ class PostgresWriter:
         int
             Number of chunks upserted.
         """
-        if not items:
-            return 0
-
-        # Note: In PostgreSQL/pgvector, vector is passed as string representation "[0.1, 0.2, ...]" or None
+        # Support dual-dimension vector columns:
+        # 1536-dim -> embedding, 384-dim -> embedding_384.
+        # On conflict, preserve existing value in the other column using COALESCE.
         sql = """
         INSERT INTO chunks (
-            id, document_id, chunk_index, content, token_count, char_start, char_end, metadata, embedding
+            id, document_id, chunk_index, content, token_count, char_start, char_end, metadata, embedding, embedding_384
         ) VALUES (
-            $1, $2, $3, $4, $5, $6, $7, $8::jsonb, $9::vector
+            $1, $2, $3, $4, $5, $6, $7, $8::jsonb, $9::vector, $10::vector
         )
         ON CONFLICT (document_id, chunk_index) DO UPDATE SET
             id = EXCLUDED.id,
@@ -211,7 +210,8 @@ class PostgresWriter:
             char_start = EXCLUDED.char_start,
             char_end = EXCLUDED.char_end,
             metadata = EXCLUDED.metadata,
-            embedding = EXCLUDED.embedding;
+            embedding = COALESCE(EXCLUDED.embedding, chunks.embedding),
+            embedding_384 = COALESCE(EXCLUDED.embedding_384, chunks.embedding_384);
         """
 
         total_upserted = 0
@@ -223,7 +223,9 @@ class PostgresWriter:
                     for item in batch:
                         chunk = item.chunk
                         chunk_uuid = uuid.UUID(chunk.chunk_id)
-                        emb_str = str(item.embedding) if item.embedding is not None else None
+                        emb = item.embedding
+                        emb_1536 = str(emb) if emb is not None and len(emb) == 1536 else None
+                        emb_384 = str(emb) if emb is not None and len(emb) == 384 else None
                         records.append(
                             (
                                 chunk_uuid,
@@ -234,7 +236,8 @@ class PostgresWriter:
                                 chunk.char_start,
                                 chunk.char_end,
                                 json.dumps(chunk.metadata),
-                                emb_str,
+                                emb_1536,
+                                emb_384,
                             )
                         )
 
@@ -348,9 +351,9 @@ class PostgresWriter:
 
         chunk_sql = """
         INSERT INTO chunks (
-            id, document_id, chunk_index, content, token_count, char_start, char_end, metadata, embedding
+            id, document_id, chunk_index, content, token_count, char_start, char_end, metadata, embedding, embedding_384
         ) VALUES (
-            $1, $2, $3, $4, $5, $6, $7, $8::jsonb, $9::vector
+            $1, $2, $3, $4, $5, $6, $7, $8::jsonb, $9::vector, $10::vector
         )
         ON CONFLICT (document_id, chunk_index) DO UPDATE SET
             id = EXCLUDED.id,
@@ -359,7 +362,8 @@ class PostgresWriter:
             char_start = EXCLUDED.char_start,
             char_end = EXCLUDED.char_end,
             metadata = EXCLUDED.metadata,
-            embedding = EXCLUDED.embedding;
+            embedding = COALESCE(EXCLUDED.embedding, chunks.embedding),
+            embedding_384 = COALESCE(EXCLUDED.embedding_384, chunks.embedding_384);
         """
 
         link_sql = """
@@ -392,7 +396,9 @@ class PostgresWriter:
                         for item in chunk_items:
                             chunk = item.chunk
                             c_uuid = uuid.UUID(chunk.chunk_id)
-                            emb_str = str(item.embedding) if item.embedding is not None else None
+                            emb = item.embedding
+                            emb_1536 = str(emb) if emb is not None and len(emb) == 1536 else None
+                            emb_384 = str(emb) if emb is not None and len(emb) == 384 else None
                             chunk_records.append(
                                 (
                                     c_uuid,
@@ -403,7 +409,8 @@ class PostgresWriter:
                                     chunk.char_start,
                                     chunk.char_end,
                                     json.dumps(chunk.metadata),
-                                    emb_str,
+                                    emb_1536,
+                                    emb_384,
                                 )
                             )
 

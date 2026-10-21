@@ -68,21 +68,23 @@ This document is the authoritative task backlog for the Knowledge Graph RAG plat
 
 | Task ID | Description | Priority | Dependencies | Expected Modules | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `TASK-401` | Implement Context Normalizer & Token Budget Manager merging graph and vector contexts | P0 | `TASK-204`, `TASK-302` | `src/synthesis/normalizer.py` | `TODO` |
-| `TASK-402` | Implement Grounded Answer Synthesizer using Anthropic Claude with bracketed citations | P0 | `TASK-401` | `src/synthesis/synthesizer.py` | `TODO` |
-| `TASK-403` | Implement Citation & Grounding Guardrail verifying citations against retrieved `chunk_id`s | P0 | `TASK-402` | `src/synthesis/citation_validator.py` | `TODO` |
-| `TASK-404` | Implement FastAPI application endpoints (`GET /health`, `GET /ready`, `POST /query`) | P0 | `TASK-403` | `src/api/main.py`, `src/api/routes.py` | `TODO` |
-| `TASK-405` | Implement Structured Logging and Request Telemetry Middleware | P1 | `TASK-404` | `src/observability/logging.py`, `src/observability/metrics.py` | `TODO` |
+| `TASK-401` | Implement Context Normalizer & Token Budget Manager merging graph and vector contexts | P0 | `TASK-204`, `TASK-302` | `src/synthesis/normalizer.py` | `DONE` |
+| `TASK-402` | Implement Grounded Answer Synthesizer using Anthropic Claude with bracketed citations | P0 | `TASK-401` | `src/synthesis/synthesizer.py` | `DONE` |
+| `TASK-403` | Implement Citation & Grounding Guardrail verifying citations against retrieved `chunk_id`s | P0 | `TASK-402` | `src/synthesis/citation_validator.py` | `DONE` |
+| `TASK-404` | Implement FastAPI application endpoints (`GET /health`, `GET /ready`, `POST /query`) | P0 | `TASK-403` | `src/api/main.py`, `src/api/routes.py` | `DONE` |
+
+| `TASK-405` | Implement Structured Logging and Request Telemetry Middleware | P1 | `TASK-404` | `src/observability/logging.py`, `src/observability/metrics.py` | `DONE` |
+| `TASK-406` | Implement multi-provider LLM adapter supporting Gemini, Groq, OpenRouter with free allowlists | P0 | `TASK-402`, `TASK-303`, `TASK-103` | `src/llm/client.py`, `src/llm/models.py`, `src/config.py` | `DONE` |
 
 ### Phase 5: Evaluation Benchmark, Hardening & Final Documentation
 *Objective: Execute 50–100 question evaluation benchmark comparing Vector vs Hybrid RAG, harden API, and finalize results.*
 
 | Task ID | Description | Priority | Dependencies | Expected Modules | Status |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| `TASK-501` | Create 50–100 question benchmark dataset categorized by single-hop, 2-hop, 3-hop, and aggregation | P0 | `TASK-101` | `data/eval/benchmark_questions.json` | `TODO` |
-| `TASK-502` | Implement automated Evaluation Runner executing Vector-Only vs. Hybrid RAG runs | P0 | `TASK-404`, `TASK-501` | `src/eval/runner.py`, `src/eval/metrics.py` | `TODO` |
+| `TASK-501` | Create 50–100 question benchmark dataset categorized by single-hop, 2-hop, 3-hop, and aggregation | P0 | `TASK-101` | `data/eval/benchmark_questions.json` | `DONE` |
+| `TASK-502` | Implement automated Evaluation Runner executing Vector-Only vs. Hybrid RAG runs | P0 | `TASK-404`, `TASK-501` | `src/eval/runner.py`, `src/eval/metrics.py` | `DONE` |
 | `TASK-503` | Execute benchmark, compute accuracy, citation validity, latency, and cost matrices | P0 | `TASK-502` | `docs/EVALUATION.md`, `benchmark_results/` | `TODO` |
-| `TASK-504` | Perform end-to-end security audit and vulnerability scan | P1 | `TASK-404` | `tests/security/` | `TODO` |
+| `TASK-504` | Perform end-to-end security audit and vulnerability scan | P1 | `TASK-404` | `tests/security/` | `DONE` |
 | `TASK-505` | Finalize README.md, documentation updates, and release changelog | P1 | `TASK-503`, `TASK-504` | `README.md`, `docs/CHANGELOG.md` | `TODO` |
 
 ---

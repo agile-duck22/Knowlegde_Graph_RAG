@@ -33,6 +33,7 @@ TEMPLATE_SERVICE_DEPENDENCY_CHAIN: Final[str] = "T-05"
 TEMPLATE_DATABASE_PRODUCERS_CONSUMERS: Final[str] = "T-06"
 TEMPLATE_INFRASTRUCTURE_DEPLOYMENTS: Final[str] = "T-07"
 TEMPLATE_ENTITY_LOOKUP_BY_ID: Final[str] = "T-08"
+TEMPLATE_INCOMING_SERVICE_DEPENDENTS: Final[str] = "T-09"
 
 # ---------------------------------------------------------------------------
 # Approved Parameterized Cypher Queries (docs/RETRIEVAL_STRATEGY.md §2 & ONTOLOGY.md)
@@ -92,10 +93,12 @@ LIMIT $limit
 """
 
 # T-04: Vulnerability Blast Radius
-# Identifies all services directly or transitively impacted by a security vulnerability.
+# Identifies all services directly or transitively impacted by a security vulnerability,
+# along with source repositories storing code for the impacted service.
 _CYPHER_VULNERABILITY_BLAST_RADIUS = """
 MATCH (v:Vulnerability {id: $vuln_id})<-[r_vuln:AFFECTED_BY]-(impacted:Service)
 OPTIONAL MATCH (dependent:Service)-[r_dep:DEPENDS_ON*1..2]->(impacted)
+OPTIONAL MATCH (repo:Repository)-[r_repo:STORES_CODE]->(impacted)
 RETURN
     v.id AS vuln_id,
     v.name AS vuln_name,
@@ -105,23 +108,69 @@ RETURN
     collect(DISTINCT {
         id: dependent.id,
         name: dependent.name
-    }) AS affected_dependents
+    }) AS affected_dependents,
+    collect(DISTINCT {
+        id: repo.id,
+        name: repo.name,
+        chunk_ids: r_repo.source_chunk_ids
+    }) AS repositories
 LIMIT $limit
 """
 
 # T-05: Strict Downstream Service Dependency Chain
-# Direct and transitive runtime downstream dependencies of a service (up to 3 hops).
+# Direct and transitive runtime downstream dependencies of a service (up to 3 hops),
+# including datastore and infrastructure resources attached to downstream services.
 _CYPHER_SERVICE_DEPENDENCY_CHAIN = """
 MATCH path = (s:Service {id: $service_id})-[:DEPENDS_ON*1..3]->(downstream:Service)
-WITH path, relationships(path) AS rels, nodes(path) AS nds
+WITH s, path, relationships(path) AS rels, nodes(path) AS nds, downstream
 UNWIND rels AS r
+OPTIONAL MATCH (downstream)-[r_db:READS_FROM|WRITES_TO]->(d:Database)
+OPTIONAL MATCH (downstream)-[r_inf:DEPLOYED_ON]->(infra:Infrastructure)
 RETURN
     s.id AS root_service_id,
     [n IN nds | {id: n.id, name: n.name, type: n.type}] AS dependency_chain,
     downstream.id AS downstream_service_id,
     downstream.name AS downstream_service_name,
     type(r) AS rel_type,
-    r.source_chunk_ids AS source_chunk_ids
+    r.source_chunk_ids AS source_chunk_ids,
+    collect(DISTINCT {
+        id: d.id,
+        name: d.name,
+        rel: type(r_db),
+        chunk_ids: r_db.source_chunk_ids
+    }) AS datastores,
+    collect(DISTINCT {
+        id: infra.id,
+        name: infra.name,
+        rel: 'DEPLOYED_ON',
+        chunk_ids: r_inf.source_chunk_ids
+    }) AS infrastructures
+LIMIT $limit
+"""
+
+# T-09: Incoming Service Dependents
+# Identifies caller services that depend on a given service, and the databases/infrastructure they write to.
+_CYPHER_INCOMING_SERVICE_DEPENDENTS = """
+MATCH (s:Service {id: $service_id})<-[r_caller:DEPENDS_ON*1..3]-(caller:Service)
+OPTIONAL MATCH (caller)-[r_db:READS_FROM|WRITES_TO]->(d:Database)
+OPTIONAL MATCH (caller)-[r_inf:DEPLOYED_ON]->(infra:Infrastructure)
+RETURN
+    s.id AS service_id,
+    caller.id AS caller_service_id,
+    caller.name AS caller_service_name,
+    [r IN r_caller | r.source_chunk_ids] AS caller_chunk_ids,
+    collect(DISTINCT {
+        id: d.id,
+        name: d.name,
+        rel: type(r_db),
+        chunk_ids: r_db.source_chunk_ids
+    }) AS datastores,
+    collect(DISTINCT {
+        id: infra.id,
+        name: infra.name,
+        rel: 'DEPLOYED_ON',
+        chunk_ids: r_inf.source_chunk_ids
+    }) AS infrastructures
 LIMIT $limit
 """
 
@@ -150,14 +199,22 @@ LIMIT $limit
 """
 
 # T-07: Infrastructure Deployments and Event Producers
-# Identifies all services and databases deployed on or publishing events to an infrastructure resource.
+# Identifies all services and databases deployed on or publishing events to an infrastructure resource,
+# along with infrastructure owners and client services/teams interfacing with deployed datastores.
 _CYPHER_INFRASTRUCTURE_DEPLOYMENTS = """
 MATCH (infra:Infrastructure {id: $infra_id})
+OPTIONAL MATCH (infra)-[r_own:OWNED_BY]->(owner:Team)
 OPTIONAL MATCH (deployed:Entity)-[r_dep:DEPLOYED_ON]->(infra)
 OPTIONAL MATCH (producer:Service)-[r_pub:PRODUCES_EVENTS]->(infra)
+OPTIONAL MATCH (deployed)<-[r_rw:READS_FROM|WRITES_TO]-(client_svc:Service)-[r_svc_own:OWNED_BY]->(client_team:Team)
 RETURN
     infra.id AS infra_id,
     infra.name AS infra_name,
+    collect(DISTINCT {
+        team_id: owner.id,
+        team_name: owner.name,
+        chunk_ids: r_own.source_chunk_ids
+    }) AS owners,
     collect(DISTINCT {
         entity_id: deployed.id,
         entity_name: deployed.name,
@@ -168,9 +225,20 @@ RETURN
         service_id: producer.id,
         service_name: producer.name,
         chunk_ids: r_pub.source_chunk_ids
-    }) AS event_producers
+    }) AS event_producers,
+    collect(DISTINCT {
+        service_id: client_svc.id,
+        service_name: client_svc.name,
+        target_id: deployed.id,
+        target_name: deployed.name,
+        rel: type(r_rw),
+        team_id: client_team.id,
+        team_name: client_team.name,
+        chunk_ids: r_rw.source_chunk_ids
+    }) AS connected_workloads
 LIMIT $limit
 """
+
 
 # T-08: Exact Canonical Entity Lookup by ID
 # Fetches node properties, aliases, and metadata for a given canonical ID.
@@ -364,6 +432,15 @@ class CypherTemplateCatalog:
             required_parameters=("entity_id",),
             default_limit=1,
             max_limit=1,
+        ),
+        TEMPLATE_INCOMING_SERVICE_DEPENDENTS: CypherTemplateSpec(
+            template_id=TEMPLATE_INCOMING_SERVICE_DEPENDENTS,
+            name="Incoming Service Dependents",
+            description="Finds caller services that depend on a given service, and the databases/infrastructure they write to.",
+            cypher=_CYPHER_INCOMING_SERVICE_DEPENDENTS.strip(),
+            required_parameters=("service_id",),
+            default_limit=50,
+            max_limit=200,
         ),
     }
 

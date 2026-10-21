@@ -11,7 +11,7 @@ from src.config import Settings, get_settings
 
 def test_default_settings_load() -> None:
     """Verify default settings load cleanly without external connections."""
-    settings = Settings()
+    settings = Settings(_env_file=None)
     assert settings.app_name == "kgr"
     assert settings.environment == "development"
     assert settings.log_level == "INFO"
@@ -39,7 +39,7 @@ def test_environment_variable_overrides() -> None:
         "POSTGRES_PORT": "5433",
     }
     with patch.dict(os.environ, env_overrides, clear=False):
-        settings = Settings()
+        settings = Settings(_env_file=None)
         assert settings.environment == "test"
         assert settings.log_level == "DEBUG"
         assert settings.chunk_size == 800

@@ -140,10 +140,20 @@ class VectorRetriever:
         if limit < 1:
             raise ValueError(f"top_k must be >= 1, got {limit}")
 
+        # Select target vector column strictly based on expected dimension
+        # Whitelisted literal column names only: never user-controlled input
+        dim = len(query_vector)
+        if dim == 384:
+            col = "c.embedding_384"
+        elif dim == 1536:
+            col = "c.embedding"
+        else:
+            col = "c.embedding"
+
         # Build parameterized query dynamically with safe parameter placeholders
         where_clauses: list[str] = [
-            "c.embedding IS NOT NULL",
-            "(1 - (c.embedding <=> $1::vector)) >= $2",
+            f"{col} IS NOT NULL",
+            f"(1 - ({col} <=> $1::vector)) >= $2",
         ]
         params: list[Any] = [vector_str, threshold]
         param_idx = 3
@@ -178,11 +188,11 @@ class VectorRetriever:
             c.char_start,
             c.char_end,
             c.metadata,
-            (1 - (c.embedding <=> $1::vector)) AS similarity_score
+            (1 - ({col} <=> $1::vector)) AS similarity_score
         FROM chunks c
         {join_sql}
         WHERE {where_sql}
-        ORDER BY c.embedding <=> $1::vector ASC
+        ORDER BY {col} <=> $1::vector ASC
         LIMIT ${param_idx};
         """
         params.append(limit)

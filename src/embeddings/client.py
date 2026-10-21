@@ -71,11 +71,19 @@ class EmbeddingGenerator:
             raise ValueError(f"batch_size must be >= 1, got {batch_size}")
         self.batch_size = batch_size
         self._client = client
+        self.provider = self.settings.embedding_provider.lower()
 
     def _get_openai_client(self) -> Any:
         """Lazily initialize OpenAI client if not provided via dependency injection."""
         if self._client is not None:
             return self._client
+
+        if self.provider == "openai" and not self.settings.allow_paid_embeddings:
+            raise EmbeddingConfigurationError(
+                "Paid OpenAI embedding generation is disabled by default (allow_paid_embeddings=False) "
+                "to enforce zero-cost invariants. Explicitly set ALLOW_PAID_EMBEDDINGS=true "
+                "or inject an offline client/mock."
+            )
 
         import openai
 
@@ -84,15 +92,38 @@ class EmbeddingGenerator:
             if self.settings.openai_api_key
             else None
         )
-        if not api_key and self.settings.embedding_provider == "openai":
-            # If in test/development without key, permit dummy initialization for mocks
-            api_key = "sk-mock-openai-key"
+        if not api_key or api_key.startswith("your_") or api_key == "sk-mock-openai-key":
+            raise EmbeddingConfigurationError(
+                "OPENAI_API_KEY is not configured or contains a placeholder value."
+            )
 
         self._client = openai.OpenAI(
-            api_key=api_key or "sk-mock-openai-key",
+            api_key=api_key,
             timeout=self.settings.request_timeout_seconds,
         )
         return self._client
+
+    def _get_local_model(self) -> Any:
+        """Lazily load local SentenceTransformer embedding model."""
+        if self._client is not None:
+            return self._client
+
+        try:
+            from sentence_transformers import SentenceTransformer
+        except ImportError as exc:
+            raise EmbeddingConfigurationError(
+                "The 'sentence-transformers' package is required for local embeddings. "
+                "Install it via: pip install sentence-transformers"
+            ) from exc
+
+        try:
+            logger.info("Loading local embedding model '%s'...", self.model)
+            self._client = SentenceTransformer(self.model)
+            return self._client
+        except Exception as exc:
+            raise EmbeddingProviderError(
+                f"Failed to load local embedding model '{self.model}': {exc}"
+            ) from exc
 
     def _validate_and_normalize_vector(
         self, vector: Sequence[float], text_index: int
@@ -132,32 +163,56 @@ class EmbeddingGenerator:
             raise EmbeddingError("Failed to generate embedding for text")
         return results[0]
 
-    def generate_batch(self, texts: Sequence[str]) -> list[list[float]]:
-        """Generate dense embeddings for a sequence of text strings in batches.
-
-        Parameters
-        ----------
-        texts:
-            Sequence of text strings to embed. Empty strings will be replaced with a single space.
-
-        Returns
-        -------
-        list[list[float]]
-            List of embedding vectors, matching the input ordering.
-        """
-        if not texts:
-            return []
-
-        # Sanitize input: strip whitespace, ensure non-empty for embedding model
-        sanitized_texts: list[str] = [t.strip() if t.strip() else " " for t in texts]
-
+    def _generate_batch_local(self, texts: Sequence[str]) -> list[list[float]]:
+        """Generate embeddings using local sentence-transformers model."""
+        model = self._get_local_model()
         all_embeddings: list[list[float]] = []
-        client = self._get_openai_client()
 
-        for batch_start in range(0, len(sanitized_texts), self.batch_size):
-            batch = sanitized_texts[batch_start : batch_start + self.batch_size]
+        for batch_start in range(0, len(texts), self.batch_size):
+            batch = list(texts[batch_start : batch_start + self.batch_size])
             logger.debug(
-                "Embedding batch [%d:%d] (%d texts) using model '%s'",
+                "Local embedding batch [%d:%d] (%d texts) using model '%s'",
+                batch_start,
+                batch_start + len(batch),
+                len(batch),
+                self.model,
+            )
+            try:
+                # sentence-transformers supports encode with batch_size & normalize_embeddings
+                embeddings_raw = model.encode(
+                    batch,
+                    batch_size=len(batch),
+                    show_progress_bar=False,
+                    normalize_embeddings=True,
+                )
+                for item_idx, vec in enumerate(embeddings_raw):
+                    global_idx = batch_start + item_idx
+                    # Convert numpy array / tensor / list to list of floats
+                    vec_list = [float(v) for v in vec]
+                    norm_vec = self._validate_and_normalize_vector(vec_list, text_index=global_idx)
+                    all_embeddings.append(norm_vec)
+            except EmbeddingError:
+                raise
+            except Exception as exc:
+                logger.error(
+                    "Local embedding failed for batch [%d:%d]: %s",
+                    batch_start,
+                    batch_start + len(batch),
+                    exc,
+                )
+                raise EmbeddingProviderError(f"Local embedding generation failed: {exc}") from exc
+
+        return all_embeddings
+
+    def _generate_batch_openai(self, texts: Sequence[str]) -> list[list[float]]:
+        """Generate embeddings using OpenAI API."""
+        client = self._get_openai_client()
+        all_embeddings: list[list[float]] = []
+
+        for batch_start in range(0, len(texts), self.batch_size):
+            batch = list(texts[batch_start : batch_start + self.batch_size])
+            logger.debug(
+                "OpenAI embedding batch [%d:%d] (%d texts) using model '%s'",
                 batch_start,
                 batch_start + len(batch),
                 len(batch),
@@ -165,22 +220,18 @@ class EmbeddingGenerator:
             )
 
             try:
-                # Upstream OpenAI embeddings API call
                 kwargs: dict[str, Any] = {
                     "model": self.model,
                     "input": batch,
                 }
-                # If model supports dimension parameter (e.g. text-embedding-3-*), pass it
                 if "text-embedding-3" in self.model:
                     kwargs["dimensions"] = self.dimensions
 
                 response = client.embeddings.create(**kwargs)
 
-                # OpenAI responses are sorted by index or in order
                 if not hasattr(response, "data") or not response.data:
                     raise EmbeddingProviderError("Embedding provider returned empty response data")
 
-                # Sort by index if present to guarantee exact input ordering
                 items = sorted(response.data, key=lambda d: getattr(d, "index", 0))
 
                 if len(items) != len(batch):
@@ -210,3 +261,32 @@ class EmbeddingGenerator:
                 raise EmbeddingProviderError(f"Embedding provider API call failed: {exc}") from exc
 
         return all_embeddings
+
+    def generate_batch(self, texts: Sequence[str]) -> list[list[float]]:
+        """Generate dense embeddings for a sequence of text strings in batches.
+
+        Parameters
+        ----------
+        texts:
+            Sequence of text strings to embed. Empty strings will be replaced with a single space.
+
+        Returns
+        -------
+        list[list[float]]
+            List of embedding vectors, matching the input ordering.
+        """
+        if not texts:
+            return []
+
+        # Sanitize input: strip whitespace, ensure non-empty for embedding model
+        sanitized_texts: list[str] = [t.strip() if t.strip() else " " for t in texts]
+
+        if self.provider in ("sentence_transformers", "huggingface", "local"):
+            return self._generate_batch_local(sanitized_texts)
+        elif self.provider == "openai":
+            return self._generate_batch_openai(sanitized_texts)
+        else:
+            raise EmbeddingConfigurationError(
+                f"Unsupported embedding provider '{self.provider}'. "
+                f"Supported providers: 'sentence_transformers', 'huggingface', 'local', 'openai'"
+            )

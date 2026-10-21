@@ -30,19 +30,28 @@
 - **Phase 1 (Ingestion & Graph)**: `DONE` (`TASK-101`–`TASK-107` all verified & passing)
 - **Phase 2 (pgvector & Vector Search)**: `DONE` (`TASK-201`–`TASK-205` all verified & passing)
 - **Phase 3 (Routing & Cypher Templates)**: `DONE` (`TASK-301` ✅, `TASK-302` ✅, `TASK-303` ✅, `TASK-304` ✅, `TASK-305` ✅)
-- **Phase 4 (Synthesis & Citations)**: `TODO`
-- **Phase 5 (Evaluation & Benchmarks)**: `TODO`
+- **Phase 4 (Synthesis & Citations)**: `DONE` (`TASK-401` ✅, `TASK-402` ✅, `TASK-403` ✅, `TASK-404` ✅, `TASK-405` ✅, Multi-Provider LLM Adapter ✅)
+- **Phase 5 (Evaluation & Benchmarks)**: `IN PROGRESS` (`TASK-501` ✅, `TASK-502` ✅, `TASK-504` ✅, `TASK-503` & `TASK-505` `TODO`)
 
 ---
 
 ## 4. Current Blockers & Open Questions
 
 - **Corpus Selection**: Resolved. Synthetic enterprise technology corpus generated (145 interconnected documents at `data/raw/corpus.jsonl`).
-- **Embedding Model**: Default selected as `text-embedding-3-small` (1536 dim) / `all-MiniLM-L6-v2` (384 dim local fallback), pending confirmation. See [`docs/DECISIONS.md#ADR-003`](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/DECISIONS.md).
+- **Embedding Model & Zero-Cost Guard**: Added zero-cost local embedding provider (`sentence_transformers`, `huggingface`, `local`) supporting models like `all-MiniLM-L6-v2` (384 dimensions) alongside OpenAI `text-embedding-3-small` (1536 dim). Schema updated with non-destructive dual-dimension column strategy: `chunks.embedding` (1536-dim) is preserved, and migration `002_add_embedding_384.sql` defines `chunks.embedding_384 VECTOR(384)` with HNSW index `idx_chunks_embedding_384_hnsw`. Writers use `COALESCE` on conflict to prevent nulling out either dimension, and vector retrieval dynamically queries the column matching the query vector dimension.
+- **LLM Provider Configuration**: Complete. Per-component provider and model settings active (Gemini `gemini-3.1-flash-lite` for extraction/synthesis, Groq `openai/gpt-oss-20b` for routing).
+- **TASK-503 Prerequisites**: Requires applying migration `002` to PostgreSQL, populating Neo4j and PostgreSQL databases, and configuring active API keys in `.env` before running live benchmarks.
 
 ---
 
 ## 5. Last Completed Task & Next Recommended Action
 
-- **Last Completed Task**: [`TASK-305`](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/TASKS.md#phase-3-query-routing--safe-cypher-templates) — Implemented Router Engine (`src/routing/router.py`, `src/routing/__init__.py`). Features: `RouterEngine` coordinating `QueryIntentClassifier`, `EntityLinker`, `SafeGraphRetriever`, and `VectorRetriever`. Supports `GRAPH_ONLY`, `VECTOR_ONLY`, `HYBRID`, and `OUT_OF_SCOPE` query intents with robust fallback logic when entities cannot be resolved or linked. Typed data contracts (`RoutedQueryRequest`, `RoutedQueryResponse`, `GraphExecutionDetails`, `VectorExecutionDetails`, `RetrievalRoutingError`). Verified via 17 unit tests with mocks, `ruff` clean, `mypy` clean. Full test suite: 342 unit tests passed (89% line coverage), 25 integration tests passed.
-- **Next Recommended Action**: Conduct Phase 3 Gate Review and proceed with Phase 4 ([`TASK-401`](file:///c:/Users/workp/OneDrive/Desktop/kgr/docs/TASKS.md#phase-4-hybrid-retrieval-synthesis--citation-validation) — Context Normalizer & Token Budget Manager).
+- **Last Completed Task**: Dual-Dimension (384 & 1536) Local Vector Support. Features:
+  - Created migration script [`src/db/migrations/002_add_embedding_384.sql`](file:///c:/Users/workp/OneDrive/Desktop/kgr/src/db/migrations/002_add_embedding_384.sql) for `chunks.embedding_384 VECTOR(384)` and HNSW index.
+  - Updated schema generator and health checks in [`src/db/postgres.py`](file:///c:/Users/workp/OneDrive/Desktop/kgr/src/db/postgres.py).
+  - Updated [`src/db/postgres_writer.py`](file:///c:/Users/workp/OneDrive/Desktop/kgr/src/db/postgres_writer.py) to write to the appropriate vector column by dimension and preserve existing vectors via `COALESCE`.
+  - Updated [`src/retrieval/vector_retriever.py`](file:///c:/Users/workp/OneDrive/Desktop/kgr/src/retrieval/vector_retriever.py) to dynamically select `c.embedding_384` or `c.embedding`.
+  - Configured [`.env`](file:///c:/Users/workp/OneDrive/Desktop/kgr/.env) for local `sentence_transformers` (`all-MiniLM-L6-v2`, 384 dim, zero cost).
+  - Updated tests and documentation (`docs/DATA_MODEL.md`).
+- **Next Recommended Action**: Apply migration 002 to live PostgreSQL when ready to execute ingestion and benchmarks.
+

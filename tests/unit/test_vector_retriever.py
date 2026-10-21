@@ -10,6 +10,7 @@ Validates:
 """
 
 import uuid
+from typing import Any
 from unittest.mock import AsyncMock, MagicMock
 
 import pytest
@@ -95,7 +96,7 @@ class TestVectorRetrieverUnit:
         mock_retriever_settings: Settings,
     ) -> None:
         mock_conn = AsyncMock()
-        mock_conn.fetch.return_value = []
+        mock_conn.fetch.return_value = list[dict[str, Any]]()
 
         mock_pool = MagicMock()
         mock_pool.acquire.return_value.__aenter__.return_value = mock_conn
@@ -134,6 +135,53 @@ class TestVectorRetrieverUnit:
             InvalidQueryVectorError, match="dimension 768 does not match expected 1536"
         ):
             await retriever.search(wrong_vec)
+
+    @pytest.mark.asyncio
+    async def test_search_happy_path_384_dimension(self) -> None:
+        settings_384 = Settings(
+            environment="test",
+            postgres_host="localhost",
+            postgres_port=5432,
+            postgres_db="kgr_test_db",
+            postgres_user="kgr_test_user",
+            postgres_password=SecretStr("mock_secret_pw"),
+            embedding_dimensions=384,
+            vector_top_k=5,
+            vector_similarity_threshold=0.60,
+        )
+        chunk_uuid = uuid.uuid4()
+        mock_row = {
+            "chunk_id": chunk_uuid,
+            "document_id": "doc-002",
+            "content": "Payment Gateway 384 spec",
+            "similarity_score": 0.91,
+            "token_count": 12,
+            "char_start": 0,
+            "char_end": 25,
+            "metadata": {"doc_type": "technical_doc"},
+        }
+        mock_conn = AsyncMock()
+        mock_conn.fetch.return_value = [mock_row]
+
+        mock_pool = MagicMock()
+        mock_pool.acquire.return_value.__aenter__.return_value = mock_conn
+        mock_pool.acquire.return_value.__aexit__.return_value = None
+
+        client = PostgresClient(settings=settings_384, pool=mock_pool)
+        retriever = VectorRetriever(client=client, settings=settings_384)
+
+        query_vec_384 = [0.02] * 384
+        results = await retriever.search(query_vec_384, top_k=5)
+
+        assert len(results) == 1
+        assert results[0].chunk_id == str(chunk_uuid)
+
+        # Verify SQL queries c.embedding_384 specifically
+        mock_conn.fetch.assert_called_once()
+        sql_query = mock_conn.fetch.call_args[0][0]
+        assert "c.embedding_384 IS NOT NULL" in sql_query
+        assert "(1 - (c.embedding_384 <=> $1::vector)) >= $2" in sql_query
+        assert "ORDER BY c.embedding_384 <=> $1::vector ASC" in sql_query
 
     @pytest.mark.asyncio
     async def test_search_nan_in_vector_raises_invalid_query_vector_error(
@@ -192,7 +240,7 @@ class TestVectorRetrieverUnit:
             "token_count": 8,
             "char_start": 0,
             "char_end": 22,
-            "metadata": {},
+            "metadata": dict[str, Any](),
         }
 
         mock_conn = AsyncMock()

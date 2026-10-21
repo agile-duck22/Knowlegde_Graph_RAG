@@ -67,14 +67,19 @@ CREATE TABLE IF NOT EXISTS chunks (
     char_start INTEGER NOT NULL,
     char_end INTEGER NOT NULL,
     metadata JSONB NOT NULL DEFAULT '{}'::jsonb,
-    embedding VECTOR(1536), -- Dimension configurable in src/config.py
+    embedding VECTOR(1536),         -- 1536-dim vector (OpenAI text-embedding-3-small)
+    embedding_384 VECTOR(384),       -- 384-dim vector (local sentence-transformers all-MiniLM-L6-v2)
     created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT uq_document_chunk UNIQUE (document_id, chunk_index)
 );
 
--- HNSW Cosine Distance Vector Index
+-- HNSW Cosine Distance Vector Indexes
 CREATE INDEX IF NOT EXISTS idx_chunks_embedding_hnsw 
 ON chunks USING hnsw (embedding vector_cosine_ops)
+WITH (m = 16, ef_construction = 64);
+
+CREATE INDEX IF NOT EXISTS idx_chunks_embedding_384_hnsw
+ON chunks USING hnsw (embedding_384 vector_cosine_ops)
 WITH (m = 16, ef_construction = 64);
 
 CREATE INDEX IF NOT EXISTS idx_chunks_document_id ON chunks(document_id);

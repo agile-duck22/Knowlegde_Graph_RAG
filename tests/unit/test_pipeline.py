@@ -13,8 +13,10 @@ Tests cover:
 10. CLI arguments parsing and main() function exit codes.
 """
 
+import asyncio
 from pathlib import Path
-from unittest.mock import MagicMock, patch
+from typing import Any
+from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 from pydantic import SecretStr
@@ -41,6 +43,7 @@ from src.ingest.pipeline import (
 @pytest.fixture
 def mock_pipeline_settings() -> Settings:
     return Settings(
+        llm_provider="anthropic",
         environment="test",
         chunk_size=200,
         chunk_overlap=20,
@@ -147,6 +150,27 @@ def mock_neo4j_client() -> MagicMock:
     return client
 
 
+@pytest.fixture
+def mock_postgres_client() -> MagicMock:
+    client = MagicMock()
+    client.close = AsyncMock()
+    return client
+
+
+@pytest.fixture
+def mock_postgres_writer() -> MagicMock:
+    writer = MagicMock()
+    writer.write_document_bundle = AsyncMock(return_value=(1, 2))
+    return writer
+
+
+@pytest.fixture
+def mock_embedding_generator() -> MagicMock:
+    gen = MagicMock()
+    gen.generate_batch.return_value = [[0.1] * 384]
+    return gen
+
+
 class TestIngestionPipeline:
     """Unit test suite for IngestionPipeline orchestration."""
 
@@ -156,11 +180,17 @@ class TestIngestionPipeline:
         sample_documents: list[RawDocument],
         mock_extractor: MagicMock,
         mock_neo4j_client: MagicMock,
+        mock_postgres_client: MagicMock,
+        mock_postgres_writer: MagicMock,
+        mock_embedding_generator: MagicMock,
     ) -> None:
         pipeline = IngestionPipeline(
             settings=mock_pipeline_settings,
             extractor=mock_extractor,
             neo4j_client=mock_neo4j_client,
+            postgres_client=mock_postgres_client,
+            postgres_writer=mock_postgres_writer,
+            embedding_generator=mock_embedding_generator,
         )
 
         report = pipeline.run(documents=sample_documents, dry_run=False)
@@ -175,6 +205,8 @@ class TestIngestionPipeline:
         assert report.total_relationships_extracted > 0
         assert report.total_entities_written > 0
         assert report.total_relationships_written > 0
+        assert report.total_postgres_chunks_written == 2
+        assert report.total_postgres_links_written == 4
         assert report.dry_run is False
         assert report.duration_seconds > 0
 
@@ -183,17 +215,27 @@ class TestIngestionPipeline:
         mock_neo4j_client.initialise_schema.assert_called_once()
         assert mock_neo4j_client.write_chunk_result.call_count == 2
 
-    def test_run_dry_run_skips_neo4j_writes(
+        # Verify Postgres & Embedding calls
+        assert mock_embedding_generator.generate_batch.call_count == 2
+        assert mock_postgres_writer.write_document_bundle.call_count == 2
+
+    def test_run_dry_run_skips_writes(
         self,
         mock_pipeline_settings: Settings,
         sample_documents: list[RawDocument],
         mock_extractor: MagicMock,
         mock_neo4j_client: MagicMock,
+        mock_postgres_client: MagicMock,
+        mock_postgres_writer: MagicMock,
+        mock_embedding_generator: MagicMock,
     ) -> None:
         pipeline = IngestionPipeline(
             settings=mock_pipeline_settings,
             extractor=mock_extractor,
             neo4j_client=mock_neo4j_client,
+            postgres_client=mock_postgres_client,
+            postgres_writer=mock_postgres_writer,
+            embedding_generator=mock_embedding_generator,
         )
 
         report = pipeline.run(documents=sample_documents, dry_run=True)
@@ -202,9 +244,13 @@ class TestIngestionPipeline:
         assert report.dry_run is True
         assert report.total_entities_written == 0
         assert report.total_relationships_written == 0
+        assert report.total_postgres_chunks_written == 0
+        assert report.total_postgres_links_written == 0
         mock_neo4j_client.verify_connectivity.assert_not_called()
         mock_neo4j_client.initialise_schema.assert_not_called()
         mock_neo4j_client.write_chunk_result.assert_not_called()
+        mock_postgres_writer.write_document_bundle.assert_not_called()
+        mock_embedding_generator.generate_batch.assert_not_called()
 
     def test_run_empty_documents_sequence(
         self,
@@ -309,6 +355,8 @@ class TestIngestionPipeline:
         mock_pipeline_settings: Settings,
         sample_documents: list[RawDocument],
         mock_extractor: MagicMock,
+        mock_postgres_writer: MagicMock,
+        mock_embedding_generator: MagicMock,
     ) -> None:
         failing_neo4j = MagicMock()
         failing_neo4j.verify_connectivity.return_value = None
@@ -319,6 +367,8 @@ class TestIngestionPipeline:
             settings=mock_pipeline_settings,
             extractor=mock_extractor,
             neo4j_client=failing_neo4j,
+            postgres_writer=mock_postgres_writer,
+            embedding_generator=mock_embedding_generator,
         )
 
         report = pipeline.run(documents=sample_documents)
@@ -327,24 +377,144 @@ class TestIngestionPipeline:
         assert report.failed_documents == 2
         assert "Cypher execution failed" in report.errors[0]["error"]
 
-    def test_pipeline_closes_owned_neo4j_client(
+    def test_run_postgres_write_failure_records_failed_document(
         self,
         mock_pipeline_settings: Settings,
         sample_documents: list[RawDocument],
         mock_extractor: MagicMock,
+        mock_neo4j_client: MagicMock,
+        mock_embedding_generator: MagicMock,
     ) -> None:
-        mock_client_instance = MagicMock()
-        mock_client_instance.write_chunk_result.return_value = (1, 1)
+        failing_pg_writer = MagicMock()
+        failing_pg_writer.write_document_bundle = AsyncMock(
+            side_effect=RuntimeError("PostgreSQL connection lost")
+        )
 
-        with patch("src.ingest.pipeline.Neo4jClient", return_value=mock_client_instance):
+        pipeline = IngestionPipeline(
+            settings=mock_pipeline_settings,
+            extractor=mock_extractor,
+            neo4j_client=mock_neo4j_client,
+            postgres_writer=failing_pg_writer,
+            embedding_generator=mock_embedding_generator,
+        )
+
+        report = pipeline.run(documents=sample_documents)
+
+        assert report.is_success is False
+        assert report.failed_documents == 2
+        assert "PostgreSQL connection lost" in report.errors[0]["error"]
+        assert report.document_results[0].status == "FAILED"
+
+    def test_pipeline_closes_owned_clients(
+        self,
+        mock_pipeline_settings: Settings,
+        sample_documents: list[RawDocument],
+        mock_extractor: MagicMock,
+        mock_embedding_generator: MagicMock,
+    ) -> None:
+        mock_neo4j_instance = MagicMock()
+        mock_neo4j_instance.write_chunk_result.return_value = (1, 1)
+
+        mock_pg_instance = MagicMock()
+        mock_pg_instance.close = AsyncMock()
+
+        mock_pg_writer_instance = MagicMock()
+        mock_pg_writer_instance.write_document_bundle = AsyncMock(return_value=(1, 1))
+
+        with (
+            patch("src.ingest.pipeline.Neo4jClient", return_value=mock_neo4j_instance),
+            patch("src.ingest.pipeline.PostgresClient", return_value=mock_pg_instance),
+            patch("src.ingest.pipeline.PostgresWriter", return_value=mock_pg_writer_instance),
+        ):
             pipeline = IngestionPipeline(
                 settings=mock_pipeline_settings,
                 extractor=mock_extractor,
                 neo4j_client=None,  # Pipeline should create and own Neo4jClient
+                postgres_client=None,  # Pipeline should create and own PostgresClient
+                postgres_writer=None,
+                embedding_generator=mock_embedding_generator,
             )
             report = pipeline.run(documents=sample_documents, dry_run=False)
             assert report.is_success is True
-            mock_client_instance.close.assert_called_once()
+            mock_neo4j_instance.close.assert_called_once()
+            mock_pg_instance.close.assert_called_once()
+
+    def test_run_reuses_same_event_loop_across_multiple_documents(
+        self,
+        mock_pipeline_settings: Settings,
+        sample_documents: list[RawDocument],
+        mock_extractor: MagicMock,
+        mock_neo4j_client: MagicMock,
+        mock_postgres_client: MagicMock,
+        mock_embedding_generator: MagicMock,
+    ) -> None:
+        """Verify that all async bundle writes run on the same persistent event loop."""
+        observed_loops: list[asyncio.AbstractEventLoop] = []
+
+        mock_writer = MagicMock()
+
+        async def fake_write(
+            doc: RawDocument,
+            chunk_items: list[Any],
+        ) -> tuple[int, int]:
+            loop = asyncio.get_running_loop()
+            observed_loops.append(loop)
+            return (len(chunk_items), 1)
+
+        mock_writer.write_document_bundle = fake_write
+
+        pipeline = IngestionPipeline(
+            settings=mock_pipeline_settings,
+            extractor=mock_extractor,
+            neo4j_client=mock_neo4j_client,
+            postgres_client=mock_postgres_client,
+            postgres_writer=mock_writer,
+            embedding_generator=mock_embedding_generator,
+        )
+
+        report = pipeline.run(documents=sample_documents, dry_run=False)
+        assert report.is_success is True
+        assert len(observed_loops) == 2
+        # Both documents must have been written using the exact same active event loop
+        assert observed_loops[0] is observed_loops[1]
+
+    def test_run_cleanup_handles_exceptions_without_masking(
+        self,
+        mock_pipeline_settings: Settings,
+        sample_documents: list[RawDocument],
+        mock_extractor: MagicMock,
+        mock_embedding_generator: MagicMock,
+    ) -> None:
+        """Verify that exceptions in close() are logged and do not mask pipeline errors."""
+        mock_neo4j_instance = MagicMock()
+        mock_neo4j_instance.verify_connectivity.return_value = None
+        mock_neo4j_instance.initialise_schema.return_value = None
+        mock_neo4j_instance.close.side_effect = RuntimeError("Neo4j driver close failed")
+
+        mock_pg_instance = MagicMock()
+        mock_pg_instance.close = AsyncMock(side_effect=RuntimeError("PG pool close failed"))
+
+        mock_pg_writer_instance = MagicMock()
+        mock_pg_writer_instance.write_document_bundle = AsyncMock(
+            side_effect=RuntimeError("Database failure during write")
+        )
+
+        with (
+            patch("src.ingest.pipeline.Neo4jClient", return_value=mock_neo4j_instance),
+            patch("src.ingest.pipeline.PostgresClient", return_value=mock_pg_instance),
+            patch("src.ingest.pipeline.PostgresWriter", return_value=mock_pg_writer_instance),
+        ):
+            pipeline = IngestionPipeline(
+                settings=mock_pipeline_settings,
+                extractor=mock_extractor,
+                embedding_generator=mock_embedding_generator,
+            )
+            report = pipeline.run(documents=sample_documents, dry_run=False)
+            assert report.is_success is False
+            assert report.failed_documents == 2
+            assert "Database failure during write" in report.errors[0]["error"]
+            mock_neo4j_instance.close.assert_called_once()
+            mock_pg_instance.close.assert_called_once()
 
     def test_lazy_extractor_initialisation_with_dummy_key(
         self,

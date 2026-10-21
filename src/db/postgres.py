@@ -11,7 +11,7 @@ Design & Invariants:
 from __future__ import annotations
 
 import logging
-from collections.abc import AsyncIterator
+from collections.abc import AsyncGenerator
 from contextlib import asynccontextmanager
 from pathlib import Path
 from typing import Any
@@ -79,14 +79,21 @@ def build_ddl_migration_sql(embedding_dim: int = 1536) -> str:
         char_end INTEGER NOT NULL,
         metadata JSONB NOT NULL DEFAULT '{{}}'::jsonb,
         embedding VECTOR({embedding_dim}),
+        embedding_384 VECTOR(384),
         created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
         CONSTRAINT uq_document_chunk UNIQUE (document_id, chunk_index)
     );
+
+    ALTER TABLE chunks ADD COLUMN IF NOT EXISTS embedding_384 VECTOR(384);
 
     CREATE INDEX IF NOT EXISTS idx_chunks_document_id ON chunks(document_id);
 
     CREATE INDEX IF NOT EXISTS idx_chunks_embedding_hnsw
     ON chunks USING hnsw (embedding vector_cosine_ops)
+    WITH (m = 16, ef_construction = 64);
+
+    CREATE INDEX IF NOT EXISTS idx_chunks_embedding_384_hnsw
+    ON chunks USING hnsw (embedding_384 vector_cosine_ops)
     WITH (m = 16, ef_construction = 64);
 
     CREATE TABLE IF NOT EXISTS entity_links (
@@ -166,7 +173,7 @@ class PostgresClient:
         await self.close()
 
     @asynccontextmanager
-    async def connection(self) -> AsyncIterator[asyncpg.Connection[asyncpg.Record]]:
+    async def connection(self) -> AsyncGenerator[asyncpg.Connection[asyncpg.Record], None]:
         """Acquire a connection from the pool."""
         pool = await self.get_pool()
         async with pool.acquire() as conn:
@@ -224,13 +231,24 @@ class PostgresClient:
                 )
                 table_status[t] = bool(exists)
 
-            # Check HNSW index
+            # Check HNSW indexes
             hnsw_exists = await conn.fetchval(
                 "SELECT EXISTS(SELECT 1 FROM pg_indexes WHERE indexname = 'idx_chunks_embedding_hnsw')"
+            )
+            hnsw_384_exists = await conn.fetchval(
+                "SELECT EXISTS(SELECT 1 FROM pg_indexes WHERE indexname = 'idx_chunks_embedding_384_hnsw')"
+            )
+
+            # Check embedding_384 column
+            col_384_exists = await conn.fetchval(
+                "SELECT EXISTS(SELECT 1 FROM information_schema.columns "
+                "WHERE table_name = 'chunks' AND column_name = 'embedding_384')"
             )
 
             return {
                 "vector_extension": bool(ext_exists),
                 **table_status,
                 "hnsw_index": bool(hnsw_exists),
+                "hnsw_384_index": bool(hnsw_384_exists),
+                "embedding_384_column": bool(col_384_exists),
             }

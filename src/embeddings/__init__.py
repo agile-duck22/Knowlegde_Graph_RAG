@@ -1,6 +1,7 @@
 """Embeddings package: dense vector generation client and batching."""
 
 from src.embeddings.client import (
+    EmbeddingConfigurationError,
     EmbeddingDimensionMismatchError,
     EmbeddingError,
     EmbeddingGenerator,
@@ -8,6 +9,7 @@ from src.embeddings.client import (
 )
 
 __all__ = [
+    "EmbeddingConfigurationError",
     "EmbeddingDimensionMismatchError",
     "EmbeddingError",
     "EmbeddingGenerator",

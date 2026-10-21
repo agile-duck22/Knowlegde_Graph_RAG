@@ -21,6 +21,7 @@ from src.retrieval.cypher_templates import (
     TEMPLATE_SERVICE_DEPENDENCY_CHAIN,
     TEMPLATE_TEAM_OWNERSHIP_SERVICES,
     TEMPLATE_VULNERABILITY_BLAST_RADIUS,
+    TEMPLATE_INCOMING_SERVICE_DEPENDENTS,
     CypherTemplateCatalog,
     CypherTemplateSpec,
 )
@@ -40,6 +41,7 @@ class TestCypherTemplateCatalog:
             TEMPLATE_DATABASE_PRODUCERS_CONSUMERS,
             TEMPLATE_INFRASTRUCTURE_DEPLOYMENTS,
             TEMPLATE_ENTITY_LOOKUP_BY_ID,
+            TEMPLATE_INCOMING_SERVICE_DEPENDENTS,
         }
         catalog_ids = set(CypherTemplateCatalog.list_template_ids())
         assert expected_ids.issubset(catalog_ids)
@@ -102,6 +104,7 @@ class TestCypherTemplateCatalog:
             TEMPLATE_SERVICE_DEPENDENCY_CHAIN,
             TEMPLATE_DATABASE_PRODUCERS_CONSUMERS,
             TEMPLATE_INFRASTRUCTURE_DEPLOYMENTS,
+            TEMPLATE_INCOMING_SERVICE_DEPENDENTS,
         ]
         for tid in relationship_templates:
             spec = CypherTemplateCatalog.get_template(tid)

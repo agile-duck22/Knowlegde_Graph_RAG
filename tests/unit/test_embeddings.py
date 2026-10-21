@@ -11,6 +11,7 @@ Validates:
 8. Zero live API network requirements (all tests use mocks).
 """
 
+from typing import Any
 from unittest.mock import MagicMock
 
 import pytest
@@ -202,7 +203,8 @@ class TestEmbeddingGenerator:
     ) -> None:
         mock_client = MagicMock()
         resp = MagicMock()
-        resp.data = []
+        empty_data: list[Any] = []
+        resp.data = empty_data
         mock_client.embeddings.create.return_value = resp
 
         generator = EmbeddingGenerator(

@@ -115,6 +115,27 @@ def test_alias_normalization_table_from_ontology() -> None:
         res = resolver.resolve_mention(alias)
         assert res.canonical_id == "team:checkout-engineering"
 
+    # Newly added aliases for EVAL-014, EVAL-031, EVAL-032, EVAL-042
+    for alias in ["shopping cart", "shopping cart service"]:
+        res = resolver.resolve_mention(alias)
+        assert res.canonical_id == "service:cart-service"
+        assert res.entity_type == "Service"
+
+    for alias in ["customer orders database", "customer orders db", "customer order database", "customer order db"]:
+        res = resolver.resolve_mention(alias)
+        assert res.canonical_id == "database:customer-orders-pg"
+        assert res.entity_type == "Database"
+
+    for alias in ["payment vault database", "payment vault db", "payment database", "payment db"]:
+        res = resolver.resolve_mention(alias)
+        assert res.canonical_id == "database:payment-vault-pg"
+        assert res.entity_type == "Database"
+
+    for alias in ["elasticache redis", "aws elasticache redis", "aws elasticache", "elasticache"]:
+        res = resolver.resolve_mention(alias)
+        assert res.canonical_id == "infra:aws-elasticache-redis"
+        assert res.entity_type == "Infrastructure"
+
 
 def test_ambiguous_alias_raises_error() -> None:
     """Test that ambiguous aliases matching multiple canonical targets raise AmbiguousEntityError."""

@@ -7,7 +7,7 @@ environment variable loading (.env), secret masking, and constraint validation.
 from __future__ import annotations
 
 from functools import lru_cache
-from typing import Literal
+from typing import Any, Literal
 
 from pydantic import (
     Field,
@@ -17,9 +17,21 @@ from pydantic import (
 )
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
+_DEFAULT_ENV = object()
+
 
 class Settings(BaseSettings):
     """Centralized, typed application settings for Knowledge Graph RAG."""
+
+    def __init__(
+        self,
+        _env_file: Any = _DEFAULT_ENV,
+        **values: Any,
+    ) -> None:
+        if _env_file is not _DEFAULT_ENV:
+            super().__init__(_env_file=_env_file, **values)
+        else:
+            super().__init__(**values)
 
     # Application & Environment
     app_name: str = Field(default="kgr", description="Application service name")
@@ -30,9 +42,22 @@ class Settings(BaseSettings):
         default="INFO", description="Logging verbosity level"
     )
 
-    # Anthropic LLM Provider
+    # LLM Provider Configuration
+    llm_provider: Literal["groq", "gemini", "openrouter", "anthropic"] = Field(
+        default="anthropic",
+        description="Primary LLM provider (groq, gemini, openrouter, anthropic)",
+    )
     anthropic_api_key: SecretStr | None = Field(
         default=None, description="Anthropic API key for synthesis and extraction"
+    )
+    gemini_api_key: SecretStr | None = Field(
+        default=None, description="Google Gemini API key for free-tier inference"
+    )
+    groq_api_key: SecretStr | None = Field(
+        default=None, description="Groq API key for free-tier inference"
+    )
+    openrouter_api_key: SecretStr | None = Field(
+        default=None, description="OpenRouter API key for free-tier inference"
     )
     llm_model: str = Field(
         default="claude-3-5-sonnet-20241022",
@@ -42,16 +67,38 @@ class Settings(BaseSettings):
         default="claude-3-haiku-20240307",
         description="Lightweight LLM model for query intent routing",
     )
+    extraction_model: str | None = Field(
+        default=None,
+        description="Optional model override for entity extraction (defaults to llm_model)",
+    )
+    synthesis_model: str | None = Field(
+        default=None,
+        description="Optional model override for answer synthesis (defaults to llm_model)",
+    )
+    extraction_provider: Literal["groq", "gemini", "openrouter", "anthropic"] | None = Field(
+        default=None,
+        description="Optional provider override for entity extraction (defaults to llm_provider)",
+    )
+    routing_provider: Literal["groq", "gemini", "openrouter", "anthropic"] | None = Field(
+        default=None,
+        description="Optional provider override for query routing (defaults to llm_provider)",
+    )
+    synthesis_provider: Literal["groq", "gemini", "openrouter", "anthropic"] | None = Field(
+        default=None,
+        description="Optional provider override for answer synthesis (defaults to llm_provider)",
+    )
     max_completion_tokens: int = Field(
-        default=2048, ge=1, le=8192, description="Max output tokens for Claude synthesis"
+        default=2048, ge=1, le=8192, description="Max output tokens for LLM generation"
     )
     request_timeout_seconds: float = Field(
         default=30.0, ge=1.0, le=300.0, description="Upstream API call timeout in seconds"
     )
 
     # Embedding Configuration
-    embedding_provider: Literal["openai", "huggingface", "cohere"] = Field(
-        default="openai", description="Vector embedding provider"
+    embedding_provider: Literal[
+        "openai", "sentence_transformers", "huggingface", "local", "cohere"
+    ] = Field(
+        default="openai", description="Vector embedding provider (openai, sentence_transformers, huggingface, local, cohere)"
     )
     embedding_model: str = Field(
         default="text-embedding-3-small", description="Vector embedding model name"
@@ -64,6 +111,10 @@ class Settings(BaseSettings):
     )
     openai_api_key: SecretStr | None = Field(
         default=None, description="OpenAI API key for embeddings (when provider is openai)"
+    )
+    allow_paid_embeddings: bool = Field(
+        default=False,
+        description="Explicit authorization flag required for paid OpenAI embedding generation",
     )
 
     # Neo4j Graph Database
@@ -147,6 +198,53 @@ class Settings(BaseSettings):
             )
         return v
 
+    def get_extraction_model(self) -> str:
+        """Return the effective model ID for entity extraction."""
+        if self.extraction_model and self.extraction_model.strip():
+            return self.extraction_model.strip()
+        return self.llm_model.strip()
+
+    def get_routing_model(self) -> str:
+        """Return the effective model ID for query routing."""
+        return self.routing_model.strip()
+
+    def get_synthesis_model(self) -> str:
+        """Return the effective model ID for answer synthesis."""
+        if self.synthesis_model and self.synthesis_model.strip():
+            return self.synthesis_model.strip()
+        return self.llm_model.strip()
+
+    def get_extraction_provider(self) -> str:
+        """Return the effective LLM provider for entity extraction."""
+        if self.extraction_provider and self.extraction_provider.strip():
+            return self.extraction_provider.strip().lower()
+        return self.llm_provider.strip().lower()
+
+    def get_routing_provider(self) -> str:
+        """Return the effective LLM provider for query routing."""
+        if self.routing_provider and self.routing_provider.strip():
+            return self.routing_provider.strip().lower()
+        return self.llm_provider.strip().lower()
+
+    def get_synthesis_provider(self) -> str:
+        """Return the effective LLM provider for answer synthesis."""
+        if self.synthesis_provider and self.synthesis_provider.strip():
+            return self.synthesis_provider.strip().lower()
+        return self.llm_provider.strip().lower()
+
+    def get_api_key_for_provider(self, provider: str | None = None) -> SecretStr | None:
+        """Return the configured API key SecretStr for the specified or active LLM provider."""
+        p = (provider or self.llm_provider).strip().lower()
+        if p == "groq":
+            return self.groq_api_key
+        if p == "gemini":
+            return self.gemini_api_key
+        if p == "openrouter":
+            return self.openrouter_api_key
+        if p == "anthropic":
+            return self.anthropic_api_key
+        return None
+
     @model_validator(mode="after")
     def validate_chunk_overlap_and_production_keys(self) -> Settings:
         if self.chunk_overlap >= self.chunk_size:
@@ -154,8 +252,11 @@ class Settings(BaseSettings):
                 f"chunk_overlap ({self.chunk_overlap}) must be strictly less than chunk_size ({self.chunk_size})"
             )
         if self.environment == "production":
-            if not self.anthropic_api_key or not self.anthropic_api_key.get_secret_value():
-                raise ValueError("ANTHROPIC_API_KEY is required in production environment")
+            key = self.get_api_key_for_provider(self.llm_provider)
+            if not key or not key.get_secret_value() or key.get_secret_value().startswith("your_"):
+                raise ValueError(
+                    f"{self.llm_provider.upper()}_API_KEY is required in production environment"
+                )
         return self
 
 
