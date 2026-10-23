@@ -122,15 +122,15 @@ async def run_phase_k_evaluation() -> None:
         cat = q["category"]
         qtext = q["question"]
 
+        retrieved_chunk_ids: list[str] = []
+        rrf_scores: list[float] = []
+        sim_scores: list[float] = []
+
         trace = traces_map.get(qid)
         if trace and "hybrid" in trace:
             retrieved_chunk_ids = trace["hybrid"]["retrieved_chunk_ids"]
-            rrf_scores = trace["hybrid"].get("rrf_scores")
-            sim_scores = trace["vector"].get("similarity_scores")
-        else:
-            retrieved_chunk_ids = []
-            rrf_scores = []
-            sim_scores = []
+            rrf_scores = trace["hybrid"].get("rrf_scores") or []
+            sim_scores = trace["vector"].get("similarity_scores") or []
 
         # Step A: Query Analysis
         intent = analyzer.analyze(qtext)
