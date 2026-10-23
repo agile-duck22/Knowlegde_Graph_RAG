@@ -1,0 +1,18 @@
+{
+  "total_questions": 50,
+  "unique_ids_count": 50,
+  "categories_count": {
+    "single_hop_direct_fact": 10,
+    "2_hop_relationship": 10,
+    "3_hop_dependency": 10,
+    "relationship_aggregation": 10,
+    "out_of_scope": 10
+  },
+  "answerable_count": 40,
+  "out_of_scope_count": 10,
+  "total_gold_chunk_references": 166,
+  "unique_gold_chunk_ids": 28,
+  "missing_gold_chunk_ids": [],
+  "schema_errors": [],
+  "is_valid": true
+}

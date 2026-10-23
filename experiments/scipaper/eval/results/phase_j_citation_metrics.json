@@ -1,0 +1,13 @@
+{
+  "audit_phase": "Phase J \u2014 Citation Validity & Provenance Metrics",
+  "total_citations_emitted": 83,
+  "valid_citations_in_corpus": 83,
+  "citation_validity_rate": 1.0,
+  "metadata_completeness_rate": 1.0,
+  "evidence_quote_alignment_rate": 1.0,
+  "definitions": {
+    "citation_validity_rate": "Ratio of cited chunk IDs that exist in the authoritative PostgreSQL chunks table.",
+    "metadata_completeness_rate": "Ratio of citations with non-empty chunk_id, document_id, document_title, and excerpt.",
+    "evidence_quote_alignment_rate": "Ratio of citation excerpts that appear verbatim in the cited chunk text."
+  }
+}

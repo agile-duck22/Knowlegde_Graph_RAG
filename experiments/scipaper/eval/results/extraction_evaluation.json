@@ -1,0 +1,209 @@
+{
+  "evaluation_summary": {
+    "eval_corpus_papers_count": 20,
+    "eval_total_chunks_processed": 78,
+    "total_extracted_unique_entities": 213,
+    "total_extracted_unique_relationships": 154,
+    "provenance_validity_rate": 1.0,
+    "invalid_records_count": 0,
+    "gold_subset_evaluated_papers": 10
+  },
+  "overall_metrics": {
+    "entity_precision": 0.7368,
+    "entity_recall": 0.9032,
+    "entity_f1": 0.8116,
+    "relationship_precision": 0.8537,
+    "relationship_recall": 0.9589,
+    "relationship_f1": 0.9032
+  },
+  "entity_metrics_by_type": {
+    "Author": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 52,
+      "fp": 0,
+      "fn": 0
+    },
+    "Dataset": {
+      "precision": 0.8,
+      "recall": 1.0,
+      "f1": 0.8889,
+      "tp": 4,
+      "fp": 1,
+      "fn": 0
+    },
+    "Method": {
+      "precision": 0.5263,
+      "recall": 0.7692,
+      "f1": 0.625,
+      "tp": 10,
+      "fp": 9,
+      "fn": 3
+    },
+    "Metric": {
+      "precision": 0.6667,
+      "recall": 1.0,
+      "f1": 0.8,
+      "tp": 4,
+      "fp": 2,
+      "fn": 0
+    },
+    "Model": {
+      "precision": 0.5,
+      "recall": 0.4286,
+      "f1": 0.4615,
+      "tp": 3,
+      "fp": 3,
+      "fn": 4
+    },
+    "Paper": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 10,
+      "fp": 0,
+      "fn": 0
+    },
+    "ResearchOrganization": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 9,
+      "fn": 0
+    },
+    "Task": {
+      "precision": 0.1429,
+      "recall": 0.3333,
+      "f1": 0.2,
+      "tp": 1,
+      "fp": 6,
+      "fn": 2
+    }
+  },
+  "relationship_metrics_by_type": {
+    "AUTHORED": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "tp": 52,
+      "fp": 0,
+      "fn": 0
+    },
+    "EVALUATED_ON": {
+      "precision": 0.8,
+      "recall": 1.0,
+      "f1": 0.8889,
+      "tp": 4,
+      "fp": 1,
+      "fn": 0
+    },
+    "PROPOSES": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "tp": 0,
+      "fp": 4,
+      "fn": 0
+    },
+    "REPORTS_METRIC": {
+      "precision": 0.6667,
+      "recall": 1.0,
+      "f1": 0.8,
+      "tp": 4,
+      "fp": 2,
+      "fn": 0
+    },
+    "USES_METHOD": {
+      "precision": 0.6667,
+      "recall": 0.7692,
+      "f1": 0.7143,
+      "tp": 10,
+      "fp": 5,
+      "fn": 3
+    }
+  },
+  "gold_papers_detail": [
+    {
+      "document_id": "paper-arxiv-2411.18583",
+      "title": "Automated Literature Review Using NLP Techniques and LLM-Based Retrieval-Augmented Generation",
+      "gold_entities_count": 11,
+      "pred_entities_count": 13,
+      "gold_relationships_count": 8,
+      "pred_relationships_count": 8
+    },
+    {
+      "document_id": "paper-arxiv-2502.00306",
+      "title": "Riddle Me This! Stealthy Membership Inference for Retrieval-Augmented Generation",
+      "gold_entities_count": 8,
+      "pred_entities_count": 11,
+      "gold_relationships_count": 7,
+      "pred_relationships_count": 8
+    },
+    {
+      "document_id": "paper-arxiv-2507.23334",
+      "title": "MUST-RAG: MUSical Text Question Answering with Retrieval Augmented Generation",
+      "gold_entities_count": 6,
+      "pred_entities_count": 10,
+      "gold_relationships_count": 4,
+      "pred_relationships_count": 6
+    },
+    {
+      "document_id": "paper-arxiv-2510.22344",
+      "title": "FAIR-RAG: Faithful Adaptive Iterative Refinement for Retrieval-Augmented Generation",
+      "gold_entities_count": 9,
+      "pred_entities_count": 13,
+      "gold_relationships_count": 8,
+      "pred_relationships_count": 10
+    },
+    {
+      "document_id": "paper-arxiv-2503.16581",
+      "title": "Investigating Retrieval-Augmented Generation in Quranic Studies: A Study of 13 Open-Source Large Language Models",
+      "gold_entities_count": 12,
+      "pred_entities_count": 15,
+      "gold_relationships_count": 8,
+      "pred_relationships_count": 10
+    },
+    {
+      "document_id": "paper-arxiv-2609.29075",
+      "title": "CRISS: A Retrieval-Augmented AI Chatbot for Assisting Cancer Registrars",
+      "gold_entities_count": 12,
+      "pred_entities_count": 10,
+      "gold_relationships_count": 9,
+      "pred_relationships_count": 8
+    },
+    {
+      "document_id": "paper-arxiv-2504.08748",
+      "title": "A Survey of Multimodal Retrieval-Augmented Generation",
+      "gold_entities_count": 7,
+      "pred_entities_count": 8,
+      "gold_relationships_count": 5,
+      "pred_relationships_count": 5
+    },
+    {
+      "document_id": "paper-arxiv-2402.11794",
+      "title": "Unveiling the Magic: Investigating Attention Distillation in Retrieval-augmented Generation",
+      "gold_entities_count": 5,
+      "pred_entities_count": 7,
+      "gold_relationships_count": 4,
+      "pred_relationships_count": 5
+    },
+    {
+      "document_id": "paper-arxiv-2402.11626",
+      "title": "Metacognitive Retrieval-Augmented Large Language Models",
+      "gold_entities_count": 9,
+      "pred_entities_count": 10,
+      "gold_relationships_count": 7,
+      "pred_relationships_count": 8
+    },
+    {
+      "document_id": "paper-arxiv-2506.21931",
+      "title": "ARAG: Agentic Retrieval Augmented Generation for Personalized Recommendation",
+      "gold_entities_count": 14,
+      "pred_entities_count": 17,
+      "gold_relationships_count": 13,
+      "pred_relationships_count": 14
+    }
+  ]
+}

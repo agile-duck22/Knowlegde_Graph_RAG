@@ -1,0 +1,275 @@
+{
+  "vector": {
+    "single_hop_direct_fact": {
+      "total_questions": 10,
+      "evaluated_questions": 10,
+      "mrr": 0.3743,
+      "hit_rate": {
+        "hit_rate@1": 0.2,
+        "hit_rate@3": 0.5,
+        "hit_rate@5": 0.5,
+        "hit_rate@10": 0.7
+      },
+      "recall": {
+        "recall@1": 0.1,
+        "recall@3": 0.35,
+        "recall@5": 0.4,
+        "recall@10": 0.5
+      },
+      "zero_result_queries": 0
+    },
+    "2_hop_relationship": {
+      "total_questions": 10,
+      "evaluated_questions": 10,
+      "mrr": 0.5083,
+      "hit_rate": {
+        "hit_rate@1": 0.4,
+        "hit_rate@3": 0.6,
+        "hit_rate@5": 0.7,
+        "hit_rate@10": 0.7
+      },
+      "recall": {
+        "recall@1": 0.1,
+        "recall@3": 0.2,
+        "recall@5": 0.25,
+        "recall@10": 0.375
+      },
+      "zero_result_queries": 0
+    },
+    "3_hop_dependency": {
+      "total_questions": 10,
+      "evaluated_questions": 10,
+      "mrr": 0.475,
+      "hit_rate": {
+        "hit_rate@1": 0.4,
+        "hit_rate@3": 0.5,
+        "hit_rate@5": 0.6,
+        "hit_rate@10": 0.7
+      },
+      "recall": {
+        "recall@1": 0.0667,
+        "recall@3": 0.1667,
+        "recall@5": 0.2167,
+        "recall@10": 0.3
+      },
+      "zero_result_queries": 0
+    },
+    "relationship_aggregation": {
+      "total_questions": 10,
+      "evaluated_questions": 10,
+      "mrr": 0.4325,
+      "hit_rate": {
+        "hit_rate@1": 0.3,
+        "hit_rate@3": 0.5,
+        "hit_rate@5": 0.6,
+        "hit_rate@10": 0.7
+      },
+      "recall": {
+        "recall@1": 0.0583,
+        "recall@3": 0.1333,
+        "recall@5": 0.1833,
+        "recall@10": 0.2583
+      },
+      "zero_result_queries": 0
+    },
+    "out_of_scope": {
+      "total_questions": 10,
+      "is_out_of_scope": true,
+      "notes": "Out-of-scope queries evaluated separately; retrieval recall/hit-rate is non-applicable.",
+      "retrieved_results_count": [
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10
+      ]
+    }
+  },
+  "graph": {
+    "single_hop_direct_fact": {
+      "total_questions": 10,
+      "evaluated_questions": 10,
+      "mrr": 0.75,
+      "hit_rate": {
+        "hit_rate@1": 0.7,
+        "hit_rate@3": 0.8,
+        "hit_rate@5": 0.8,
+        "hit_rate@10": 0.8
+      },
+      "recall": {
+        "recall@1": 0.35,
+        "recall@3": 0.55,
+        "recall@5": 0.55,
+        "recall@10": 0.55
+      },
+      "zero_result_queries": 0
+    },
+    "2_hop_relationship": {
+      "total_questions": 10,
+      "evaluated_questions": 10,
+      "mrr": 0.5,
+      "hit_rate": {
+        "hit_rate@1": 0.5,
+        "hit_rate@3": 0.5,
+        "hit_rate@5": 0.5,
+        "hit_rate@10": 0.5
+      },
+      "recall": {
+        "recall@1": 0.125,
+        "recall@3": 0.2,
+        "recall@5": 0.2,
+        "recall@10": 0.2
+      },
+      "zero_result_queries": 0
+    },
+    "3_hop_dependency": {
+      "total_questions": 10,
+      "evaluated_questions": 10,
+      "mrr": 0.55,
+      "hit_rate": {
+        "hit_rate@1": 0.5,
+        "hit_rate@3": 0.6,
+        "hit_rate@5": 0.6,
+        "hit_rate@10": 0.6
+      },
+      "recall": {
+        "recall@1": 0.0833,
+        "recall@3": 0.1667,
+        "recall@5": 0.1667,
+        "recall@10": 0.1667
+      },
+      "zero_result_queries": 0
+    },
+    "relationship_aggregation": {
+      "total_questions": 10,
+      "evaluated_questions": 10,
+      "mrr": 0.55,
+      "hit_rate": {
+        "hit_rate@1": 0.5,
+        "hit_rate@3": 0.6,
+        "hit_rate@5": 0.6,
+        "hit_rate@10": 0.6
+      },
+      "recall": {
+        "recall@1": 0.1417,
+        "recall@3": 0.2417,
+        "recall@5": 0.2417,
+        "recall@10": 0.2417
+      },
+      "zero_result_queries": 0
+    },
+    "out_of_scope": {
+      "total_questions": 10,
+      "is_out_of_scope": true,
+      "notes": "Out-of-scope queries evaluated separately; retrieval recall/hit-rate is non-applicable.",
+      "retrieved_results_count": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        10,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "hybrid": {
+    "single_hop_direct_fact": {
+      "total_questions": 10,
+      "evaluated_questions": 10,
+      "mrr": 0.5944,
+      "hit_rate": {
+        "hit_rate@1": 0.3,
+        "hit_rate@3": 0.9,
+        "hit_rate@5": 0.9,
+        "hit_rate@10": 1.0
+      },
+      "recall": {
+        "recall@1": 0.15,
+        "recall@3": 0.6,
+        "recall@5": 0.75,
+        "recall@10": 0.8
+      },
+      "zero_result_queries": 0
+    },
+    "2_hop_relationship": {
+      "total_questions": 10,
+      "evaluated_questions": 10,
+      "mrr": 0.5033,
+      "hit_rate": {
+        "hit_rate@1": 0.2,
+        "hit_rate@3": 0.8,
+        "hit_rate@5": 0.9,
+        "hit_rate@10": 0.9
+      },
+      "recall": {
+        "recall@1": 0.05,
+        "recall@3": 0.275,
+        "recall@5": 0.375,
+        "recall@10": 0.45
+      },
+      "zero_result_queries": 0
+    },
+    "3_hop_dependency": {
+      "total_questions": 10,
+      "evaluated_questions": 10,
+      "mrr": 0.4833,
+      "hit_rate": {
+        "hit_rate@1": 0.3,
+        "hit_rate@3": 0.7,
+        "hit_rate@5": 0.7,
+        "hit_rate@10": 0.8
+      },
+      "recall": {
+        "recall@1": 0.05,
+        "recall@3": 0.1833,
+        "recall@5": 0.2333,
+        "recall@10": 0.3333
+      },
+      "zero_result_queries": 0
+    },
+    "relationship_aggregation": {
+      "total_questions": 10,
+      "evaluated_questions": 10,
+      "mrr": 0.6667,
+      "hit_rate": {
+        "hit_rate@1": 0.5,
+        "hit_rate@3": 0.9,
+        "hit_rate@5": 0.9,
+        "hit_rate@10": 0.9
+      },
+      "recall": {
+        "recall@1": 0.1083,
+        "recall@3": 0.2667,
+        "recall@5": 0.35,
+        "recall@10": 0.375
+      },
+      "zero_result_queries": 0
+    },
+    "out_of_scope": {
+      "total_questions": 10,
+      "is_out_of_scope": true,
+      "notes": "Out-of-scope queries evaluated separately; retrieval recall/hit-rate is non-applicable.",
+      "retrieved_results_count": [
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10,
+        10
+      ]
+    }
+  }
+}

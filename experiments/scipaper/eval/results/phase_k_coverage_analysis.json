@@ -1,0 +1,1112 @@
+[
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2411.18583"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2411.18583"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "d55eb84a-1e7d-5d8b-9f4f-192c731940ee",
+      "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+      "16344bbf-6d04-5f0e-8c48-06166d96a98a"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-001"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2502.00306"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2502.00306"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "cfd65d7c-a7a9-5e07-9322-a6abe628fa9a",
+      "4a60bd89-aa65-5851-aeb1-516bf806a71e",
+      "a3d90786-8500-5172-854f-f07aadbc8ace",
+      "9cef599b-f063-579b-9f94-49ed0adbafcc"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-002"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2507.23334"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2507.23334"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "34ca61d6-88b7-58cc-ab72-081f1fac28fd",
+      "d82c472c-871f-56dc-a07e-8686e7fbba8a",
+      "1f3649ba-8b24-5f41-965d-0440ee5932c9"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-003"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2510.22344"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2510.22344"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "611b595e-4e2f-52ff-872d-f516ba94dbc4",
+      "d4d166f7-b1ca-55f2-bda7-66eb6845874a",
+      "548920b0-8bf7-504b-8a24-7c2aef96af31",
+      "0c172672-c9c6-59ae-908f-8ae1b4933be8"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-004"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2609.29075"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2609.29075"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "37f967bf-13a0-5c2b-89fd-768be69c9450",
+      "b95ec804-b981-5fb7-9ec6-ee8490f7e6e9",
+      "63cece80-b15e-5c96-ba0a-86579d3f60a8",
+      "002ac2b7-4388-5eac-bc45-16cfdc7ff1fa"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-005"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2504.08748"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2504.08748"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "cd249ddd-8edb-52a1-bc14-9421c44faded",
+      "82407fc9-6dbc-5a9b-bcc0-38bfbc96d7e9"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-006"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2402.11794"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2402.11794"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "bf932bac-630a-5e39-94d0-c2d71cd1df85",
+      "a0166796-f679-5a90-8ed6-9e4c47e4afb6",
+      "d75cefb2-fe07-56f9-9a13-18b43316e7e6"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-007"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2402.11626"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2402.11626"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "ef4aded5-d2b3-5400-af1d-13ad643ead4d",
+      "909459c5-d0fc-5d5a-bbd2-63783edceaad",
+      "6e6757c6-d0b4-5081-8f70-c78cbe43dedb"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-008"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2506.21931"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2506.21931"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "1beacd16-2906-50e6-aa96-d7b6b27939e5",
+      "600f7715-a068-5d07-8037-5ae8c6c0e1d5",
+      "0c2379df-d6e9-542f-aeae-4d19a6061f67",
+      "fbc66f2a-a01a-57c8-af8d-acc50fa0f83e"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-009"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2505.18906"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2505.18906"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "2b0e5946-7655-5b64-a60e-5653e80efe14",
+      "b15bc4a0-13f0-5ce6-8c39-cf81fc08df44",
+      "c06870a9-8f49-5e88-a241-f3b388c7bf40",
+      "272ba7c8-4b72-513b-ab4b-54d86f752428"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-010"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2607.01852",
+      "paper-arxiv-2607.24767"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2607.01852",
+      "paper-arxiv-2607.24767"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "2e85652e-32f6-5278-afc2-7c4739d21cce",
+      "fc2ea74d-bbfa-51bf-94ad-2d1bf0a8943f",
+      "2f5cfa76-d61c-5a4a-a209-75efffaabbcd",
+      "f750dca5-5376-5377-9ffb-cd4e4b01a625",
+      "4e07b601-ed79-5bf1-932b-857f1edb76f8"
+    ],
+    "targeted_retrieval_applied": true,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-011"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2601.05254",
+      "paper-arxiv-2509.21336"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2601.05254",
+      "paper-arxiv-2509.21336"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "509c238a-67a5-59a8-9ffb-feff79b6430c",
+      "e7bf42cf-6d45-5c60-a993-252d277ddd1f",
+      "19878e0f-5b1e-5ed0-afd5-a8be9908dd69",
+      "2afccf33-fbd9-5443-b186-e8e107ce4979",
+      "a554d59f-a8f1-5a48-b851-adc13254c449"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-012"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2502.00306",
+      "paper-arxiv-2505.18906"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2502.00306",
+      "paper-arxiv-2505.18906"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "9cef599b-f063-579b-9f94-49ed0adbafcc",
+      "b15bc4a0-13f0-5ce6-8c39-cf81fc08df44",
+      "cfd65d7c-a7a9-5e07-9322-a6abe628fa9a",
+      "2b0e5946-7655-5b64-a60e-5653e80efe14",
+      "4a60bd89-aa65-5851-aeb1-516bf806a71e",
+      "a3d90786-8500-5172-854f-f07aadbc8ace"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-013"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2510.22344",
+      "paper-arxiv-2402.11626"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2510.22344",
+      "paper-arxiv-2402.11626"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "611b595e-4e2f-52ff-872d-f516ba94dbc4",
+      "0c172672-c9c6-59ae-908f-8ae1b4933be8",
+      "d4d166f7-b1ca-55f2-bda7-66eb6845874a",
+      "548920b0-8bf7-504b-8a24-7c2aef96af31",
+      "ef4aded5-d2b3-5400-af1d-13ad643ead4d",
+      "909459c5-d0fc-5d5a-bbd2-63783edceaad"
+    ],
+    "targeted_retrieval_applied": true,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-014"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2609.29075",
+      "paper-arxiv-2507.23334"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2609.29075",
+      "paper-arxiv-2507.23334"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "63cece80-b15e-5c96-ba0a-86579d3f60a8",
+      "37f967bf-13a0-5c2b-89fd-768be69c9450",
+      "0fc596ad-0ec4-5510-9af9-51c255c36579",
+      "34ca61d6-88b7-58cc-ab72-081f1fac28fd"
+    ],
+    "targeted_retrieval_applied": true,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-015"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2607.01852",
+      "paper-arxiv-2411.18583"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2607.01852",
+      "paper-arxiv-2411.18583"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "2e85652e-32f6-5278-afc2-7c4739d21cce",
+      "fc2ea74d-bbfa-51bf-94ad-2d1bf0a8943f",
+      "d55eb84a-1e7d-5d8b-9f4f-192c731940ee",
+      "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+      "2f5cfa76-d61c-5a4a-a209-75efffaabbcd"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-016"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2506.21931",
+      "paper-arxiv-2509.21336"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2506.21931",
+      "paper-arxiv-2509.21336"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "1beacd16-2906-50e6-aa96-d7b6b27939e5",
+      "600f7715-a068-5d07-8037-5ae8c6c0e1d5",
+      "0c2379df-d6e9-542f-aeae-4d19a6061f67",
+      "fbc66f2a-a01a-57c8-af8d-acc50fa0f83e",
+      "28c01433-7b1a-5089-8e31-e22ba5dc9020"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-017"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2504.08748",
+      "paper-arxiv-2402.11794"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2504.08748",
+      "paper-arxiv-2402.11794"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "cd249ddd-8edb-52a1-bc14-9421c44faded",
+      "82407fc9-6dbc-5a9b-bcc0-38bfbc96d7e9",
+      "bf932bac-630a-5e39-94d0-c2d71cd1df85",
+      "a0166796-f679-5a90-8ed6-9e4c47e4afb6"
+    ],
+    "targeted_retrieval_applied": true,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-018"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2601.05254",
+      "paper-arxiv-2510.22344"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2601.05254",
+      "paper-arxiv-2510.22344"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "2afccf33-fbd9-5443-b186-e8e107ce4979",
+      "509c238a-67a5-59a8-9ffb-feff79b6430c",
+      "611b595e-4e2f-52ff-872d-f516ba94dbc4",
+      "e7bf42cf-6d45-5c60-a993-252d277ddd1f",
+      "19878e0f-5b1e-5ed0-afd5-a8be9908dd69"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-019"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2607.24767",
+      "paper-arxiv-2411.18583"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2607.24767",
+      "paper-arxiv-2411.18583"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "a0a57107-44e0-56a2-a8a2-24c067b9fcd0",
+      "4e07b601-ed79-5bf1-932b-857f1edb76f8",
+      "f750dca5-5376-5377-9ffb-cd4e4b01a625",
+      "795251a8-df74-5708-903e-1c82449321d7",
+      "be7ff9bf-3730-57d7-a2d6-fc30758eb313"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-020"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2607.24767",
+      "paper-arxiv-2607.01852",
+      "paper-arxiv-2411.18583"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2607.24767",
+      "paper-arxiv-2607.01852",
+      "paper-arxiv-2411.18583"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "4e07b601-ed79-5bf1-932b-857f1edb76f8",
+      "f750dca5-5376-5377-9ffb-cd4e4b01a625",
+      "a0a57107-44e0-56a2-a8a2-24c067b9fcd0",
+      "795251a8-df74-5708-903e-1c82449321d7",
+      "fc2ea74d-bbfa-51bf-94ad-2d1bf0a8943f",
+      "2e85652e-32f6-5278-afc2-7c4739d21cce",
+      "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+      "d55eb84a-1e7d-5d8b-9f4f-192c731940ee"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-021"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2502.00306",
+      "paper-arxiv-2509.21336",
+      "paper-arxiv-2505.18906"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2502.00306",
+      "paper-arxiv-2509.21336",
+      "paper-arxiv-2505.18906"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "4a60bd89-aa65-5851-aeb1-516bf806a71e",
+      "cfd65d7c-a7a9-5e07-9322-a6abe628fa9a",
+      "a3d90786-8500-5172-854f-f07aadbc8ace",
+      "9cef599b-f063-579b-9f94-49ed0adbafcc",
+      "28c01433-7b1a-5089-8e31-e22ba5dc9020",
+      "29b50b6f-c444-5164-aa50-15877ee2530b",
+      "c06870a9-8f49-5e88-a241-f3b388c7bf40",
+      "b15bc4a0-13f0-5ce6-8c39-cf81fc08df44"
+    ],
+    "targeted_retrieval_applied": true,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-022"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2601.05254",
+      "paper-arxiv-2510.22344",
+      "paper-arxiv-2402.11626"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2601.05254",
+      "paper-arxiv-2510.22344",
+      "paper-arxiv-2402.11626"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "509c238a-67a5-59a8-9ffb-feff79b6430c",
+      "2afccf33-fbd9-5443-b186-e8e107ce4979",
+      "e7bf42cf-6d45-5c60-a993-252d277ddd1f",
+      "19878e0f-5b1e-5ed0-afd5-a8be9908dd69",
+      "611b595e-4e2f-52ff-872d-f516ba94dbc4",
+      "d4d166f7-b1ca-55f2-bda7-66eb6845874a",
+      "ef4aded5-d2b3-5400-af1d-13ad643ead4d",
+      "909459c5-d0fc-5d5a-bbd2-63783edceaad"
+    ],
+    "targeted_retrieval_applied": true,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-023"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2402.11794",
+      "paper-arxiv-2506.21931",
+      "paper-arxiv-2609.29075"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2402.11794",
+      "paper-arxiv-2506.21931",
+      "paper-arxiv-2609.29075"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "d75cefb2-fe07-56f9-9a13-18b43316e7e6",
+      "a0166796-f679-5a90-8ed6-9e4c47e4afb6",
+      "bf932bac-630a-5e39-94d0-c2d71cd1df85",
+      "fbc66f2a-a01a-57c8-af8d-acc50fa0f83e",
+      "1beacd16-2906-50e6-aa96-d7b6b27939e5",
+      "b95ec804-b981-5fb7-9ec6-ee8490f7e6e9",
+      "002ac2b7-4388-5eac-bc45-16cfdc7ff1fa"
+    ],
+    "targeted_retrieval_applied": true,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-024"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2504.08748",
+      "paper-arxiv-2507.23334",
+      "paper-arxiv-2607.01852"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2504.08748",
+      "paper-arxiv-2507.23334",
+      "paper-arxiv-2607.01852"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "cd249ddd-8edb-52a1-bc14-9421c44faded",
+      "82407fc9-6dbc-5a9b-bcc0-38bfbc96d7e9",
+      "0fc596ad-0ec4-5510-9af9-51c255c36579",
+      "34ca61d6-88b7-58cc-ab72-081f1fac28fd",
+      "2e85652e-32f6-5278-afc2-7c4739d21cce",
+      "fc2ea74d-bbfa-51bf-94ad-2d1bf0a8943f"
+    ],
+    "targeted_retrieval_applied": true,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-025"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2510.22344",
+      "paper-arxiv-2601.05254",
+      "paper-arxiv-2411.18583"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2510.22344",
+      "paper-arxiv-2601.05254",
+      "paper-arxiv-2411.18583"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "611b595e-4e2f-52ff-872d-f516ba94dbc4",
+      "d4d166f7-b1ca-55f2-bda7-66eb6845874a",
+      "548920b0-8bf7-504b-8a24-7c2aef96af31",
+      "0c172672-c9c6-59ae-908f-8ae1b4933be8",
+      "19878e0f-5b1e-5ed0-afd5-a8be9908dd69",
+      "2afccf33-fbd9-5443-b186-e8e107ce4979",
+      "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+      "d55eb84a-1e7d-5d8b-9f4f-192c731940ee"
+    ],
+    "targeted_retrieval_applied": true,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-026"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2506.21931",
+      "paper-arxiv-2402.11626",
+      "paper-arxiv-2609.29075"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2506.21931",
+      "paper-arxiv-2402.11626",
+      "paper-arxiv-2609.29075"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "1beacd16-2906-50e6-aa96-d7b6b27939e5",
+      "0c2379df-d6e9-542f-aeae-4d19a6061f67",
+      "ef4aded5-d2b3-5400-af1d-13ad643ead4d",
+      "b95ec804-b981-5fb7-9ec6-ee8490f7e6e9",
+      "002ac2b7-4388-5eac-bc45-16cfdc7ff1fa"
+    ],
+    "targeted_retrieval_applied": true,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-027"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2607.24767",
+      "paper-arxiv-2509.21336",
+      "paper-arxiv-2502.00306"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2607.24767",
+      "paper-arxiv-2509.21336",
+      "paper-arxiv-2502.00306"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "795251a8-df74-5708-903e-1c82449321d7",
+      "a0a57107-44e0-56a2-a8a2-24c067b9fcd0",
+      "4e07b601-ed79-5bf1-932b-857f1edb76f8",
+      "f750dca5-5376-5377-9ffb-cd4e4b01a625",
+      "28c01433-7b1a-5089-8e31-e22ba5dc9020",
+      "29b50b6f-c444-5164-aa50-15877ee2530b",
+      "cfd65d7c-a7a9-5e07-9322-a6abe628fa9a",
+      "4a60bd89-aa65-5851-aeb1-516bf806a71e"
+    ],
+    "targeted_retrieval_applied": true,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-028"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2607.01852",
+      "paper-arxiv-2402.11794",
+      "paper-arxiv-2507.23334"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2607.01852",
+      "paper-arxiv-2402.11794",
+      "paper-arxiv-2507.23334"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "2e85652e-32f6-5278-afc2-7c4739d21cce",
+      "fc2ea74d-bbfa-51bf-94ad-2d1bf0a8943f",
+      "d75cefb2-fe07-56f9-9a13-18b43316e7e6",
+      "a0166796-f679-5a90-8ed6-9e4c47e4afb6",
+      "2f5cfa76-d61c-5a4a-a209-75efffaabbcd",
+      "0fc596ad-0ec4-5510-9af9-51c255c36579",
+      "34ca61d6-88b7-58cc-ab72-081f1fac28fd"
+    ],
+    "targeted_retrieval_applied": true,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-029"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2601.05254",
+      "paper-arxiv-2506.21931",
+      "paper-arxiv-2411.18583"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2601.05254",
+      "paper-arxiv-2506.21931",
+      "paper-arxiv-2411.18583"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "2afccf33-fbd9-5443-b186-e8e107ce4979",
+      "509c238a-67a5-59a8-9ffb-feff79b6430c",
+      "e7bf42cf-6d45-5c60-a993-252d277ddd1f",
+      "fbc66f2a-a01a-57c8-af8d-acc50fa0f83e",
+      "1beacd16-2906-50e6-aa96-d7b6b27939e5",
+      "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+      "d55eb84a-1e7d-5d8b-9f4f-192c731940ee"
+    ],
+    "targeted_retrieval_applied": true,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-030"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2510.22344",
+      "paper-arxiv-2601.05254",
+      "paper-arxiv-2402.11626"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2510.22344",
+      "paper-arxiv-2601.05254",
+      "paper-arxiv-2402.11626"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "611b595e-4e2f-52ff-872d-f516ba94dbc4",
+      "d4d166f7-b1ca-55f2-bda7-66eb6845874a",
+      "548920b0-8bf7-504b-8a24-7c2aef96af31",
+      "0c172672-c9c6-59ae-908f-8ae1b4933be8",
+      "19878e0f-5b1e-5ed0-afd5-a8be9908dd69",
+      "2afccf33-fbd9-5443-b186-e8e107ce4979",
+      "ef4aded5-d2b3-5400-af1d-13ad643ead4d",
+      "909459c5-d0fc-5d5a-bbd2-63783edceaad"
+    ],
+    "targeted_retrieval_applied": true,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-031"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2607.01852",
+      "paper-arxiv-2607.24767"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2607.01852",
+      "paper-arxiv-2607.24767"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "2e85652e-32f6-5278-afc2-7c4739d21cce",
+      "fc2ea74d-bbfa-51bf-94ad-2d1bf0a8943f",
+      "f750dca5-5376-5377-9ffb-cd4e4b01a625",
+      "2f5cfa76-d61c-5a4a-a209-75efffaabbcd",
+      "4e07b601-ed79-5bf1-932b-857f1edb76f8"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-032"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2502.00306",
+      "paper-arxiv-2505.18906"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2502.00306",
+      "paper-arxiv-2505.18906"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "9cef599b-f063-579b-9f94-49ed0adbafcc",
+      "4a60bd89-aa65-5851-aeb1-516bf806a71e",
+      "b15bc4a0-13f0-5ce6-8c39-cf81fc08df44",
+      "cfd65d7c-a7a9-5e07-9322-a6abe628fa9a",
+      "2b0e5946-7655-5b64-a60e-5653e80efe14",
+      "272ba7c8-4b72-513b-ab4b-54d86f752428",
+      "a3d90786-8500-5172-854f-f07aadbc8ace"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-033"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2609.29075",
+      "paper-arxiv-2507.23334",
+      "paper-arxiv-2411.18583"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2609.29075",
+      "paper-arxiv-2507.23334",
+      "paper-arxiv-2411.18583"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "63cece80-b15e-5c96-ba0a-86579d3f60a8",
+      "37f967bf-13a0-5c2b-89fd-768be69c9450",
+      "0fc596ad-0ec4-5510-9af9-51c255c36579",
+      "34ca61d6-88b7-58cc-ab72-081f1fac28fd",
+      "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+      "d55eb84a-1e7d-5d8b-9f4f-192c731940ee"
+    ],
+    "targeted_retrieval_applied": true,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-034"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2601.05254",
+      "paper-arxiv-2509.21336"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2601.05254",
+      "paper-arxiv-2509.21336"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "e7bf42cf-6d45-5c60-a993-252d277ddd1f",
+      "2afccf33-fbd9-5443-b186-e8e107ce4979",
+      "19878e0f-5b1e-5ed0-afd5-a8be9908dd69",
+      "509c238a-67a5-59a8-9ffb-feff79b6430c",
+      "28c01433-7b1a-5089-8e31-e22ba5dc9020",
+      "29b50b6f-c444-5164-aa50-15877ee2530b"
+    ],
+    "targeted_retrieval_applied": true,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-035"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2402.11794",
+      "paper-arxiv-2402.11626",
+      "paper-arxiv-2510.22344"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2402.11794",
+      "paper-arxiv-2402.11626",
+      "paper-arxiv-2510.22344"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "bf932bac-630a-5e39-94d0-c2d71cd1df85",
+      "a0166796-f679-5a90-8ed6-9e4c47e4afb6",
+      "d75cefb2-fe07-56f9-9a13-18b43316e7e6",
+      "ef4aded5-d2b3-5400-af1d-13ad643ead4d",
+      "909459c5-d0fc-5d5a-bbd2-63783edceaad",
+      "611b595e-4e2f-52ff-872d-f516ba94dbc4",
+      "d4d166f7-b1ca-55f2-bda7-66eb6845874a"
+    ],
+    "targeted_retrieval_applied": true,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-036"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2506.21931"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2506.21931"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "1beacd16-2906-50e6-aa96-d7b6b27939e5",
+      "0c2379df-d6e9-542f-aeae-4d19a6061f67"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-037"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2504.08748",
+      "paper-arxiv-2601.05254"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2504.08748",
+      "paper-arxiv-2601.05254"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "cd249ddd-8edb-52a1-bc14-9421c44faded",
+      "82407fc9-6dbc-5a9b-bcc0-38bfbc96d7e9",
+      "19878e0f-5b1e-5ed0-afd5-a8be9908dd69",
+      "2afccf33-fbd9-5443-b186-e8e107ce4979"
+    ],
+    "targeted_retrieval_applied": true,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-038"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2411.18583",
+      "paper-arxiv-2607.01852",
+      "paper-arxiv-2607.24767"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2411.18583",
+      "paper-arxiv-2607.01852",
+      "paper-arxiv-2607.24767"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "2e85652e-32f6-5278-afc2-7c4739d21cce",
+      "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+      "d55eb84a-1e7d-5d8b-9f4f-192c731940ee",
+      "16344bbf-6d04-5f0e-8c48-06166d96a98a",
+      "bfee6412-060c-5026-aa8c-ff369d74bb7a",
+      "f750dca5-5376-5377-9ffb-cd4e4b01a625",
+      "4e07b601-ed79-5bf1-932b-857f1edb76f8"
+    ],
+    "targeted_retrieval_applied": true,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-039"
+  },
+  {
+    "status": "COMPLETE",
+    "required_targets": [
+      "paper-arxiv-2510.22344",
+      "paper-arxiv-2402.11626"
+    ],
+    "covered_targets": [
+      "paper-arxiv-2510.22344",
+      "paper-arxiv-2402.11626"
+    ],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "d4d166f7-b1ca-55f2-bda7-66eb6845874a",
+      "0c172672-c9c6-59ae-908f-8ae1b4933be8",
+      "611b595e-4e2f-52ff-872d-f516ba94dbc4",
+      "548920b0-8bf7-504b-8a24-7c2aef96af31",
+      "ef4aded5-d2b3-5400-af1d-13ad643ead4d",
+      "909459c5-d0fc-5d5a-bbd2-63783edceaad"
+    ],
+    "targeted_retrieval_applied": true,
+    "notes": "All required query targets covered in candidates.",
+    "question_id": "EVAL-040"
+  },
+  {
+    "status": "UNRESTRICTED",
+    "required_targets": [],
+    "covered_targets": [],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "f10ed7d7-7bc8-5a5d-a6c6-3695a2a97edc",
+      "cd907d2f-a8fb-5701-858f-78ca90a0b800",
+      "d00e1474-9931-5a3f-8824-68d556048a89",
+      "60bee5bf-9728-5888-b656-a071dc6c2032",
+      "062af027-8017-55af-9183-9f3e60d07266",
+      "843fb782-a051-5927-8049-af9a99a99d3e",
+      "fb7ca4e1-6f14-5a26-acb5-81e0f263b551",
+      "89385d28-12a1-5f06-9ba3-a524fd4e3dd5",
+      "caa69ba5-0ad8-5efd-847c-0fcfd48d7c5e",
+      "55106450-0363-5e9e-bdd9-f4e5db11c7d4"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "Query has no explicit document targets; general semantic retrieval.",
+    "question_id": "EVAL-041"
+  },
+  {
+    "status": "UNRESTRICTED",
+    "required_targets": [],
+    "covered_targets": [],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "4c90c3f3-c2e9-54f9-a766-b640586f4da7",
+      "a2236725-7c68-5cac-a39b-41751f327ad1",
+      "c1246962-9eec-55bc-ac0a-3ca8dfb752a0",
+      "9d34e0a3-2664-5b3c-ad07-6e7e063b65cf",
+      "1f3649ba-8b24-5f41-965d-0440ee5932c9",
+      "60af2029-860f-52c8-bc84-889087e6618b",
+      "82e1d0ea-949d-5752-9571-b3e58feca346",
+      "608c850f-4bb3-5b1f-8f50-ad2544f06812",
+      "91afe9e5-60b7-5678-a9e5-8849337c9b6e",
+      "e17708e9-cc7b-5567-8cd1-46cf80e84bfb"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "Query has no explicit document targets; general semantic retrieval.",
+    "question_id": "EVAL-042"
+  },
+  {
+    "status": "UNRESTRICTED",
+    "required_targets": [],
+    "covered_targets": [],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "2386bde9-d478-50eb-80e0-a40cde6234c6",
+      "77d141a6-390d-50a6-8232-cf0c3781fc25",
+      "7e00f645-e9d4-5fb0-a1da-41bcacd2fd7a",
+      "c4fa8abf-c2ee-51bd-afd3-d6727ae43546",
+      "833376ef-38d3-5101-9ae6-2c61c4250222",
+      "4a95c85d-9065-5486-a975-4dd9e2d00648",
+      "548920b0-8bf7-504b-8a24-7c2aef96af31",
+      "9ebf9d25-e5c6-5fa0-b0a2-fc24693166a8",
+      "5505bdd2-8854-55f3-9fac-812245a60907",
+      "9d34e0a3-2664-5b3c-ad07-6e7e063b65cf"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "Query has no explicit document targets; general semantic retrieval.",
+    "question_id": "EVAL-043"
+  },
+  {
+    "status": "UNRESTRICTED",
+    "required_targets": [],
+    "covered_targets": [],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "44280ef4-1b87-5638-b68c-7f5c30401faa",
+      "267e6242-a4a8-5cc5-a435-3db86414c975",
+      "852bfd27-d1bf-5bd6-8ddc-5e75965f5c8a",
+      "d5dc34c9-7067-55b2-8ef9-9cfae95328b3",
+      "8195754b-ea63-597c-b528-a5ae2c3505e3",
+      "5331a6e9-9c68-5cfb-8087-117e66fa60cf",
+      "b31cc0e2-32ac-510b-a4d9-55ff77960c7b",
+      "92d64481-7b70-58c1-808e-75f52ee5bdf5",
+      "4481749a-f2fc-51f1-b6ea-ace5d78f7389",
+      "062af027-8017-55af-9183-9f3e60d07266"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "Query has no explicit document targets; general semantic retrieval.",
+    "question_id": "EVAL-044"
+  },
+  {
+    "status": "UNRESTRICTED",
+    "required_targets": [],
+    "covered_targets": [],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "062af027-8017-55af-9183-9f3e60d07266",
+      "cc5064d9-f934-5e79-accb-0d1dcd4e8ecf",
+      "c4fa8abf-c2ee-51bd-afd3-d6727ae43546",
+      "f40a7d95-f7b8-5450-9979-e90ca1ca94f2",
+      "4a95c85d-9065-5486-a975-4dd9e2d00648",
+      "bfee6412-060c-5026-aa8c-ff369d74bb7a",
+      "c1246962-9eec-55bc-ac0a-3ca8dfb752a0",
+      "8fbfd4f6-ee01-5253-9f1e-293e9c632f8a",
+      "b31cc0e2-32ac-510b-a4d9-55ff77960c7b",
+      "23566f8b-3612-5457-97a3-d16421862d4e"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "Query has no explicit document targets; general semantic retrieval.",
+    "question_id": "EVAL-045"
+  },
+  {
+    "status": "UNRESTRICTED",
+    "required_targets": [],
+    "covered_targets": [],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "93ff033d-4478-525d-ac92-7e8a33ec7f33",
+      "833376ef-38d3-5101-9ae6-2c61c4250222",
+      "a2236725-7c68-5cac-a39b-41751f327ad1",
+      "ef4aded5-d2b3-5400-af1d-13ad643ead4d",
+      "062af027-8017-55af-9183-9f3e60d07266",
+      "a0166796-f679-5a90-8ed6-9e4c47e4afb6",
+      "c4fa8abf-c2ee-51bd-afd3-d6727ae43546",
+      "bacdd678-1594-5df7-b703-d5945fb0218c",
+      "9cef599b-f063-579b-9f94-49ed0adbafcc",
+      "59b98c25-8d62-51be-85b2-74464f24fad7"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "Query has no explicit document targets; general semantic retrieval.",
+    "question_id": "EVAL-046"
+  },
+  {
+    "status": "UNRESTRICTED",
+    "required_targets": [],
+    "covered_targets": [],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "b95ec804-b981-5fb7-9ec6-ee8490f7e6e9",
+      "37f967bf-13a0-5c2b-89fd-768be69c9450",
+      "9be95c92-a4da-5366-a57b-a56420c50c04",
+      "002ac2b7-4388-5eac-bc45-16cfdc7ff1fa",
+      "852bfd27-d1bf-5bd6-8ddc-5e75965f5c8a",
+      "eb3a2ec1-5831-5387-9d82-29fc83544302",
+      "8eea78c1-71aa-51a0-b5b5-60dfc42567a8",
+      "ba1a05a6-d881-53a7-8dde-c5227a5b67fa",
+      "9f235027-1a32-5772-8304-54194f06ff53",
+      "dca15c67-d643-5a4b-911f-5b1fe0e52032"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "Query has no explicit document targets; general semantic retrieval.",
+    "question_id": "EVAL-047"
+  },
+  {
+    "status": "UNRESTRICTED",
+    "required_targets": [],
+    "covered_targets": [],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "6aae37b3-01e9-51a9-b82f-6964f8ebafc3",
+      "a0bd060e-75e8-5e40-895d-993070b28bfd",
+      "8e471112-7d58-57f3-855b-b2cd08aff02b",
+      "b31cc0e2-32ac-510b-a4d9-55ff77960c7b",
+      "2b0e5946-7655-5b64-a60e-5653e80efe14",
+      "ffeff807-7f56-5f7a-9307-f50db07eb755",
+      "05712658-fc45-5b64-af5c-eba7e90d8e1a",
+      "60bee5bf-9728-5888-b656-a071dc6c2032",
+      "1e0155c8-2741-5438-a40f-f80c51de902d",
+      "42c4d540-bbda-5933-bb0a-c95f4e7a7391"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "Query has no explicit document targets; general semantic retrieval.",
+    "question_id": "EVAL-048"
+  },
+  {
+    "status": "UNRESTRICTED",
+    "required_targets": [],
+    "covered_targets": [],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "05712658-fc45-5b64-af5c-eba7e90d8e1a",
+      "28a24561-3dc2-5e13-9464-d92a5979a6cc",
+      "c4fa8abf-c2ee-51bd-afd3-d6727ae43546",
+      "5505bdd2-8854-55f3-9fac-812245a60907",
+      "9cef599b-f063-579b-9f94-49ed0adbafcc",
+      "91afe9e5-60b7-5678-a9e5-8849337c9b6e",
+      "6aae37b3-01e9-51a9-b82f-6964f8ebafc3",
+      "9a6e38e2-beb3-52fd-a5f5-220ac63d3b89",
+      "4a95c85d-9065-5486-a975-4dd9e2d00648",
+      "e28b9786-5b5c-5a2b-bca3-f400ba4d59ba"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "Query has no explicit document targets; general semantic retrieval.",
+    "question_id": "EVAL-049"
+  },
+  {
+    "status": "UNRESTRICTED",
+    "required_targets": [],
+    "covered_targets": [],
+    "missing_targets": [],
+    "filtered_candidate_chunk_ids": [
+      "a2236725-7c68-5cac-a39b-41751f327ad1",
+      "b31cc0e2-32ac-510b-a4d9-55ff77960c7b",
+      "4791180b-97df-5683-88d4-8102bd253217",
+      "062af027-8017-55af-9183-9f3e60d07266",
+      "f10ed7d7-7bc8-5a5d-a6c6-3695a2a97edc",
+      "f40a7d95-f7b8-5450-9979-e90ca1ca94f2",
+      "23566f8b-3612-5457-97a3-d16421862d4e",
+      "c4fa8abf-c2ee-51bd-afd3-d6727ae43546",
+      "b1c27894-f92f-58a1-b062-f4be63574c88",
+      "9e0881b6-ab18-5978-98e0-3d718a37d612"
+    ],
+    "targeted_retrieval_applied": false,
+    "notes": "Query has no explicit document targets; general semantic retrieval.",
+    "question_id": "EVAL-050"
+  }
+]

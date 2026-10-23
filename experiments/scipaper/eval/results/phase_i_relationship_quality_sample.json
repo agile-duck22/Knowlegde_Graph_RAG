@@ -1,0 +1,1222 @@
+{
+  "audit_phase": "Phase I Audit C \u2014 Semantic Relationship Quality",
+  "sample_selection_rule": "Deterministic stratified pseudo-random sample with fixed seed 42 across 4 scientific relationship types (PROPOSES, EVALUATED_ON, REPORTS_METRIC, USES_METHOD)",
+  "sample_size": 60,
+  "strata_quotas": {
+    "PROPOSES": 15,
+    "EVALUATED_ON": 12,
+    "REPORTS_METRIC": 15,
+    "USES_METHOD": 18
+  },
+  "classification_counts": {
+    "Supported": 46,
+    "Partially supported": 10,
+    "Unsupported": 4,
+    "Unverifiable": 0
+  },
+  "supported_rate_percent": 76.67,
+  "plausible_or_supported_rate_percent": 93.33,
+  "verdict": "MODERATE_QUALITY",
+  "sampled_audits": [
+    {
+      "sample_index": 1,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3056",
+      "relation_type": "EVALUATED_ON",
+      "source_canonical_id": "paper:arxiv-2201.08471",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "dataset:ms-marco",
+      "target_labels": [
+        "Entity",
+        "Dataset"
+      ],
+      "provenance_chunk_id": "49a3df8c-2c84-5ae8-b4ac-ab4d6450490d",
+      "evidence_text_recorded": "",
+      "chunk_text": "lexical term matching models such as BM25. While monolingual retrieval tasks have benefited from large-scale training collections such as MS MARCO and advances in neural architectures, cross-language ...",
+      "classification": "Partially supported",
+      "rationale": "Dataset 'ms marco' is mentioned alongside model, but evaluation context is implied."
+    },
+    {
+      "sample_index": 2,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3058",
+      "relation_type": "EVALUATED_ON",
+      "source_canonical_id": "paper:arxiv-2201.08471",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "dataset:ms-marco",
+      "target_labels": [
+        "Entity",
+        "Dataset"
+      ],
+      "provenance_chunk_id": "439944c3-aad2-5f1c-a6f0-28d866b270d0",
+      "evidence_text_recorded": "",
+      "chunk_text": "al (CLIR). ColBERT-X can be trained in two ways. In zero-shot training, the system is trained on the English MS MARCO collection, relying on the XLM-R encoder for cross-language mappings. In translate...",
+      "classification": "Supported",
+      "rationale": "Direct experimental evaluation on dataset/benchmark 'ms marco' documented in chunk."
+    },
+    {
+      "sample_index": 3,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3072",
+      "relation_type": "EVALUATED_ON",
+      "source_canonical_id": "paper:arxiv-2209.14290",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "dataset:kilt",
+      "target_labels": [
+        "Entity",
+        "Dataset"
+      ],
+      "provenance_chunk_id": "382f2c47-0cce-5a68-b331-a766f34c5e57",
+      "evidence_text_recorded": "",
+      "chunk_text": "through textual source pointers, to improve the top-ranked provenance precision. Our experiments on a diverse set of seven knowledge intensive tasks (KILT) show FiD-Light consistently improves the Par...",
+      "classification": "Supported",
+      "rationale": "Direct experimental evaluation on dataset/benchmark 'kilt' documented in chunk."
+    },
+    {
+      "sample_index": 4,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3082",
+      "relation_type": "EVALUATED_ON",
+      "source_canonical_id": "paper:arxiv-2305.05834",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "dataset:ms-marco",
+      "target_labels": [
+        "Entity",
+        "Dataset"
+      ],
+      "provenance_chunk_id": "0a9acc1b-0914-5feb-a991-9a490291169d",
+      "evidence_text_recorded": "",
+      "chunk_text": "thods on unsupervised dense retrieval by a large margin (e.g., by 5.3% NDCG@10 on MSMARCO). The gain of our method is especially significant for search and question answering tasks. Our analysis furth...",
+      "classification": "Unsupported",
+      "rationale": "Dataset 'ms marco' not substantiated as an evaluation target in chunk text."
+    },
+    {
+      "sample_index": 5,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3091",
+      "relation_type": "EVALUATED_ON",
+      "source_canonical_id": "paper:arxiv-2401.10487",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "dataset:natural-questions",
+      "target_labels": [
+        "Entity",
+        "Dataset"
+      ],
+      "provenance_chunk_id": "a0bd060e-75e8-5e40-895d-993070b28bfd",
+      "evidence_text_recorded": "",
+      "chunk_text": "pling strategy to enhance the intra-cluster mapping ability. Empirical results show that GDR obtains an average of 3.0 R@100 improvement on NQ dataset under multiple settings and has better scalabilit...",
+      "classification": "Supported",
+      "rationale": "Direct experimental evaluation on dataset/benchmark 'natural questions' documented in chunk."
+    },
+    {
+      "sample_index": 6,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3195",
+      "relation_type": "EVALUATED_ON",
+      "source_canonical_id": "paper:arxiv-2507.16826",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "dataset:hotpotqa",
+      "target_labels": [
+        "Entity",
+        "Dataset"
+      ],
+      "provenance_chunk_id": "7b6ade8e-25d7-562e-b69c-35d53e072106",
+      "evidence_text_recorded": "",
+      "chunk_text": " relevance to the query. Then, we select the highest score subgraph and enrich subgraph with additional triples from other subgraphs that are highly semantically relevant to the query. Finally, the en...",
+      "classification": "Supported",
+      "rationale": "Direct experimental evaluation on dataset/benchmark 'hotpotqa' documented in chunk."
+    },
+    {
+      "sample_index": 7,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3196",
+      "relation_type": "EVALUATED_ON",
+      "source_canonical_id": "paper:arxiv-2507.16826",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "dataset:musique",
+      "target_labels": [
+        "Entity",
+        "Dataset"
+      ],
+      "provenance_chunk_id": "7b6ade8e-25d7-562e-b69c-35d53e072106",
+      "evidence_text_recorded": "",
+      "chunk_text": " relevance to the query. Then, we select the highest score subgraph and enrich subgraph with additional triples from other subgraphs that are highly semantically relevant to the query. Finally, the en...",
+      "classification": "Supported",
+      "rationale": "Direct experimental evaluation on dataset/benchmark 'musique' documented in chunk."
+    },
+    {
+      "sample_index": 8,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3224",
+      "relation_type": "EVALUATED_ON",
+      "source_canonical_id": "paper:arxiv-2510.02827",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "dataset:2wikimultihopqa",
+      "target_labels": [
+        "Entity",
+        "Dataset"
+      ],
+      "provenance_chunk_id": "5280d0da-3ebb-5a42-b149-1aae0a816847",
+      "evidence_text_recorded": "",
+      "chunk_text": "y expands along relevant edges, assembling explicit evidence chains without overwhelming the language model with superfluous context. Experiments on MuSiQue, 2WikiMultiHopQA, and HotpotQA show that St...",
+      "classification": "Supported",
+      "rationale": "Direct experimental evaluation on dataset/benchmark '2wikimultihopqa' documented in chunk."
+    },
+    {
+      "sample_index": 9,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3233",
+      "relation_type": "EVALUATED_ON",
+      "source_canonical_id": "paper:arxiv-2510.22344",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "dataset:hotpotqa",
+      "target_labels": [
+        "Entity",
+        "Dataset"
+      ],
+      "provenance_chunk_id": "548920b0-8bf7-504b-8a24-7c2aef96af31",
+      "evidence_text_recorded": "",
+      "chunk_text": "ntil the evidence is verified as sufficient, ensuring a comprehensive context for a final, strictly faithful generation. We conducted experiments on challenging multi-hop QA benchmarks, including Hotp...",
+      "classification": "Supported",
+      "rationale": "Direct experimental evaluation on dataset/benchmark 'hotpotqa' documented in chunk."
+    },
+    {
+      "sample_index": 10,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3243",
+      "relation_type": "EVALUATED_ON",
+      "source_canonical_id": "paper:arxiv-2601.05254",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "dataset:ultradomain",
+      "target_labels": [
+        "Entity",
+        "Dataset"
+      ],
+      "provenance_chunk_id": "e7bf42cf-6d45-5c60-a993-252d277ddd1f",
+      "evidence_text_recorded": "",
+      "chunk_text": " and supports efficient knowledge increment. Extensive experiments on UltraDomain datasets spanning Agriculture, Computer Science, Law, and cross-domain settings demonstrate that TagRAG achieves an av...",
+      "classification": "Supported",
+      "rationale": "Direct experimental evaluation on dataset/benchmark 'ultradomain' documented in chunk."
+    },
+    {
+      "sample_index": 11,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3287",
+      "relation_type": "EVALUATED_ON",
+      "source_canonical_id": "paper:arxiv-2604.20859",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "dataset:hotpotqa",
+      "target_labels": [
+        "Entity",
+        "Dataset"
+      ],
+      "provenance_chunk_id": "0207b226-91f7-554f-bd3a-fcd37e1b65aa",
+      "evidence_text_recorded": "",
+      "chunk_text": "r knowledge. However, LLMs are prone to hallucination and often face technical limitations in handling contexts large enough to ground complex queries effectively. To address these challenges, we prop...",
+      "classification": "Supported",
+      "rationale": "Direct experimental evaluation on dataset/benchmark 'hotpotqa' documented in chunk."
+    },
+    {
+      "sample_index": 12,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3300",
+      "relation_type": "EVALUATED_ON",
+      "source_canonical_id": "paper:arxiv-2605.18769",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "dataset:lamp",
+      "target_labels": [
+        "Entity",
+        "Dataset"
+      ],
+      "provenance_chunk_id": "b27d7cfc-7a8e-5e62-b731-3f45fa2209bc",
+      "evidence_text_recorded": "",
+      "chunk_text": " ranking. Extensive experiments on the LaMP benchmark demonstrate that jointly leveraging the target user's profile and profiles from top similar users consistently yields the best performance across ...",
+      "classification": "Supported",
+      "rationale": "Direct experimental evaluation on dataset/benchmark 'lamp' documented in chunk."
+    },
+    {
+      "sample_index": 13,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3055",
+      "relation_type": "PROPOSES",
+      "source_canonical_id": "paper:arxiv-2112.07771",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:drboost",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "057fa067-a3a7-5620-8a5e-88138fc9675e",
+      "evidence_text_recorded": "",
+      "chunk_text": "# Title: Boosted Dense Retriever\n\n# Authors: Patrick Lewis, Barlas O\u011fuz, Wenhan Xiong, Fabio Petroni, Wen-tau Yih, Sebastian Riedel\n\n# Venue: arXiv:2112.07771 [cs.CL] (2021)\n\n# Abstract\n\nWe propose Dr...",
+      "classification": "Supported",
+      "rationale": "Text directly states proposing/introducing 'drboost'."
+    },
+    {
+      "sample_index": 14,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3057",
+      "relation_type": "PROPOSES",
+      "source_canonical_id": "paper:arxiv-2201.08471",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:colbert-x",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "49a3df8c-2c84-5ae8-b4ac-ab4d6450490d",
+      "evidence_text_recorded": "",
+      "chunk_text": "lexical term matching models such as BM25. While monolingual retrieval tasks have benefited from large-scale training collections such as MS MARCO and advances in neural architectures, cross-language ...",
+      "classification": "Supported",
+      "rationale": "Text directly states proposing/introducing 'colbert x'."
+    },
+    {
+      "sample_index": 15,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3063",
+      "relation_type": "PROPOSES",
+      "source_canonical_id": "paper:arxiv-2203.05765",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:tevatron",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "2ca10cc1-437a-538a-aa31-03919d20c5aa",
+      "evidence_text_recorded": "",
+      "chunk_text": "e stacks are typically optimized for some particular research goals instead of efficiency or code structure. In this paper, we present Tevatron, a dense retrieval toolkit optimized for efficiency, fle...",
+      "classification": "Supported",
+      "rationale": "Text directly states proposing/introducing 'tevatron'."
+    },
+    {
+      "sample_index": 16,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3074",
+      "relation_type": "PROPOSES",
+      "source_canonical_id": "paper:arxiv-2211.10841",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:transformer",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "2742f4bb-128b-51ea-a811-1ebaa4ce00cb",
+      "evidence_text_recorded": "",
+      "chunk_text": "c complexity of its Transformer-based encoder and the finite capacity of a low-dimension embedding. Current DR models use suboptimal strategies such as truncating or splitting-and-pooling to long docu...",
+      "classification": "Supported",
+      "rationale": "Text directly states proposing/introducing 'transformer'."
+    },
+    {
+      "sample_index": 17,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3090",
+      "relation_type": "PROPOSES",
+      "source_canonical_id": "paper:arxiv-2309.06748",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:converser",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "70310334-cbfd-5b5e-a20d-2312c9a6808c",
+      "evidence_text_recorded": "",
+      "chunk_text": "equires large amounts of in-domain paired data. This hinders the development of conversational dense retrievers, as abundant in-domain conversations are expensive to collect. In this paper, we propose...",
+      "classification": "Supported",
+      "rationale": "Text directly states proposing/introducing 'converser'."
+    },
+    {
+      "sample_index": 18,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3094",
+      "relation_type": "PROPOSES",
+      "source_canonical_id": "paper:arxiv-2402.11626",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:metarag",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "909459c5-d0fc-5d5a-bbd2-63783edceaad",
+      "evidence_text_recorded": "",
+      "chunk_text": "for multi-hop reasoning tasks. However, these strategies are bound by predefined reasoning steps, potentially leading to inaccuracies in response generation. This paper introduces MetaRAG, an approach...",
+      "classification": "Supported",
+      "rationale": "Text directly states proposing/introducing 'metarag'."
+    },
+    {
+      "sample_index": 19,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3098",
+      "relation_type": "PROPOSES",
+      "source_canonical_id": "paper:arxiv-2403.03516",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:umr",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "6628e07f-5659-5e06-b9e4-1abfc3bd9c3c",
+      "evidence_text_recorded": "",
+      "chunk_text": "ired data, which poses even greater challenges in multilingual scenarios. This paper introduces UMR, an Unsupervised Multilingual dense Retriever trained without any paired data. Our approach leverage...",
+      "classification": "Supported",
+      "rationale": "Text directly states proposing/introducing 'umr'."
+    },
+    {
+      "sample_index": 20,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3160",
+      "relation_type": "PROPOSES",
+      "source_canonical_id": "paper:arxiv-2503.06474",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:rograg",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "3cbc3d93-754a-5d28-9bcb-8162a7c21e77",
+      "evidence_text_recorded": "",
+      "chunk_text": ". However, existing pipelines involve complex engineering workflows, making it difficult to isolate the impact of individual components. It is also challenging to evaluate the retrieval effectiveness ...",
+      "classification": "Supported",
+      "rationale": "Text directly states proposing/introducing 'rograg'."
+    },
+    {
+      "sample_index": 21,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3161",
+      "relation_type": "PROPOSES",
+      "source_canonical_id": "paper:arxiv-2503.07519",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:grithopper-7b",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "3866fca8-aae6-5450-ada9-e152a9cf3dfc",
+      "evidence_text_recorded": "",
+      "chunk_text": "es struggle with longer multi-hop problems and generalization to out-of-distribution data. To address these challenges, we introduce GRITHopper-7B, a novel multi-hop dense retrieval model that achieve...",
+      "classification": "Supported",
+      "rationale": "Text directly states proposing/introducing 'grithopper 7b'."
+    },
+    {
+      "sample_index": 22,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3162",
+      "relation_type": "PROPOSES",
+      "source_canonical_id": "paper:arxiv-2503.14649",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:ragschema",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "420be994-31c2-5508-a2a7-13518ee3a521",
+      "evidence_text_recorded": "",
+      "chunk_text": "wever, efficient RAG serving remains an open challenge due to the rapid emergence of many RAG variants and the substantial differences in workload characteristics across them. In this paper, we make t...",
+      "classification": "Supported",
+      "rationale": "Text directly states proposing/introducing 'ragschema'."
+    },
+    {
+      "sample_index": 23,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3172",
+      "relation_type": "PROPOSES",
+      "source_canonical_id": "paper:arxiv-2505.18405",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:rader",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "55ef17b5-79d6-5473-9d7b-0767e5d3ef55",
+      "evidence_text_recorded": "",
+      "chunk_text": "# Title: RaDeR: Reasoning-aware Dense Retrieval Models\n\n# Authors: Debrup Das, Sam O' Nuallain, Razieh Rahimi\n\n# Venue: arXiv:2505.18405 [cs.CL] (2025)\n\n# Abstract\n\nWe propose RaDeR, a set of reasonin...",
+      "classification": "Supported",
+      "rationale": "Text directly states proposing/introducing 'rader'."
+    },
+    {
+      "sample_index": 24,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3240",
+      "relation_type": "PROPOSES",
+      "source_canonical_id": "paper:arxiv-2601.05254",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:tagrag",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "2afccf33-fbd9-5443-b186-e8e107ce4979",
+      "evidence_text_recorded": "",
+      "chunk_text": "ed summarization queries. GraphRAG introduces a graph-based paradigm for global knowledge reasoning, yet suffers from inefficiencies in information extraction, costly resource consumption, and poor ad...",
+      "classification": "Supported",
+      "rationale": "Text directly states proposing/introducing 'tagrag'."
+    },
+    {
+      "sample_index": 25,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3308",
+      "relation_type": "PROPOSES",
+      "source_canonical_id": "paper:arxiv-2605.28004",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:crossaug",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "52f4583c-9ae1-5d2b-b6e4-8671e4031614",
+      "evidence_text_recorded": "",
+      "chunk_text": "chunks, leaving cross-chunk relations -- those whose evidence spans multiple passages -- systematically absent from the index. Exhaustive LLM-based recovery of such relations is impractical due to the...",
+      "classification": "Supported",
+      "rationale": "Text directly states proposing/introducing 'crossaug'."
+    },
+    {
+      "sample_index": 26,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3378",
+      "relation_type": "PROPOSES",
+      "source_canonical_id": "paper:arxiv-2610.09360",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:topographrag-bench",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "da25c8c9-056c-5ebf-a4c5-a58bf3a9a67c",
+      "evidence_text_recorded": "",
+      "chunk_text": "etrieving relevant passages: systems must recover the evidence topology that connects heterogeneous evidence units. Existing GraphRAG evaluations remain largely text-centered, while multimodal documen...",
+      "classification": "Supported",
+      "rationale": "Text directly states proposing/introducing 'topographrag bench'."
+    },
+    {
+      "sample_index": 27,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3383",
+      "relation_type": "PROPOSES",
+      "source_canonical_id": "paper:arxiv-2610.19549",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:graphrag-ltm",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "f4811c89-4b3f-5f20-bc00-a47006a11e8a",
+      "evidence_text_recorded": "",
+      "chunk_text": "th the seed chunks retrieved for a query and the graph evidence assembled from them, yet attacks on this evidence path remain underexplored. We introduce GraphRAG-LTM, a Layered Threat Modeling framew...",
+      "classification": "Supported",
+      "rationale": "Text directly states proposing/introducing 'graphrag ltm'."
+    },
+    {
+      "sample_index": 28,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3084",
+      "relation_type": "REPORTS_METRIC",
+      "source_canonical_id": "paper:arxiv-2307.16779",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "metric:recall",
+      "target_labels": [
+        "Entity",
+        "Metric"
+      ],
+      "provenance_chunk_id": "070b5d60-d17c-5c4a-a3fb-44c176f26839",
+      "evidence_text_recorded": "",
+      "chunk_text": "rms as those appearing in the user's query (thereby improving recall) is one of their key advantages. However, to actually achieve these gains, dense retrieval approaches typically require an exhausti...",
+      "classification": "Supported",
+      "rationale": "Performance metric reporting ('recall') directly verified in source abstract."
+    },
+    {
+      "sample_index": 29,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3088",
+      "relation_type": "REPORTS_METRIC",
+      "source_canonical_id": "paper:arxiv-2307.16779",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "metric:recall",
+      "target_labels": [
+        "Entity",
+        "Metric"
+      ],
+      "provenance_chunk_id": "1f7f63df-2ae0-5024-94b3-c5f5964b1b39",
+      "evidence_text_recorded": "",
+      "chunk_text": "e k nearest neighbor techniques. Further, we find that when tuned to take around 8ms per query in retrieval latency on our hardware, LADR consistently achieves both precision and recall that are on pa...",
+      "classification": "Supported",
+      "rationale": "Performance metric reporting ('recall') directly verified in source abstract."
+    },
+    {
+      "sample_index": 30,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3086",
+      "relation_type": "REPORTS_METRIC",
+      "source_canonical_id": "paper:arxiv-2307.16779",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "metric:recall",
+      "target_labels": [
+        "Entity",
+        "Metric"
+      ],
+      "provenance_chunk_id": "9db3fd3b-b9cc-55fc-b6d7-097f856f2a4c",
+      "evidence_text_recorded": "",
+      "chunk_text": "lthough these approaches reasonably approximate the top results, they suffer in terms of recall -- one of the key advantages of dense retrieval. We introduce 'LADR' (Lexically-Accelerated Dense Retrie...",
+      "classification": "Supported",
+      "rationale": "Performance metric reporting ('recall') directly verified in source abstract."
+    },
+    {
+      "sample_index": 31,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3111",
+      "relation_type": "REPORTS_METRIC",
+      "source_canonical_id": "paper:arxiv-2404.17723",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "metric:bleu",
+      "target_labels": [
+        "Entity",
+        "Metric"
+      ],
+      "provenance_chunk_id": "4a95c85d-9065-5486-a975-4dd9e2d00648",
+      "evidence_text_recorded": "",
+      "chunk_text": "(MRR, Recall@K, NDCG@K) and text generation (BLEU, ROUGE, METEOR) metrics, reveal that our method outperforms the baseline by 77.6% in MRR and by 0.32 in BLEU. Our method has been deployed within Link...",
+      "classification": "Supported",
+      "rationale": "Performance metric reporting ('bleu') directly verified in source abstract."
+    },
+    {
+      "sample_index": 32,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3110",
+      "relation_type": "REPORTS_METRIC",
+      "source_canonical_id": "paper:arxiv-2404.17723",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "metric:rouge",
+      "target_labels": [
+        "Entity",
+        "Metric"
+      ],
+      "provenance_chunk_id": "4a95c85d-9065-5486-a975-4dd9e2d00648",
+      "evidence_text_recorded": "",
+      "chunk_text": "(MRR, Recall@K, NDCG@K) and text generation (BLEU, ROUGE, METEOR) metrics, reveal that our method outperforms the baseline by 77.6% in MRR and by 0.32 in BLEU. Our method has been deployed within Link...",
+      "classification": "Supported",
+      "rationale": "Performance metric reporting ('rouge') directly verified in source abstract."
+    },
+    {
+      "sample_index": 33,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3131",
+      "relation_type": "REPORTS_METRIC",
+      "source_canonical_id": "paper:arxiv-2410.21242",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "metric:relevance",
+      "target_labels": [
+        "Entity",
+        "Metric"
+      ],
+      "provenance_chunk_id": "687238a7-69ad-50db-a27b-e3e53bce2e1f",
+      "evidence_text_recorded": "",
+      "chunk_text": "# Title: Zero-Shot Dense Retrieval with Embeddings from Relevance Feedback\n\n# Authors: Nour Jedidi, Yung-Sung Chuang, Leslie Shing, James Glass\n\n# Venue: arXiv:2410.21242 [cs.CL] (2024)\n\n# Abstract\n\nB...",
+      "classification": "Partially supported",
+      "rationale": "Metric entity 'relevance' present in text without explicit quantitative score statement."
+    },
+    {
+      "sample_index": 34,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3133",
+      "relation_type": "REPORTS_METRIC",
+      "source_canonical_id": "paper:arxiv-2410.21242",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "metric:relevance",
+      "target_labels": [
+        "Entity",
+        "Metric"
+      ],
+      "provenance_chunk_id": "b0b080b5-e607-56ec-85be-3428d3366dfa",
+      "evidence_text_recorded": "",
+      "chunk_text": "poses to re-frame hypothetical document generation as a relevance estimation task, using an LLM to select which documents should be used for nearest neighbor search. Through this re-framing, the LLM n...",
+      "classification": "Partially supported",
+      "rationale": "Metric entity 'relevance' present in text without explicit quantitative score statement."
+    },
+    {
+      "sample_index": 35,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3152",
+      "relation_type": "REPORTS_METRIC",
+      "source_canonical_id": "paper:arxiv-2501.00332",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "metric:relevance",
+      "target_labels": [
+        "Entity",
+        "Metric"
+      ],
+      "provenance_chunk_id": "1d26487d-8ccc-5db1-8817-b2d30fcd9629",
+      "evidence_text_recorded": "",
+      "chunk_text": "ted Generation (MAIN-RAG), a training-free RAG framework that leverages multiple LLM agents to collaboratively filter and score retrieved documents. Specifically, MAIN-RAG introduces an adaptive filte...",
+      "classification": "Supported",
+      "rationale": "Performance metric reporting ('relevance') directly verified in source abstract."
+    },
+    {
+      "sample_index": 36,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3164",
+      "relation_type": "REPORTS_METRIC",
+      "source_canonical_id": "paper:arxiv-2503.16581",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "metric:faithfulness",
+      "target_labels": [
+        "Entity",
+        "Metric"
+      ],
+      "provenance_chunk_id": "d199ad2a-04cf-5d0f-81ba-5d3fc0c998ce",
+      "evidence_text_recorded": "",
+      "chunk_text": "e language models (LLMs) to sensitive and domain-specific tasks, such as answering queries related to quranic studies. General-purpose LLMs often struggle with hallucinations, where generated response...",
+      "classification": "Supported",
+      "rationale": "Performance metric reporting ('faithfulness') directly verified in source abstract."
+    },
+    {
+      "sample_index": 37,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3166",
+      "relation_type": "REPORTS_METRIC",
+      "source_canonical_id": "paper:arxiv-2503.16581",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "metric:faithfulness",
+      "target_labels": [
+        "Entity",
+        "Metric"
+      ],
+      "provenance_chunk_id": "5af2ebca-98b2-5ae4-af00-c29042bb281f",
+      "evidence_text_recorded": "",
+      "chunk_text": "rahs, allowing the model to gather relevant knowledge before responding. The models are evaluated using three key metrics set by human evaluators: context relevance, answer faithfulness, and answer re...",
+      "classification": "Supported",
+      "rationale": "Performance metric reporting ('faithfulness') directly verified in source abstract."
+    },
+    {
+      "sample_index": 38,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3165",
+      "relation_type": "REPORTS_METRIC",
+      "source_canonical_id": "paper:arxiv-2503.16581",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "metric:relevance",
+      "target_labels": [
+        "Entity",
+        "Metric"
+      ],
+      "provenance_chunk_id": "d199ad2a-04cf-5d0f-81ba-5d3fc0c998ce",
+      "evidence_text_recorded": "",
+      "chunk_text": "e language models (LLMs) to sensitive and domain-specific tasks, such as answering queries related to quranic studies. General-purpose LLMs often struggle with hallucinations, where generated response...",
+      "classification": "Supported",
+      "rationale": "Performance metric reporting ('relevance') directly verified in source abstract."
+    },
+    {
+      "sample_index": 39,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3194",
+      "relation_type": "REPORTS_METRIC",
+      "source_canonical_id": "paper:arxiv-2507.16826",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "metric:relevance",
+      "target_labels": [
+        "Entity",
+        "Metric"
+      ],
+      "provenance_chunk_id": "e2b7a326-199d-5249-8459-ec207c253150",
+      "evidence_text_recorded": "",
+      "chunk_text": "relations, thereby generating a knowledge graph (KG) efficiently. Based on the constructed KG, we introduce a multi-path subgraph construction strategy that incorporates one-hop relations, multi-hop r...",
+      "classification": "Supported",
+      "rationale": "Performance metric reporting ('relevance') directly verified in source abstract."
+    },
+    {
+      "sample_index": 40,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3262",
+      "relation_type": "REPORTS_METRIC",
+      "source_canonical_id": "paper:arxiv-2602.22219",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "metric:precision",
+      "target_labels": [
+        "Entity",
+        "Metric"
+      ],
+      "provenance_chunk_id": "f7574b67-9380-5d26-bfbf-a83ebc04d536",
+      "evidence_text_recorded": "",
+      "chunk_text": "eval-Augmented Generation (RAG) has emerged as a key innovation, enhancing factual accuracy and contextual grounding by integrating external knowledge sources with generative models. Although RAG demo...",
+      "classification": "Supported",
+      "rationale": "Performance metric reporting ('precision') directly verified in source abstract."
+    },
+    {
+      "sample_index": 41,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3328",
+      "relation_type": "REPORTS_METRIC",
+      "source_canonical_id": "paper:arxiv-2607.29402",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "metric:precision",
+      "target_labels": [
+        "Entity",
+        "Metric"
+      ],
+      "provenance_chunk_id": "fe2c03f8-edbf-5945-8205-d0916067c476",
+      "evidence_text_recorded": "",
+      "chunk_text": "val context precision by up to 42 percentage points and claim recall by up to 45 percentage points, compared to standard approaches, while remaining compatible with re-ranking, multi-vector retrieval,...",
+      "classification": "Partially supported",
+      "rationale": "Metric entity 'precision' present in text without explicit quantitative score statement."
+    },
+    {
+      "sample_index": 42,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3363",
+      "relation_type": "REPORTS_METRIC",
+      "source_canonical_id": "paper:arxiv-2609.01617",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "metric:precision",
+      "target_labels": [
+        "Entity",
+        "Metric"
+      ],
+      "provenance_chunk_id": "d3666ccf-bd1d-53a0-93e2-3b1623a751af",
+      "evidence_text_recorded": "",
+      "chunk_text": "Search reaches Precision@10 of 0.69, Recall@10 of 0.79, and a grounding rate of 89.6% - gains of 15, 16, and 18.4 percentage points over a dense-only RAG baseline. Index Terms: retrieval-augmented gen...",
+      "classification": "Supported",
+      "rationale": "Performance metric reporting ('precision') directly verified in source abstract."
+    },
+    {
+      "sample_index": 43,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:266",
+      "relation_type": "USES_METHOD",
+      "source_canonical_id": "paper:arxiv-2304.04590",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:dense-retrieval",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "78b79a59-351e-52f9-a52f-72ec2eb08f2f",
+      "evidence_text_recorded": "",
+      "chunk_text": "or biomedical literature search, namely Log-Augmented DEnse Retrieval (LADER), which is a simple plug-in module that augments a dense retriever with the click logs retrieved from similar training quer...",
+      "classification": "Supported",
+      "rationale": "Usage of method 'dense retrieval' directly indicated in text."
+    },
+    {
+      "sample_index": 44,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:270",
+      "relation_type": "USES_METHOD",
+      "source_canonical_id": "paper:arxiv-2304.04590",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:retrieval-augmented-generation",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "e5d6ae71-1347-5574-a9ab-2e65a5ebeff7",
+      "evidence_text_recorded": "",
+      "chunk_text": "y LADER are the average of (1) the document similarity scores from the dense retriever and (2) the aggregated document scores from the click logs of similar queries. Despite its simplicity, LADER achi...",
+      "classification": "Partially supported",
+      "rationale": "Method 'retrieval augmented generation' mentioned in paper abstract, usage is plausible but passive."
+    },
+    {
+      "sample_index": 45,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:495",
+      "relation_type": "USES_METHOD",
+      "source_canonical_id": "paper:arxiv-2401.10487",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:retrieval-augmented-generation",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "a0bd060e-75e8-5e40-895d-993070b28bfd",
+      "evidence_text_recorded": "",
+      "chunk_text": "pling strategy to enhance the intra-cluster mapping ability. Empirical results show that GDR obtains an average of 3.0 R@100 improvement on NQ dataset under multiple settings and has better scalabilit...",
+      "classification": "Unsupported",
+      "rationale": "Method 'retrieval augmented generation' cannot be grounded in provenance chunk text."
+    },
+    {
+      "sample_index": 46,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:562",
+      "relation_type": "USES_METHOD",
+      "source_canonical_id": "paper:arxiv-2402.11626",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:retrieval-augmented-generation",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "6e6757c6-d0b4-5081-8f70-c78cbe43dedb",
+      "evidence_text_recorded": "",
+      "chunk_text": "model to monitor, evaluate, and plan its response strategies, enhancing its introspective reasoning abilities. Through a three-step metacognitive regulation pipeline, the model can identify inadequaci...",
+      "classification": "Unsupported",
+      "rationale": "Method 'retrieval augmented generation' cannot be grounded in provenance chunk text."
+    },
+    {
+      "sample_index": 47,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:556",
+      "relation_type": "USES_METHOD",
+      "source_canonical_id": "paper:arxiv-2402.11626",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:retrieval-augmented-generation",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "909459c5-d0fc-5d5a-bbd2-63783edceaad",
+      "evidence_text_recorded": "",
+      "chunk_text": "for multi-hop reasoning tasks. However, these strategies are bound by predefined reasoning steps, potentially leading to inaccuracies in response generation. This paper introduces MetaRAG, an approach...",
+      "classification": "Supported",
+      "rationale": "Usage of method 'retrieval augmented generation' directly indicated in text."
+    },
+    {
+      "sample_index": 48,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:691",
+      "relation_type": "USES_METHOD",
+      "source_canonical_id": "paper:arxiv-2404.17723",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:knowledge-graph",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "7e510555-824a-5853-aa76-a3d0cb221435",
+      "evidence_text_recorded": "",
+      "chunk_text": "# Title: Retrieval-Augmented Generation with Knowledge Graphs for Customer Service Question Answering\n\n# Authors: Zhentao Xu, Mark Jerome Cruz, Matthew Guevara, Tie Wang, Manasi Deshpande, Xiaofeng Wa...",
+      "classification": "Supported",
+      "rationale": "Usage of method 'knowledge graph' directly indicated in text."
+    },
+    {
+      "sample_index": 49,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:813",
+      "relation_type": "USES_METHOD",
+      "source_canonical_id": "paper:arxiv-2410.01383",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:dense-retrieval",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "aa640f43-36ab-5952-9201-252b584f310c",
+      "evidence_text_recorded": "",
+      "chunk_text": "# Title: PairDistill: Pairwise Relevance Distillation for Dense Retrieval\n\n# Authors: Chao-Wei Huang, Yun-Nung Chen\n\n# Venue: arXiv:2410.01383 [cs.CL] (2024)\n\n# Abstract\n\nEffective information retriev...",
+      "classification": "Partially supported",
+      "rationale": "Method 'dense retrieval' mentioned in paper abstract, usage is plausible but passive."
+    },
+    {
+      "sample_index": 50,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:1242",
+      "relation_type": "USES_METHOD",
+      "source_canonical_id": "paper:arxiv-2503.06474",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:retrieval-augmented-generation",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "3cbc3d93-754a-5d28-9bcb-8162a7c21e77",
+      "evidence_text_recorded": "",
+      "chunk_text": ". However, existing pipelines involve complex engineering workflows, making it difficult to isolate the impact of individual components. It is also challenging to evaluate the retrieval effectiveness ...",
+      "classification": "Supported",
+      "rationale": "Usage of method 'retrieval augmented generation' directly indicated in text."
+    },
+    {
+      "sample_index": 51,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:1469",
+      "relation_type": "USES_METHOD",
+      "source_canonical_id": "paper:arxiv-2506.02404",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:retrieval-augmented-generation",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "4d6495ea-56a1-5300-a93c-9695c6b00989",
+      "evidence_text_recorded": "",
+      "chunk_text": "alse, multi-select, open-ended, and fill-in-the-blank. It spans 16 disciplines in twenty core textbooks. \\((iii)\\) Holistic evaluation framework. GraphRAG-Bench provides comprehensive assessment acros...",
+      "classification": "Partially supported",
+      "rationale": "Method 'retrieval augmented generation' mentioned in paper abstract, usage is plausible but passive."
+    },
+    {
+      "sample_index": 52,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3185",
+      "relation_type": "USES_METHOD",
+      "source_canonical_id": "paper:arxiv-2506.05690",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:knowledge-graph",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "010ba4e4-44cb-5eba-8596-e5952aa0f287",
+      "evidence_text_recorded": "",
+      "chunk_text": "nch, a comprehensive benchmark designed to evaluate GraphRAG models onboth hierarchical knowledge retrieval and deep contextual reasoning. GraphRAG-Bench features a comprehensive dataset with tasks of...",
+      "classification": "Supported",
+      "rationale": "Usage of method 'knowledge graph' directly indicated in text."
+    },
+    {
+      "sample_index": 53,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:1811",
+      "relation_type": "USES_METHOD",
+      "source_canonical_id": "paper:arxiv-2509.10467",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:knowledge-graph",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "974278f1-62eb-53c3-aba6-c337b84cdd8e",
+      "evidence_text_recorded": "",
+      "chunk_text": "lity during the generation process. We propose DSRAG (Domain-Specific RAG), a multimodal knowledge graph-driven retrieval-augmented generation framework designed for domain-specific applications. Our ...",
+      "classification": "Supported",
+      "rationale": "Usage of method 'knowledge graph' directly indicated in text."
+    },
+    {
+      "sample_index": 54,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:1869",
+      "relation_type": "USES_METHOD",
+      "source_canonical_id": "paper:arxiv-2509.21336",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:retrieval-augmented-generation",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "4ca7afaa-c7c5-5ed4-9282-be33ab669b3e",
+      "evidence_text_recorded": "",
+      "chunk_text": ", mitigating the weaknesses of any single modality. In this work we introduce HetaRAG, a hybrid, deep-retrieval augmented generation framework that orchestrates cross-modal evidence from heterogeneous...",
+      "classification": "Partially supported",
+      "rationale": "Method 'retrieval augmented generation' mentioned in paper abstract, usage is plausible but passive."
+    },
+    {
+      "sample_index": 55,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:1890",
+      "relation_type": "USES_METHOD",
+      "source_canonical_id": "paper:arxiv-2510.02827",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:knowledge-graph",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "4e44ce38-2741-5974-9f84-9f89e28e0a09",
+      "evidence_text_recorded": "",
+      "chunk_text": "# Title: StepChain GraphRAG: Reasoning Over Knowledge Graphs for Multi-Hop Question Answering\n\n# Authors: Tengjun Ni, Xin Yuan, Shenghong Li, Kai Wu, Ren Ping Liu, Wei Ni, Wenjie Zhang\n\n# Venue: arXiv...",
+      "classification": "Supported",
+      "rationale": "Usage of method 'knowledge graph' directly indicated in text."
+    },
+    {
+      "sample_index": 56,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3263",
+      "relation_type": "USES_METHOD",
+      "source_canonical_id": "paper:arxiv-2602.22219",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:cross-encoder-reranking",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "ea40f723-4c12-5056-a225-f3ce4015e232",
+      "evidence_text_recorded": "",
+      "chunk_text": "retrieval precision, yet their integration with structured data remains underexplored. Addressing these challenges is crucial for developing domain-specific assistants that operate in production envir...",
+      "classification": "Unsupported",
+      "rationale": "Method 'cross encoder reranking' cannot be grounded in provenance chunk text."
+    },
+    {
+      "sample_index": 57,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3272",
+      "relation_type": "USES_METHOD",
+      "source_canonical_id": "paper:arxiv-2603.05207",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:knowledge-graph",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "cfab2af1-488e-5a0a-9388-e40b0259e922",
+      "evidence_text_recorded": "",
+      "chunk_text": "podcasts, using three LLMs for answer generation and five independent LLM judges for head-to-head evaluation. Across datasets and models, our approach consistently improves answer comprehensiveness an...",
+      "classification": "Partially supported",
+      "rationale": "Method 'knowledge graph' mentioned in paper abstract, usage is plausible but passive."
+    },
+    {
+      "sample_index": 58,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:2247",
+      "relation_type": "USES_METHOD",
+      "source_canonical_id": "paper:arxiv-2603.05207",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:knowledge-graph",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "608c850f-4bb3-5b1f-8f50-ad2544f06812",
+      "evidence_text_recorded": "",
+      "chunk_text": "# Title: Core-based Hierarchies for Efficient GraphRAG\n\n# Authors: Jakir Hossain, Ahmet Erdem Sar\u0131y\u00fcce\n\n# Venue: arXiv:2603.05207 [cs.CL] (2026)\n\n# Abstract\n\nRetrieval-Augmented Generation (RAG) enhan...",
+      "classification": "Supported",
+      "rationale": "Usage of method 'knowledge graph' directly indicated in text."
+    },
+    {
+      "sample_index": 59,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:2656",
+      "relation_type": "USES_METHOD",
+      "source_canonical_id": "paper:arxiv-2607.11464",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:knowledge-graph",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "b8af4f9d-ed71-5561-979f-9d4ebcfce633",
+      "evidence_text_recorded": "",
+      "chunk_text": " Graph-based RAG approaches, such as GraphRAG, enhance retrieval by capturing semantic relationships within knowledge graphs (KGs). While the FAIR principles (Findability, Accessibility, Interoperabil...",
+      "classification": "Supported",
+      "rationale": "Usage of method 'knowledge graph' directly indicated in text."
+    },
+    {
+      "sample_index": 60,
+      "relationship_id": "5:5a7294eb-d6b6-4f54-a767-22d17e8150fd:3381",
+      "relation_type": "USES_METHOD",
+      "source_canonical_id": "paper:arxiv-2610.09360",
+      "source_labels": [
+        "Entity",
+        "Paper"
+      ],
+      "target_canonical_id": "method:knowledge-graph",
+      "target_labels": [
+        "Entity",
+        "Method"
+      ],
+      "provenance_chunk_id": "f2180a81-f0e4-5529-9de2-ce5d5625b585",
+      "evidence_text_recorded": "",
+      "chunk_text": " topology recovery. These findings motivate GraphRAG systems that move beyond text-derived entity relation graphs to explicitly model document layouts, cross-modal evidence alignment, and the reasonin...",
+      "classification": "Partially supported",
+      "rationale": "Method 'knowledge graph' mentioned in paper abstract, usage is plausible but passive."
+    }
+  ]
+}

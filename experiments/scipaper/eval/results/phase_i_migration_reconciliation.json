@@ -1,0 +1,156 @@
+{
+  "audit_phase": "Phase I Audit A & B \u2014 Migration Accounting and Integrity Reconciliation",
+  "verified_live_against_db": true,
+  "database_endpoints": {
+    "postgresql": "127.0.0.1:5433/scipaper_db",
+    "neo4j": "bolt://127.0.0.1:7688"
+  },
+  "corpus_accounting": {
+    "canonical_total_papers": 120,
+    "manifest_audited_papers": 120,
+    "phase_g_already_integrated": 1,
+    "papers_requiring_migration": 119,
+    "checkpoint_total_papers": 120,
+    "checkpoint_completed_papers": 120,
+    "checkpoint_completed_batches": 12,
+    "checkpoint_total_batches": 12,
+    "batch_size": 10,
+    "quarantined_papers": 0,
+    "discrepancies": []
+  },
+  "batch_accounting": [
+    {
+      "batch_index": 0,
+      "paper_count": 10,
+      "status": "COMPLETED",
+      "nodes_added": 13,
+      "rels_added": 17,
+      "elinks_added": 30
+    },
+    {
+      "batch_index": 1,
+      "paper_count": 10,
+      "status": "COMPLETED",
+      "nodes_added": 9,
+      "rels_added": 23,
+      "elinks_added": 41
+    },
+    {
+      "batch_index": 2,
+      "paper_count": 10,
+      "status": "COMPLETED",
+      "nodes_added": 6,
+      "rels_added": 9,
+      "elinks_added": 23
+    },
+    {
+      "batch_index": 3,
+      "paper_count": 10,
+      "status": "COMPLETED",
+      "nodes_added": 8,
+      "rels_added": 35,
+      "elinks_added": 54
+    },
+    {
+      "batch_index": 4,
+      "paper_count": 10,
+      "status": "COMPLETED",
+      "nodes_added": 4,
+      "rels_added": 22,
+      "elinks_added": 33
+    },
+    {
+      "batch_index": 5,
+      "paper_count": 10,
+      "status": "COMPLETED",
+      "nodes_added": 10,
+      "rels_added": 18,
+      "elinks_added": 36
+    },
+    {
+      "batch_index": 6,
+      "paper_count": 10,
+      "status": "COMPLETED",
+      "nodes_added": 13,
+      "rels_added": 37,
+      "elinks_added": 56
+    },
+    {
+      "batch_index": 7,
+      "paper_count": 10,
+      "status": "COMPLETED",
+      "nodes_added": 6,
+      "rels_added": 28,
+      "elinks_added": 47
+    },
+    {
+      "batch_index": 8,
+      "paper_count": 10,
+      "status": "COMPLETED",
+      "nodes_added": 6,
+      "rels_added": 35,
+      "elinks_added": 49
+    },
+    {
+      "batch_index": 9,
+      "paper_count": 10,
+      "status": "COMPLETED",
+      "nodes_added": 6,
+      "rels_added": 37,
+      "elinks_added": 61
+    },
+    {
+      "batch_index": 10,
+      "paper_count": 10,
+      "status": "COMPLETED",
+      "nodes_added": 2,
+      "rels_added": 30,
+      "elinks_added": 46
+    },
+    {
+      "batch_index": 11,
+      "paper_count": 10,
+      "status": "COMPLETED",
+      "nodes_added": 7,
+      "rels_added": 43,
+      "elinks_added": 60
+    }
+  ],
+  "delta_reconciliation": {
+    "baseline_pre_phase_g": {
+      "nodes": 722,
+      "rels": 3045,
+      "elinks": 3519
+    },
+    "baseline_pre_phase_h": {
+      "nodes": 729,
+      "rels": 3050,
+      "elinks": 3529
+    },
+    "final_observed": {
+      "nodes": 819,
+      "rels": 3384,
+      "elinks": 4065,
+      "docs": 120,
+      "chunks": 474,
+      "emb384": 474,
+      "emb1536": 0
+    },
+    "migration_deltas": {
+      "nodes_added_in_phase_h": 90,
+      "rels_added_in_phase_h": 334,
+      "elinks_added_in_phase_h": 536,
+      "dry_run_predicted_new_nodes": 90,
+      "dry_run_predicted_new_rels": 334,
+      "dry_run_predicted_new_elinks": 536,
+      "reconciliation_variance": "EXACT_ZERO_VARIANCE"
+    }
+  },
+  "integrity_checks": {
+    "duplicate_canonical_ids": 0,
+    "orphan_relationships": 0,
+    "orphaned_entity_links": 0,
+    "orphaned_chunks": 0,
+    "corpus_preserved": true
+  }
+}

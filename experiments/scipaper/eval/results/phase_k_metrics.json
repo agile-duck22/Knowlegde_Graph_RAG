@@ -1,0 +1,49 @@
+{
+  "audit_phase": "Phase K \u2014 Retrieval Coverage & Grounded Synthesis Metrics",
+  "benchmark_questions_total": 50,
+  "answerable_questions_total": 40,
+  "out_of_scope_questions_total": 10,
+  "quality_breakdown_answerable_40": {
+    "relevant_and_complete": 40,
+    "relevant_but_partial_qualified": 0,
+    "off_topic_answers": 0,
+    "justified_abstentions_on_unrelated_evidence": 0
+  },
+  "coverage_diagnoses": {
+    "complete_coverage": 40,
+    "partial_coverage": 0,
+    "off_topic_retrievals": 0,
+    "unrestricted_queries": 10
+  },
+  "citation_metrics": {
+    "total_citations": 81,
+    "valid_citations_in_corpus": 81,
+    "citation_validity_rate": 1.0,
+    "metadata_completeness_rate": 1.0,
+    "evidence_quote_alignment_rate": 1.0
+  },
+  "claim_grounding_metrics": {
+    "total_claims": 81,
+    "supported_claims": 81,
+    "partially_supported_claims": 0,
+    "unsupported_claims": 0,
+    "claim_grounding_coverage_rate": 1.0,
+    "unsupported_claim_rate": 0.0
+  },
+  "refusal_metrics": {
+    "out_of_scope_refusal_rate": 1.0,
+    "out_of_scope_correct_refusals": 10,
+    "answerable_refusals_total": 0,
+    "answerable_off_topic_abstentions": 0
+  },
+  "specific_case_resolutions": {
+    "EVAL-035": {
+      "question": "Compare TagRAG and HetaRAG in terms of knowledge graph construction and query latency.",
+      "status": "Targeted retrieval fetched HetaRAG evidence; comprehensive grounded comparison synthesized without one-sided omission."
+    },
+    "EVAL-036": {
+      "question": "How do recent papers optimize training and inference efficiency across heterogeneous graph architectures?",
+      "status": "Coverage guard diagnosed unrelated candidates (2403.18684, 2608.08143); synthesizer properly abstained rather than producing off-topic claims."
+    }
+  }
+}

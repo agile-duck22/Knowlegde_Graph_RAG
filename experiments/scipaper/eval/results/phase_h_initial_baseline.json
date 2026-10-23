@@ -1,0 +1,31 @@
+{
+  "timestamp": "2026-10-23T10:18:18.159880+00:00",
+  "phase": "Phase H Initial Baseline",
+  "postgresql": {
+    "documents": 120,
+    "chunks": 474,
+    "entity_links": 3529,
+    "embedding_384_count": 474,
+    "embedding_1536_count": 0
+  },
+  "neo4j": {
+    "total_nodes": 729,
+    "total_relationships": 3050,
+    "nodes_by_label": {
+      "Entity:Paper": 120,
+      "Author:Entity": 597,
+      "Entity:Method": 6,
+      "Entity:Task": 1,
+      "Entity:ResearchOrganization": 1,
+      "Entity:Model": 2,
+      "Dataset:Entity": 1,
+      "Entity:Metric": 1
+    },
+    "relationships_by_type": {
+      "AUTHORED": 2631,
+      "USES_METHOD": 416,
+      "EVALUATED_ON": 1,
+      "REPORTS_METRIC": 2
+    }
+  }
+}

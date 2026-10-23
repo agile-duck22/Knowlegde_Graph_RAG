@@ -1,0 +1,1359 @@
+{
+  "version": "1.0.0",
+  "total_questions": 50,
+  "questions": [
+    {
+      "id": "EVAL-001",
+      "category": "single_hop_direct_fact",
+      "difficulty": "easy",
+      "question": "What core objective and techniques are investigated in the paper on automated literature reviews (paper-arxiv-2411.18583)?",
+      "ground_truth_entities": [
+        "paper:automated-literature-review",
+        "method:rag"
+      ],
+      "ground_truth_chunk_ids": [
+        "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+        "d55eb84a-1e7d-5d8b-9f4f-192c731940ee"
+      ],
+      "expected_facts": [
+        "The paper compares multiple approaches to automate literature review generation using NLP techniques and RAG with an LLM.",
+        "It addresses the challenge of keeping pace with the ever-increasing volume of scientific publications."
+      ],
+      "reference_answer": "The paper investigates automating the generation of literature reviews using several Natural Language Processing (NLP) techniques and retrieval-augmented generation (RAG) powered by Large Language Models to cope with the rapid expansion of academic literature.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2411.18583"
+        ],
+        "evidence_notes": "Extracted directly from paper-arxiv-2411.18583 abstract describing NLP and LLM-based RAG for automated literature reviews."
+      }
+    },
+    {
+      "id": "EVAL-002",
+      "category": "single_hop_direct_fact",
+      "difficulty": "easy",
+      "question": "What privacy vulnerability does paper-arxiv-2502.00306 examine in retrieval-augmented generation systems?",
+      "ground_truth_entities": [
+        "paper:riddle-me-this",
+        "vuln:membership-inference"
+      ],
+      "ground_truth_chunk_ids": [
+        "cfd65d7c-a7a9-5e07-9322-a6abe628fa9a",
+        "4a60bd89-aa65-5851-aeb1-516bf806a71e"
+      ],
+      "expected_facts": [
+        "It examines membership inference attacks against external knowledge databases used by RAG systems.",
+        "It shows that lack of weight tuning does not prevent leakage from the retrieval database."
+      ],
+      "reference_answer": "Paper-arxiv-2502.00306 examines stealthy membership inference attacks targeting RAG systems, demonstrating that even when model parameters remain frozen, external knowledge databases can still suffer from privacy leakage.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2502.00306"
+        ],
+        "evidence_notes": "Abstract explicitly outlines stealthy membership inference against RAG knowledge stores."
+      }
+    },
+    {
+      "id": "EVAL-003",
+      "category": "single_hop_direct_fact",
+      "difficulty": "easy",
+      "question": "What domain and benchmark task is MUST-RAG designed to address according to paper-arxiv-2507.23334?",
+      "ground_truth_entities": [
+        "paper:must-rag",
+        "task:musical-text-qa"
+      ],
+      "ground_truth_chunk_ids": [
+        "0fc596ad-0ec4-5510-9af9-51c255c36579",
+        "34ca61d6-88b7-58cc-ab72-081f1fac28fd"
+      ],
+      "expected_facts": [
+        "MUST-RAG targets musical text question answering.",
+        "It addresses LLMs' limited effectiveness in music-related domain tasks."
+      ],
+      "reference_answer": "MUST-RAG is designed to address musical text question answering, improving LLM performance in music-related applications where zero-shot models typically struggle.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2507.23334"
+        ],
+        "evidence_notes": "Abstract states the proposal of MUST-RAG for musical text question answering."
+      }
+    },
+    {
+      "id": "EVAL-004",
+      "category": "single_hop_direct_fact",
+      "difficulty": "easy",
+      "question": "What is the primary methodology introduced by FAIR-RAG in paper-arxiv-2510.22344 to handle complex multi-hop queries?",
+      "ground_truth_entities": [
+        "paper:fair-rag",
+        "method:adaptive-iterative-refinement"
+      ],
+      "ground_truth_chunk_ids": [
+        "611b595e-4e2f-52ff-872d-f516ba94dbc4",
+        "d4d166f7-b1ca-55f2-bda7-66eb6845874a"
+      ],
+      "expected_facts": [
+        "FAIR-RAG introduces faithful adaptive iterative refinement for RAG.",
+        "It addresses failure modes on complex multi-hop queries requiring synthesis across disparate sources."
+      ],
+      "reference_answer": "FAIR-RAG introduces Faithful Adaptive Iterative Refinement, an approach that iteratively refines queries and retrieved contexts to solve complex multi-hop synthesis challenges where traditional RAG falters.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2510.22344"
+        ],
+        "evidence_notes": "Abstract explicitly highlights faithful adaptive iterative refinement for multi-hop synthesis."
+      }
+    },
+    {
+      "id": "EVAL-005",
+      "category": "single_hop_direct_fact",
+      "difficulty": "easy",
+      "question": "What clinical application and user group does the CRISS system assist in paper-arxiv-2609.29075?",
+      "ground_truth_entities": [
+        "paper:criss",
+        "task:cancer-registry-assistance"
+      ],
+      "ground_truth_chunk_ids": [
+        "b95ec804-b981-5fb7-9ec6-ee8490f7e6e9",
+        "002ac2b7-4388-5eac-bc45-16cfdc7ff1fa"
+      ],
+      "expected_facts": [
+        "CRISS is a retrieval-augmented AI chatbot.",
+        "It assists cancer registrars in oncology data collection and curation."
+      ],
+      "reference_answer": "CRISS is a retrieval-augmented AI chatbot developed to assist cancer registrars with domain-specific information retrieval and registry curation tasks.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2609.29075"
+        ],
+        "evidence_notes": "Title and abstract define CRISS as a retrieval-augmented assistant for cancer registrars."
+      }
+    },
+    {
+      "id": "EVAL-006",
+      "category": "single_hop_direct_fact",
+      "difficulty": "easy",
+      "question": "What architectural evolution in RAG does paper-arxiv-2504.08748 survey?",
+      "ground_truth_entities": [
+        "paper:multimodal-rag-survey"
+      ],
+      "ground_truth_chunk_ids": [
+        "cdc9688f-7ca9-5182-bd48-45a9820c517b",
+        "cd249ddd-8edb-52a1-bc14-9421c44faded"
+      ],
+      "expected_facts": [
+        "It presents a survey of Multimodal Retrieval-Augmented Generation.",
+        "It explores combining textual and visual or multi-sensory modalities into RAG pipelines."
+      ],
+      "reference_answer": "Paper-arxiv-2504.08748 surveys Multimodal Retrieval-Augmented Generation, reviewing methodologies that integrate non-text modalities alongside text in retrieval and generation.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2504.08748"
+        ],
+        "evidence_notes": "Title and abstract state 'A Survey of Multimodal Retrieval-Augmented Generation'."
+      }
+    },
+    {
+      "id": "EVAL-007",
+      "category": "single_hop_direct_fact",
+      "difficulty": "easy",
+      "question": "What training phase optimization mechanism is analyzed in paper-arxiv-2402.11794 for retrieval-augmented models?",
+      "ground_truth_entities": [
+        "paper:attention-distillation-rag",
+        "method:attention-distillation"
+      ],
+      "ground_truth_chunk_ids": [
+        "a0166796-f679-5a90-8ed6-9e4c47e4afb6",
+        "d75cefb2-fe07-56f9-9a13-18b43316e7e6"
+      ],
+      "expected_facts": [
+        "The paper investigates attention distillation during the training phase of retrieval-augmented models.",
+        "It enables efficient knowledge transfer and updates for accurate generation."
+      ],
+      "reference_answer": "Paper-arxiv-2402.11794 investigates attention distillation as an efficient training-phase mechanism for retrieval-augmented models to improve answer fidelity.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2402.11794"
+        ],
+        "evidence_notes": "Abstract explicitly focuses on investigating attention distillation in RAG."
+      }
+    },
+    {
+      "id": "EVAL-008",
+      "category": "single_hop_direct_fact",
+      "difficulty": "easy",
+      "question": "How does Metacognitive RAG in paper-arxiv-2402.11626 depart from traditional single-time retrieval?",
+      "ground_truth_entities": [
+        "paper:metacognitive-rag",
+        "method:multi-time-retrieval"
+      ],
+      "ground_truth_chunk_ids": [
+        "ef4aded5-d2b3-5400-af1d-13ad643ead4d",
+        "909459c5-d0fc-5d5a-bbd2-63783edceaad"
+      ],
+      "expected_facts": [
+        "It shifts from single-time retrieval to multi-time retrieval.",
+        "It introduces metacognitive reasoning to decide when and what to retrieve."
+      ],
+      "reference_answer": "Metacognitive RAG departs from conventional single-step retrieval by implementing multi-time retrieval and metacognitive monitoring over when additional external evidence is required.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2402.11626"
+        ],
+        "evidence_notes": "Abstract contrasts traditional single-time retrieval with multi-time retrieval and metacognition."
+      }
+    },
+    {
+      "id": "EVAL-009",
+      "category": "single_hop_direct_fact",
+      "difficulty": "easy",
+      "question": "What limitation of static retrieval heuristics in recommendation systems is ARAG designed to solve in paper-arxiv-2506.21931?",
+      "ground_truth_entities": [
+        "paper:arag",
+        "task:personalized-recommendation"
+      ],
+      "ground_truth_chunk_ids": [
+        "1beacd16-2906-50e6-aa96-d7b6b27939e5",
+        "fbc66f2a-a01a-57c8-af8d-acc50fa0f83e"
+      ],
+      "expected_facts": [
+        "Static retrieval heuristics fail to capture dynamic user preference shifts.",
+        "ARAG introduces agentic retrieval augmented generation for personalized recommendations."
+      ],
+      "reference_answer": "ARAG addresses the rigidity of static retrieval heuristics by employing agentic retrieval-augmented generation to dynamically retrieve relevant contextual signals for personalized recommendations.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2506.21931"
+        ],
+        "evidence_notes": "Abstract highlights moving beyond static heuristics with agentic RAG for recommendations."
+      }
+    },
+    {
+      "id": "EVAL-010",
+      "category": "single_hop_direct_fact",
+      "difficulty": "easy",
+      "question": "What two paradigms are combined in Federated RAG according to paper-arxiv-2505.18906?",
+      "ground_truth_entities": [
+        "paper:federated-rag-study",
+        "method:federated-learning",
+        "method:rag"
+      ],
+      "ground_truth_chunk_ids": [
+        "c06870a9-8f49-5e88-a241-f3b388c7bf40",
+        "b15bc4a0-13f0-5ce6-8c39-cf81fc08df44"
+      ],
+      "expected_facts": [
+        "Federated RAG combines Federated Learning (FL) with Retrieval-Augmented Generation (RAG).",
+        "It achieves distributed privacy-preserving model capabilities while improving factual accuracy."
+      ],
+      "reference_answer": "Federated RAG combines Federated Learning (FL) for distributed privacy-preserving learning with Retrieval-Augmented Generation (RAG) to ensure factual generation without centralizing raw data.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2505.18906"
+        ],
+        "evidence_notes": "Abstract states: 'Federated RAG combines Federated Learning (FL)... with Retrieval-Augmented Generation (RAG)'."
+      }
+    },
+    {
+      "id": "EVAL-011",
+      "category": "2_hop_relationship",
+      "difficulty": "medium",
+      "question": "How do paper-arxiv-2607.01852 and paper-arxiv-2607.24767 complement each other in studying the preprocessing stage of RAG pipelines?",
+      "ground_truth_entities": [
+        "paper:evaluating-chunking-academic",
+        "paper:effect-chunk-size-rag",
+        "method:chunking"
+      ],
+      "ground_truth_chunk_ids": [
+        "fc2ea74d-bbfa-51bf-94ad-2d1bf0a8943f",
+        "2e85652e-32f6-5278-afc2-7c4739d21cce",
+        "f750dca5-5376-5377-9ffb-cd4e4b01a625",
+        "4e07b601-ed79-5bf1-932b-857f1edb76f8"
+      ],
+      "expected_facts": [
+        "paper-arxiv-2607.01852 evaluates cluster-based semantic chunking on academic texts.",
+        "paper-arxiv-2607.24767 investigates the quantitative impact of text chunk size on RAG downstream performance."
+      ],
+      "reference_answer": "The two papers examine complementary dimensions of RAG text preprocessing: paper-arxiv-2607.01852 evaluates qualitative chunking strategies like cluster-based semantic chunking, whereas paper-arxiv-2607.24767 systematically tests the effect of variation in chunk size on generation accuracy.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2607.01852",
+          "paper-arxiv-2607.24767"
+        ],
+        "evidence_notes": "Cross-paper link between semantic chunking in academic texts (2607.01852) and chunk size effects (2607.24767)."
+      }
+    },
+    {
+      "id": "EVAL-012",
+      "category": "2_hop_relationship",
+      "difficulty": "medium",
+      "question": "Compare how TagRAG (paper-arxiv-2601.05254) and HetaRAG (paper-arxiv-2509.21336) approach knowledge retrieval across complex non-relational structures.",
+      "ground_truth_entities": [
+        "paper:tagrag",
+        "paper:hetarag",
+        "database:knowledge-graph"
+      ],
+      "ground_truth_chunk_ids": [
+        "19878e0f-5b1e-5ed0-afd5-a8be9908dd69",
+        "2afccf33-fbd9-5443-b186-e8e107ce4979",
+        "28c01433-7b1a-5089-8e31-e22ba5dc9020",
+        "29b50b6f-c444-5164-aa50-15877ee2530b"
+      ],
+      "expected_facts": [
+        "TagRAG uses tag-guided hierarchical knowledge graphs to overcome fragment-level retrieval limitations.",
+        "HetaRAG focuses on hybrid deep retrieval spanning heterogeneous data stores."
+      ],
+      "reference_answer": "TagRAG introduces tag-guided hierarchical knowledge graph structures to summarize and connect fragmented concepts, whereas HetaRAG solves retrieval across diverse, heterogeneous enterprise data stores to unify fragmented knowledge.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2601.05254",
+          "paper-arxiv-2509.21336"
+        ],
+        "evidence_notes": "Compares TagRAG's hierarchical KG indexing with HetaRAG's heterogeneous multi-store retrieval."
+      }
+    },
+    {
+      "id": "EVAL-013",
+      "category": "2_hop_relationship",
+      "difficulty": "medium",
+      "question": "How does the privacy risk exposed in paper-arxiv-2502.00306 relate to the architectural motivation behind Federated RAG in paper-arxiv-2505.18906?",
+      "ground_truth_entities": [
+        "paper:riddle-me-this",
+        "paper:federated-rag-study",
+        "vuln:privacy-leakage"
+      ],
+      "ground_truth_chunk_ids": [
+        "cfd65d7c-a7a9-5e07-9322-a6abe628fa9a",
+        "4a60bd89-aa65-5851-aeb1-516bf806a71e",
+        "c06870a9-8f49-5e88-a241-f3b388c7bf40",
+        "b15bc4a0-13f0-5ce6-8c39-cf81fc08df44"
+      ],
+      "expected_facts": [
+        "Paper-arxiv-2502.00306 shows external retrieval databases are vulnerable to stealthy membership inference.",
+        "Paper-arxiv-2505.18906 surveys Federated RAG to avoid exposing or centralizing sensitive raw data across organizations."
+      ],
+      "reference_answer": "Paper-arxiv-2502.00306 exposes that centralized external knowledge databases in RAG suffer from membership inference attacks, providing strong motivation for Federated RAG (paper-arxiv-2505.18906), which keeps raw data decentralized and localized.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2502.00306",
+          "paper-arxiv-2505.18906"
+        ],
+        "evidence_notes": "Connects membership inference risk in RAG stores to the privacy justification for federated RAG."
+      }
+    },
+    {
+      "id": "EVAL-014",
+      "category": "2_hop_relationship",
+      "difficulty": "medium",
+      "question": "In what way do FAIR-RAG (paper-arxiv-2510.22344) and Metacognitive RAG (paper-arxiv-2402.11626) address multi-step query complexity?",
+      "ground_truth_entities": [
+        "paper:fair-rag",
+        "paper:metacognitive-rag",
+        "method:multi-step-retrieval"
+      ],
+      "ground_truth_chunk_ids": [
+        "611b595e-4e2f-52ff-872d-f516ba94dbc4",
+        "d4d166f7-b1ca-55f2-bda7-66eb6845874a",
+        "ef4aded5-d2b3-5400-af1d-13ad643ead4d",
+        "909459c5-d0fc-5d5a-bbd2-63783edceaad"
+      ],
+      "expected_facts": [
+        "FAIR-RAG utilizes iterative refinement across disparate sources for multi-hop queries.",
+        "Metacognitive RAG implements multi-time retrieval guided by metacognitive self-evaluation."
+      ],
+      "reference_answer": "Both frameworks move beyond static single-hop retrieval: FAIR-RAG applies adaptive iterative refinement across multi-hop evidence, while Metacognitive RAG relies on multi-time retrieval evaluated by metacognitive assessment.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2510.22344",
+          "paper-arxiv-2402.11626"
+        ],
+        "evidence_notes": "Examines iterative refinement in FAIR-RAG vs multi-step metacognitive retrieval in 2402.11626."
+      }
+    },
+    {
+      "id": "EVAL-015",
+      "category": "2_hop_relationship",
+      "difficulty": "medium",
+      "question": "How do CRISS (paper-arxiv-2609.29075) and MUST-RAG (paper-arxiv-2507.23334) demonstrate the necessity of specialized RAG beyond generic LLM pretraining?",
+      "ground_truth_entities": [
+        "paper:criss",
+        "paper:must-rag",
+        "task:domain-specialization"
+      ],
+      "ground_truth_chunk_ids": [
+        "b95ec804-b981-5fb7-9ec6-ee8490f7e6e9",
+        "002ac2b7-4388-5eac-bc45-16cfdc7ff1fa",
+        "0fc596ad-0ec4-5510-9af9-51c255c36579",
+        "34ca61d6-88b7-58cc-ab72-081f1fac28fd"
+      ],
+      "expected_facts": [
+        "CRISS demonstrates specialized RAG for clinical oncology registry guidelines.",
+        "MUST-RAG targets specialized musical text QA where zero-shot LLM knowledge is inadequate."
+      ],
+      "reference_answer": "Both papers show that zero-shot generalist LLMs fail in specialized fields: CRISS introduces tailored retrieval for clinical cancer registries, while MUST-RAG supplies structured domain retrieval for musicology and music text QA.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2609.29075",
+          "paper-arxiv-2507.23334"
+        ],
+        "evidence_notes": "Cross-paper analysis of domain-specific RAG adaptation in medicine vs music."
+      }
+    },
+    {
+      "id": "EVAL-016",
+      "category": "2_hop_relationship",
+      "difficulty": "medium",
+      "question": "How does the evaluation of chunking strategies in paper-arxiv-2607.01852 directly impact the automated literature review systems studied in paper-arxiv-2411.18583?",
+      "ground_truth_entities": [
+        "paper:automated-literature-review",
+        "paper:evaluating-chunking-academic"
+      ],
+      "ground_truth_chunk_ids": [
+        "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+        "d55eb84a-1e7d-5d8b-9f4f-192c731940ee",
+        "fc2ea74d-bbfa-51bf-94ad-2d1bf0a8943f",
+        "2e85652e-32f6-5278-afc2-7c4739d21cce"
+      ],
+      "expected_facts": [
+        "Paper-arxiv-2411.18583 processes long academic papers for automated literature reviews.",
+        "Paper-arxiv-2607.01852 evaluates semantic chunking specifically on academic text structure to improve answer fidelity."
+      ],
+      "reference_answer": "Automated literature review generation relies on digesting long, dense scientific papers (2411.18583), which directly benefits from semantic cluster-based chunking tailored to academic papers (2607.01852) rather than naive fixed splitting.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2411.18583",
+          "paper-arxiv-2607.01852"
+        ],
+        "evidence_notes": "Links academic paper literature review pipeline to academic chunking benchmarks."
+      }
+    },
+    {
+      "id": "EVAL-017",
+      "category": "2_hop_relationship",
+      "difficulty": "medium",
+      "question": "What shared architectural trend toward agentic and hybrid retrieval is reflected between ARAG (paper-arxiv-2506.21931) and HetaRAG (paper-arxiv-2509.21336)?",
+      "ground_truth_entities": [
+        "paper:arag",
+        "paper:hetarag",
+        "method:hybrid-agentic-rag"
+      ],
+      "ground_truth_chunk_ids": [
+        "1beacd16-2906-50e6-aa96-d7b6b27939e5",
+        "fbc66f2a-a01a-57c8-af8d-acc50fa0f83e",
+        "28c01433-7b1a-5089-8e31-e22ba5dc9020",
+        "29b50b6f-c444-5164-aa50-15877ee2530b"
+      ],
+      "expected_facts": [
+        "ARAG employs agentic decision-making over static heuristics.",
+        "HetaRAG deploys deep hybrid retrieval across varied data stores."
+      ],
+      "reference_answer": "Both papers reflect the evolution from simple top-k vector search toward autonomous pipelines: ARAG introduces agentic retrieval routing, while HetaRAG orchestrates deep retrieval across multi-format, heterogeneous storage backends.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2506.21931",
+          "paper-arxiv-2509.21336"
+        ],
+        "evidence_notes": "Synthesizes agentic routing in ARAG with heterogeneous retrieval in HetaRAG."
+      }
+    },
+    {
+      "id": "EVAL-018",
+      "category": "2_hop_relationship",
+      "difficulty": "medium",
+      "question": "Contrast the focus of paper-arxiv-2504.08748 on input modality breadth with the training efficiency focus of paper-arxiv-2402.11794.",
+      "ground_truth_entities": [
+        "paper:multimodal-rag-survey",
+        "paper:attention-distillation-rag"
+      ],
+      "ground_truth_chunk_ids": [
+        "cdc9688f-7ca9-5182-bd48-45a9820c517b",
+        "cd249ddd-8edb-52a1-bc14-9421c44faded",
+        "a0166796-f679-5a90-8ed6-9e4c47e4afb6",
+        "d75cefb2-fe07-56f9-9a13-18b43316e7e6"
+      ],
+      "expected_facts": [
+        "Paper-arxiv-2504.08748 broadens the scope of RAG to multimodal inputs (images, audio, video).",
+        "Paper-arxiv-2402.11794 deepens model training efficiency through attention distillation."
+      ],
+      "reference_answer": "Paper-arxiv-2504.08748 expands architectural breadth by exploring multimodal retrieval paradigms, whereas paper-arxiv-2402.11794 focuses internally on model training optimization via attention distillation.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2504.08748",
+          "paper-arxiv-2402.11794"
+        ],
+        "evidence_notes": "Contrasts multimodal breadth survey with mechanistic attention distillation."
+      }
+    },
+    {
+      "id": "EVAL-019",
+      "category": "2_hop_relationship",
+      "difficulty": "medium",
+      "question": "How do TagRAG (paper-arxiv-2601.05254) and FAIR-RAG (paper-arxiv-2510.22344) provide alternative solutions to multi-hop context synthesis?",
+      "ground_truth_entities": [
+        "paper:tagrag",
+        "paper:fair-rag",
+        "method:multi-hop-synthesis"
+      ],
+      "ground_truth_chunk_ids": [
+        "19878e0f-5b1e-5ed0-afd5-a8be9908dd69",
+        "2afccf33-fbd9-5443-b186-e8e107ce4979",
+        "611b595e-4e2f-52ff-872d-f516ba94dbc4",
+        "d4d166f7-b1ca-55f2-bda7-66eb6845874a"
+      ],
+      "expected_facts": [
+        "TagRAG structures information into a hierarchical knowledge graph with tag guidance.",
+        "FAIR-RAG solves multi-hop synthesis via adaptive iterative refinement loops during query time."
+      ],
+      "reference_answer": "TagRAG solves multi-hop synthesis structurally through hierarchical knowledge graph indexing at ingestion, while FAIR-RAG solves it dynamically through iterative query-time refinement loops.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2601.05254",
+          "paper-arxiv-2510.22344"
+        ],
+        "evidence_notes": "Compares structural KG hierarchy in TagRAG with dynamic query iteration in FAIR-RAG."
+      }
+    },
+    {
+      "id": "EVAL-020",
+      "category": "2_hop_relationship",
+      "difficulty": "medium",
+      "question": "Why is the empirical finding regarding chunk size in paper-arxiv-2607.24767 critical when implementing the literature review pipelines from paper-arxiv-2411.18583?",
+      "ground_truth_entities": [
+        "paper:effect-chunk-size-rag",
+        "paper:automated-literature-review"
+      ],
+      "ground_truth_chunk_ids": [
+        "f750dca5-5376-5377-9ffb-cd4e4b01a625",
+        "4e07b601-ed79-5bf1-932b-857f1edb76f8",
+        "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+        "d55eb84a-1e7d-5d8b-9f4f-192c731940ee"
+      ],
+      "expected_facts": [
+        "Chunk size directly affects retrieval precision and context fragmentation.",
+        "Literature review synthesis requires balancing broad conceptual context with specific empirical details."
+      ],
+      "reference_answer": "Chunk size selection (paper-arxiv-2607.24767) dictates whether extracted passages retain sufficient context for synthesis without overwhelming prompt budgets, directly impacting the factual coherence of automated literature reviews (paper-arxiv-2411.18583).",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2607.24767",
+          "paper-arxiv-2411.18583"
+        ],
+        "evidence_notes": "Connects chunk size parameter study to literature review synthesis quality."
+      }
+    },
+    {
+      "id": "EVAL-021",
+      "category": "3_hop_dependency",
+      "difficulty": "hard",
+      "question": "Trace the dependency chain connecting chunk size (paper-arxiv-2607.24767), semantic chunking on academic papers (paper-arxiv-2607.01852), and automated literature review generation (paper-arxiv-2411.18583).",
+      "ground_truth_entities": [
+        "paper:effect-chunk-size-rag",
+        "paper:evaluating-chunking-academic",
+        "paper:automated-literature-review"
+      ],
+      "ground_truth_chunk_ids": [
+        "f750dca5-5376-5377-9ffb-cd4e4b01a625",
+        "4e07b601-ed79-5bf1-932b-857f1edb76f8",
+        "fc2ea74d-bbfa-51bf-94ad-2d1bf0a8943f",
+        "2e85652e-32f6-5278-afc2-7c4739d21cce",
+        "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+        "d55eb84a-1e7d-5d8b-9f4f-192c731940ee"
+      ],
+      "expected_facts": [
+        "Chunk size determines the boundary granularity of text fragments (2607.24767).",
+        "Semantic cluster chunking refines these boundaries along academic discourse structures (2607.01852).",
+        "High-fidelity chunk extraction powers accurate, comprehensive literature review synthesis (2411.18583)."
+      ],
+      "reference_answer": "The dependency chain progresses from parameter-level chunk sizing (2607.24767), to semantic cluster chunking adapted for academic papers (2607.01852), which in turn feeds coherent context into automated literature review pipelines (2411.18583).",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2607.24767",
+          "paper-arxiv-2607.01852",
+          "paper-arxiv-2411.18583"
+        ],
+        "evidence_notes": "3-hop dependency: chunk sizing -> academic semantic boundaries -> literature review generation."
+      }
+    },
+    {
+      "id": "EVAL-022",
+      "category": "3_hop_dependency",
+      "difficulty": "hard",
+      "question": "Trace the multi-hop dependency between membership inference vulnerabilities (paper-arxiv-2502.00306), heterogeneous data stores (paper-arxiv-2509.21336), and federated deployment (paper-arxiv-2505.18906).",
+      "ground_truth_entities": [
+        "paper:riddle-me-this",
+        "paper:hetarag",
+        "paper:federated-rag-study"
+      ],
+      "ground_truth_chunk_ids": [
+        "cfd65d7c-a7a9-5e07-9322-a6abe628fa9a",
+        "4a60bd89-aa65-5851-aeb1-516bf806a71e",
+        "28c01433-7b1a-5089-8e31-e22ba5dc9020",
+        "29b50b6f-c444-5164-aa50-15877ee2530b",
+        "c06870a9-8f49-5e88-a241-f3b388c7bf40",
+        "b15bc4a0-13f0-5ce6-8c39-cf81fc08df44"
+      ],
+      "expected_facts": [
+        "Membership inference leaks sensitive private documents from centralized stores (2502.00306).",
+        "Modern RAG pools sensitive records across heterogeneous enterprise stores (2509.21336).",
+        "Federated RAG addresses both challenges by maintaining localized data governance without centralized pooling (2505.18906)."
+      ],
+      "reference_answer": "Centralized retrieval across heterogeneous enterprise stores (2509.21336) magnifies membership inference risks (2502.00306), necessitating federated RAG architectures (2505.18906) to enforce data boundaries.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2502.00306",
+          "paper-arxiv-2509.21336",
+          "paper-arxiv-2505.18906"
+        ],
+        "evidence_notes": "3-hop link: privacy vulnerability -> multi-store enterprise integration -> federated mitigation."
+      }
+    },
+    {
+      "id": "EVAL-023",
+      "category": "3_hop_dependency",
+      "difficulty": "hard",
+      "question": "How does hierarchical knowledge graph structuring in TagRAG (paper-arxiv-2601.05254) connect with iterative refinement in FAIR-RAG (paper-arxiv-2510.22344) and metacognitive retrieval (paper-arxiv-2402.11626)?",
+      "ground_truth_entities": [
+        "paper:tagrag",
+        "paper:fair-rag",
+        "paper:metacognitive-rag"
+      ],
+      "ground_truth_chunk_ids": [
+        "19878e0f-5b1e-5ed0-afd5-a8be9908dd69",
+        "2afccf33-fbd9-5443-b186-e8e107ce4979",
+        "611b595e-4e2f-52ff-872d-f516ba94dbc4",
+        "d4d166f7-b1ca-55f2-bda7-66eb6845874a",
+        "ef4aded5-d2b3-5400-af1d-13ad643ead4d",
+        "909459c5-d0fc-5d5a-bbd2-63783edceaad"
+      ],
+      "expected_facts": [
+        "TagRAG structures fragmented documents into hierarchical graph entities (2601.05254).",
+        "FAIR-RAG traverses complex entity links using iterative query refinement (2510.22344).",
+        "Metacognitive control evaluates when sufficient hops have been traversed to generate grounded answers (2402.11626)."
+      ],
+      "reference_answer": "TagRAG establishes the hierarchical graph relationships, FAIR-RAG iteratively navigates these links across multi-hop queries, and Metacognitive RAG monitors the sufficiency of retrieved evidence before synthesis.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2601.05254",
+          "paper-arxiv-2510.22344",
+          "paper-arxiv-2402.11626"
+        ],
+        "evidence_notes": "3-hop dependency: hierarchical graph representation -> iterative traversal -> metacognitive stopping criteria."
+      }
+    },
+    {
+      "id": "EVAL-024",
+      "category": "3_hop_dependency",
+      "difficulty": "hard",
+      "question": "Trace the technical progression from attention distillation during model training (paper-arxiv-2402.11794), to agentic routing (paper-arxiv-2506.21931), and specialized assistant deployment in CRISS (paper-arxiv-2609.29075).",
+      "ground_truth_entities": [
+        "paper:attention-distillation-rag",
+        "paper:arag",
+        "paper:criss"
+      ],
+      "ground_truth_chunk_ids": [
+        "a0166796-f679-5a90-8ed6-9e4c47e4afb6",
+        "d75cefb2-fe07-56f9-9a13-18b43316e7e6",
+        "1beacd16-2906-50e6-aa96-d7b6b27939e5",
+        "fbc66f2a-a01a-57c8-af8d-acc50fa0f83e",
+        "b95ec804-b981-5fb7-9ec6-ee8490f7e6e9",
+        "002ac2b7-4388-5eac-bc45-16cfdc7ff1fa"
+      ],
+      "expected_facts": [
+        "Attention distillation creates efficient retriever-reader alignment (2402.11794).",
+        "Agentic RAG orchestrates dynamic query decision-making (2506.21931).",
+        "CRISS deploys these capabilities into a specialized clinical assistant for cancer registrars (2609.29075)."
+      ],
+      "reference_answer": "Optimized reader-retriever attention distillation (2402.11794) enables effective agentic routing (2506.21931), which ultimately powers specialized high-reliability domain chatbots such as CRISS (2609.29075).",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2402.11794",
+          "paper-arxiv-2506.21931",
+          "paper-arxiv-2609.29075"
+        ],
+        "evidence_notes": "3-hop progression: training distillation -> dynamic agent routing -> specialized clinical deployment."
+      }
+    },
+    {
+      "id": "EVAL-025",
+      "category": "3_hop_dependency",
+      "difficulty": "hard",
+      "question": "How do multimodal RAG paradigms (paper-arxiv-2504.08748) connect to specialized musical text reasoning in MUST-RAG (paper-arxiv-2507.23334) and chunking evaluations (paper-arxiv-2607.01852)?",
+      "ground_truth_entities": [
+        "paper:multimodal-rag-survey",
+        "paper:must-rag",
+        "paper:evaluating-chunking-academic"
+      ],
+      "ground_truth_chunk_ids": [
+        "cdc9688f-7ca9-5182-bd48-45a9820c517b",
+        "cd249ddd-8edb-52a1-bc14-9421c44faded",
+        "0fc596ad-0ec4-5510-9af9-51c255c36579",
+        "34ca61d6-88b7-58cc-ab72-081f1fac28fd",
+        "fc2ea74d-bbfa-51bf-94ad-2d1bf0a8943f",
+        "2e85652e-32f6-5278-afc2-7c4739d21cce"
+      ],
+      "expected_facts": [
+        "Multimodal RAG expands beyond uniform plain text (2504.08748).",
+        "MUST-RAG requires domain-specific symbolic/text representations of musical knowledge (2507.23334).",
+        "Semantic chunking must adapt to maintain domain-specific structural coherence (2607.01852)."
+      ],
+      "reference_answer": "Multimodal RAG frameworks (2504.08748) encompass non-standard modalities like musical notations and domain text in MUST-RAG (2507.23334), which depend heavily on structured semantic chunking (2607.01852) to avoid losing critical symbolic context.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2504.08748",
+          "paper-arxiv-2507.23334",
+          "paper-arxiv-2607.01852"
+        ],
+        "evidence_notes": "3-hop link: multimodal expansion -> specialized musical domain semantics -> academic chunking boundaries."
+      }
+    },
+    {
+      "id": "EVAL-026",
+      "category": "3_hop_dependency",
+      "difficulty": "hard",
+      "question": "Trace how iterative refinement (paper-arxiv-2510.22344) and hierarchical graphs (paper-arxiv-2601.05254) together overcome limitations in automated scientific literature synthesis (paper-arxiv-2411.18583).",
+      "ground_truth_entities": [
+        "paper:fair-rag",
+        "paper:tagrag",
+        "paper:automated-literature-review"
+      ],
+      "ground_truth_chunk_ids": [
+        "611b595e-4e2f-52ff-872d-f516ba94dbc4",
+        "d4d166f7-b1ca-55f2-bda7-66eb6845874a",
+        "19878e0f-5b1e-5ed0-afd5-a8be9908dd69",
+        "2afccf33-fbd9-5443-b186-e8e107ce4979",
+        "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+        "d55eb84a-1e7d-5d8b-9f4f-192c731940ee"
+      ],
+      "expected_facts": [
+        "Hierarchical knowledge graphs organize cross-paper concepts and taxonomy (2601.05254).",
+        "Iterative refinement dynamically explores related research threads across multiple hops (2510.22344).",
+        "Automated literature review tools require both to synthesize coherent summaries across hundreds of publications (2411.18583)."
+      ],
+      "reference_answer": "Hierarchical graph indexing (2601.05254) provides structured research entity relationships that iterative refinement (2510.22344) traverses to generate holistic, grounded automated literature reviews (2411.18583).",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2510.22344",
+          "paper-arxiv-2601.05254",
+          "paper-arxiv-2411.18583"
+        ],
+        "evidence_notes": "3-hop dependency: graph structure -> iterative traversal -> comprehensive literature synthesis."
+      }
+    },
+    {
+      "id": "EVAL-027",
+      "category": "3_hop_dependency",
+      "difficulty": "hard",
+      "question": "How do limitations of static retrieval (paper-arxiv-2506.21931) and metacognitive multi-time retrieval (paper-arxiv-2402.11626) impact critical clinical accuracy in systems like CRISS (paper-arxiv-2609.29075)?",
+      "ground_truth_entities": [
+        "paper:arag",
+        "paper:metacognitive-rag",
+        "paper:criss"
+      ],
+      "ground_truth_chunk_ids": [
+        "1beacd16-2906-50e6-aa96-d7b6b27939e5",
+        "fbc66f2a-a01a-57c8-af8d-acc50fa0f83e",
+        "ef4aded5-d2b3-5400-af1d-13ad643ead4d",
+        "909459c5-d0fc-5d5a-bbd2-63783edceaad",
+        "b95ec804-b981-5fb7-9ec6-ee8490f7e6e9",
+        "002ac2b7-4388-5eac-bc45-16cfdc7ff1fa"
+      ],
+      "expected_facts": [
+        "Static heuristics fail to adapt when user queries require deeper context (2506.21931).",
+        "Metacognitive reflection checks whether evidence is sufficient to prevent hallucinations (2402.11626).",
+        "Clinical cancer registry systems require rigorous verification to prevent dangerous medical misinformation (2609.29075)."
+      ],
+      "reference_answer": "Static retrieval shortcomings (2506.21931) necessitate metacognitive verification loops (2402.11626), which are vital in clinical tools like CRISS (2609.29075) where unverified retrieval risks medical errors.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2506.21931",
+          "paper-arxiv-2402.11626",
+          "paper-arxiv-2609.29075"
+        ],
+        "evidence_notes": "3-hop dependency: heuristic failure -> metacognitive reflection -> clinical safety."
+      }
+    },
+    {
+      "id": "EVAL-028",
+      "category": "3_hop_dependency",
+      "difficulty": "hard",
+      "question": "Trace the relationship between chunk size choices (paper-arxiv-2607.24767), heterogeneous store aggregation (paper-arxiv-2509.21336), and susceptibility to membership inference (paper-arxiv-2502.00306).",
+      "ground_truth_entities": [
+        "paper:effect-chunk-size-rag",
+        "paper:hetarag",
+        "paper:riddle-me-this"
+      ],
+      "ground_truth_chunk_ids": [
+        "f750dca5-5376-5377-9ffb-cd4e4b01a625",
+        "4e07b601-ed79-5bf1-932b-857f1edb76f8",
+        "28c01433-7b1a-5089-8e31-e22ba5dc9020",
+        "29b50b6f-c444-5164-aa50-15877ee2530b",
+        "cfd65d7c-a7a9-5e07-9322-a6abe628fa9a",
+        "4a60bd89-aa65-5851-aeb1-516bf806a71e"
+      ],
+      "expected_facts": [
+        "Chunk size defines verbatim passage length stored in vectors (2607.24767).",
+        "Heterogeneous retrieval aggregates these chunks across diverse repositories (2509.21336).",
+        "Verbatim chunk retrieval directly facilitates membership inference attacks that verify presence of private records (2502.00306)."
+      ],
+      "reference_answer": "Larger verbatim chunk sizes (2607.24767) aggregated across heterogeneous repositories (2509.21336) increase unique token sequences exposed in generation, heightening vulnerability to membership inference attacks (2502.00306).",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2607.24767",
+          "paper-arxiv-2509.21336",
+          "paper-arxiv-2502.00306"
+        ],
+        "evidence_notes": "3-hop link: chunk granularity -> heterogeneous aggregation -> membership leakage vulnerability."
+      }
+    },
+    {
+      "id": "EVAL-029",
+      "category": "3_hop_dependency",
+      "difficulty": "hard",
+      "question": "How does academic semantic chunking (paper-arxiv-2607.01852) interact with attention distillation (paper-arxiv-2402.11794) to improve domain-specific QA in MUST-RAG (paper-arxiv-2507.23334)?",
+      "ground_truth_entities": [
+        "paper:evaluating-chunking-academic",
+        "paper:attention-distillation-rag",
+        "paper:must-rag"
+      ],
+      "ground_truth_chunk_ids": [
+        "fc2ea74d-bbfa-51bf-94ad-2d1bf0a8943f",
+        "2e85652e-32f6-5278-afc2-7c4739d21cce",
+        "a0166796-f679-5a90-8ed6-9e4c47e4afb6",
+        "d75cefb2-fe07-56f9-9a13-18b43316e7e6",
+        "0fc596ad-0ec4-5510-9af9-51c255c36579",
+        "34ca61d6-88b7-58cc-ab72-081f1fac28fd"
+      ],
+      "expected_facts": [
+        "Semantic chunking preserves coherent domain concepts without mid-sentence truncations (2607.01852).",
+        "Attention distillation aligns model attention onto these coherent passages during training (2402.11794).",
+        "Specialized QA applications like MUST-RAG achieve superior factual generation as a result (2507.23334)."
+      ],
+      "reference_answer": "Semantic chunking (2607.01852) provides clean conceptual units that maximize the effectiveness of attention distillation (2402.11794), driving higher factual accuracy in specialized music QA systems (2507.23334).",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2607.01852",
+          "paper-arxiv-2402.11794",
+          "paper-arxiv-2507.23334"
+        ],
+        "evidence_notes": "3-hop link: semantic chunk quality -> attention distillation alignment -> specialized QA performance."
+      }
+    },
+    {
+      "id": "EVAL-030",
+      "category": "3_hop_dependency",
+      "difficulty": "hard",
+      "question": "Trace how knowledge graph hierarchies (paper-arxiv-2601.05254) and agentic routing (paper-arxiv-2506.21931) together enhance automated scientific literature discovery (paper-arxiv-2411.18583).",
+      "ground_truth_entities": [
+        "paper:tagrag",
+        "paper:arag",
+        "paper:automated-literature-review"
+      ],
+      "ground_truth_chunk_ids": [
+        "19878e0f-5b1e-5ed0-afd5-a8be9908dd69",
+        "2afccf33-fbd9-5443-b186-e8e107ce4979",
+        "1beacd16-2906-50e6-aa96-d7b6b27939e5",
+        "fbc66f2a-a01a-57c8-af8d-acc50fa0f83e",
+        "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+        "d55eb84a-1e7d-5d8b-9f4f-192c731940ee"
+      ],
+      "expected_facts": [
+        "Hierarchical knowledge graphs represent multi-level conceptual dependencies (2601.05254).",
+        "Agentic RAG orchestrates dynamic multi-query exploratory retrieval (2506.21931).",
+        "Automated literature review tools leverage both to generate structured synthesis across wide scientific corpora (2411.18583)."
+      ],
+      "reference_answer": "Hierarchical graph representations (2601.05254) paired with agentic retrieval exploration (2506.21931) enable automated literature review tools (2411.18583) to comprehensively map and synthesize evolving scientific domains.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2601.05254",
+          "paper-arxiv-2506.21931",
+          "paper-arxiv-2411.18583"
+        ],
+        "evidence_notes": "3-hop dependency: hierarchical KG indexing -> agentic exploration -> comprehensive literature mapping."
+      }
+    },
+    {
+      "id": "EVAL-031",
+      "category": "relationship_aggregation",
+      "difficulty": "hard",
+      "question": "Across the corpus, compare the distinct strategies proposed by FAIR-RAG (paper-arxiv-2510.22344), TagRAG (paper-arxiv-2601.05254), and Metacognitive RAG (paper-arxiv-2402.11626) to overcome traditional fragment-level retrieval limitations.",
+      "ground_truth_entities": [
+        "paper:fair-rag",
+        "paper:tagrag",
+        "paper:metacognitive-rag"
+      ],
+      "ground_truth_chunk_ids": [
+        "611b595e-4e2f-52ff-872d-f516ba94dbc4",
+        "d4d166f7-b1ca-55f2-bda7-66eb6845874a",
+        "19878e0f-5b1e-5ed0-afd5-a8be9908dd69",
+        "2afccf33-fbd9-5443-b186-e8e107ce4979",
+        "ef4aded5-d2b3-5400-af1d-13ad643ead4d",
+        "909459c5-d0fc-5d5a-bbd2-63783edceaad"
+      ],
+      "expected_facts": [
+        "FAIR-RAG uses faithful adaptive iterative refinement.",
+        "TagRAG constructs a tag-guided hierarchical knowledge graph.",
+        "Metacognitive RAG implements multi-time retrieval with metacognitive reflection."
+      ],
+      "reference_answer": "To surpass single-shot fragment retrieval, FAIR-RAG uses iterative query refinement, TagRAG introduces hierarchical tag-guided knowledge graphs, and Metacognitive RAG applies multi-step retrieval regulated by metacognitive reflection.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2510.22344",
+          "paper-arxiv-2601.05254",
+          "paper-arxiv-2402.11626"
+        ],
+        "evidence_notes": "Aggregates multi-hop strategies across FAIR-RAG, TagRAG, and Metacognitive RAG."
+      }
+    },
+    {
+      "id": "EVAL-032",
+      "category": "relationship_aggregation",
+      "difficulty": "medium",
+      "question": "What collective insights emerge from paper-arxiv-2607.01852 and paper-arxiv-2607.24767 regarding chunking optimization in academic RAG pipelines?",
+      "ground_truth_entities": [
+        "paper:evaluating-chunking-academic",
+        "paper:effect-chunk-size-rag"
+      ],
+      "ground_truth_chunk_ids": [
+        "fc2ea74d-bbfa-51bf-94ad-2d1bf0a8943f",
+        "2e85652e-32f6-5278-afc2-7c4739d21cce",
+        "f750dca5-5376-5377-9ffb-cd4e4b01a625",
+        "4e07b601-ed79-5bf1-932b-857f1edb76f8"
+      ],
+      "expected_facts": [
+        "Chunk size is a primary determinant of downstream LLM accuracy.",
+        "Semantic cluster-based chunking outperforms arbitrary character/token splits on academic document structures."
+      ],
+      "reference_answer": "Collectively, the papers demonstrate that chunking is a critical architectural lever: optimizing chunk size directly impacts generation accuracy (2607.24767), and semantic cluster chunking preserves logical discourse structure better than fixed-length splits (2607.01852).",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2607.01852",
+          "paper-arxiv-2607.24767"
+        ],
+        "evidence_notes": "Synthesizes findings on chunk size and semantic chunking strategies."
+      }
+    },
+    {
+      "id": "EVAL-033",
+      "category": "relationship_aggregation",
+      "difficulty": "hard",
+      "question": "How do papers in the corpus characterize privacy risks in standard RAG (paper-arxiv-2502.00306) and the architectural response in federated environments (paper-arxiv-2505.18906)?",
+      "ground_truth_entities": [
+        "paper:riddle-me-this",
+        "paper:federated-rag-study"
+      ],
+      "ground_truth_chunk_ids": [
+        "cfd65d7c-a7a9-5e07-9322-a6abe628fa9a",
+        "4a60bd89-aa65-5851-aeb1-516bf806a71e",
+        "c06870a9-8f49-5e88-a241-f3b388c7bf40",
+        "b15bc4a0-13f0-5ce6-8c39-cf81fc08df44"
+      ],
+      "expected_facts": [
+        "Standard RAG leaks private database membership even without parameter tuning.",
+        "Federated RAG decentralizes retrieval databases across privacy-preserving nodes."
+      ],
+      "reference_answer": "The literature characterizes standard RAG as vulnerable to membership inference despite frozen parameters (2502.00306), prompting federated RAG architectures that distribute and safeguard private knowledge bases (2505.18906).",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2502.00306",
+          "paper-arxiv-2505.18906"
+        ],
+        "evidence_notes": "Aggregates privacy risk analysis and federated mitigation."
+      }
+    },
+    {
+      "id": "EVAL-034",
+      "category": "relationship_aggregation",
+      "difficulty": "medium",
+      "question": "Summarize the domain-specific RAG applications evaluated across the corpus in healthcare (paper-arxiv-2609.29075), music (paper-arxiv-2507.23334), and literature synthesis (paper-arxiv-2411.18583).",
+      "ground_truth_entities": [
+        "paper:criss",
+        "paper:must-rag",
+        "paper:automated-literature-review"
+      ],
+      "ground_truth_chunk_ids": [
+        "b95ec804-b981-5fb7-9ec6-ee8490f7e6e9",
+        "002ac2b7-4388-5eac-bc45-16cfdc7ff1fa",
+        "0fc596ad-0ec4-5510-9af9-51c255c36579",
+        "34ca61d6-88b7-58cc-ab72-081f1fac28fd",
+        "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+        "d55eb84a-1e7d-5d8b-9f4f-192c731940ee"
+      ],
+      "expected_facts": [
+        "Healthcare: CRISS assists cancer registrars in oncology data curation.",
+        "Music: MUST-RAG improves musical text QA where zero-shot models fail.",
+        "Literature review: NLP and RAG automate scientific synthesis across vast paper collections."
+      ],
+      "reference_answer": "The corpus demonstrates specialized RAG across diverse domains: oncology registry assistance (CRISS), musical question answering (MUST-RAG), and automated scientific literature review generation.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2609.29075",
+          "paper-arxiv-2507.23334",
+          "paper-arxiv-2411.18583"
+        ],
+        "evidence_notes": "Aggregates domain-specific deployments across healthcare, music, and academic literature."
+      }
+    },
+    {
+      "id": "EVAL-035",
+      "category": "relationship_aggregation",
+      "difficulty": "hard",
+      "question": "Compare how TagRAG (paper-arxiv-2601.05254) and HetaRAG (paper-arxiv-2509.21336) incorporate non-vector structures to improve retrieval coverage.",
+      "ground_truth_entities": [
+        "paper:tagrag",
+        "paper:hetarag"
+      ],
+      "ground_truth_chunk_ids": [
+        "19878e0f-5b1e-5ed0-afd5-a8be9908dd69",
+        "2afccf33-fbd9-5443-b186-e8e107ce4979",
+        "28c01433-7b1a-5089-8e31-e22ba5dc9020",
+        "29b50b6f-c444-5164-aa50-15877ee2530b"
+      ],
+      "expected_facts": [
+        "TagRAG employs hierarchical knowledge graph communities with semantic tags.",
+        "HetaRAG integrates diverse heterogeneous storage backends beyond standard vector tables."
+      ],
+      "reference_answer": "TagRAG introduces hierarchical tag-guided knowledge graph structures for entity-level synthesis, while HetaRAG bridges multi-store heterogeneous repositories to unify disconnected data sources.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2601.05254",
+          "paper-arxiv-2509.21336"
+        ],
+        "evidence_notes": "Aggregates non-vector structural retrieval across TagRAG and HetaRAG."
+      }
+    },
+    {
+      "id": "EVAL-036",
+      "category": "relationship_aggregation",
+      "difficulty": "hard",
+      "question": "Contrast the training-time optimization in paper-arxiv-2402.11794 with inference-time optimizations in paper-arxiv-2402.11626 and paper-arxiv-2510.22344.",
+      "ground_truth_entities": [
+        "paper:attention-distillation-rag",
+        "paper:metacognitive-rag",
+        "paper:fair-rag"
+      ],
+      "ground_truth_chunk_ids": [
+        "a0166796-f679-5a90-8ed6-9e4c47e4afb6",
+        "d75cefb2-fe07-56f9-9a13-18b43316e7e6",
+        "ef4aded5-d2b3-5400-af1d-13ad643ead4d",
+        "909459c5-d0fc-5d5a-bbd2-63783edceaad",
+        "611b595e-4e2f-52ff-872d-f516ba94dbc4",
+        "d4d166f7-b1ca-55f2-bda7-66eb6845874a"
+      ],
+      "expected_facts": [
+        "Paper-arxiv-2402.11794 optimizes training via attention distillation.",
+        "Paper-arxiv-2402.11626 optimizes inference via metacognitive multi-time retrieval.",
+        "Paper-arxiv-2510.22344 optimizes inference via iterative adaptive query refinement."
+      ],
+      "reference_answer": "Paper-arxiv-2402.11794 optimizes model weights during training using attention distillation, whereas Metacognitive RAG (2402.11626) and FAIR-RAG (2510.22344) optimize query-time inference through metacognition and iterative refinement.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2402.11794",
+          "paper-arxiv-2402.11626",
+          "paper-arxiv-2510.22344"
+        ],
+        "evidence_notes": "Aggregates training-time vs inference-time RAG enhancements."
+      }
+    },
+    {
+      "id": "EVAL-037",
+      "category": "relationship_aggregation",
+      "difficulty": "medium",
+      "question": "How do agentic RAG systems (paper-arxiv-2506.21931) differ from traditional static retrieval pipelines across the reviewed literature?",
+      "ground_truth_entities": [
+        "paper:arag"
+      ],
+      "ground_truth_chunk_ids": [
+        "1beacd16-2906-50e6-aa96-d7b6b27939e5",
+        "fbc66f2a-a01a-57c8-af8d-acc50fa0f83e"
+      ],
+      "expected_facts": [
+        "Traditional RAG relies on static heuristics and single-shot top-k retrieval.",
+        "Agentic RAG utilizes autonomous decision-making to dynamically query, evaluate, and adapt context."
+      ],
+      "reference_answer": "Across the corpus, agentic RAG (e.g. ARAG) replaces rigid single-step retrieval heuristics with dynamic, autonomous decision loops that evaluate user context and formulate targeted sub-queries.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2506.21931"
+        ],
+        "evidence_notes": "Aggregates contrasts between agentic decision loops and static retrieval."
+      }
+    },
+    {
+      "id": "EVAL-038",
+      "category": "relationship_aggregation",
+      "difficulty": "medium",
+      "question": "Synthesize the major architectural trends in RAG literature from unimodal text retrieval to multimodal systems (paper-arxiv-2504.08748) and knowledge graphs (paper-arxiv-2601.05254).",
+      "ground_truth_entities": [
+        "paper:multimodal-rag-survey",
+        "paper:tagrag"
+      ],
+      "ground_truth_chunk_ids": [
+        "cdc9688f-7ca9-5182-bd48-45a9820c517b",
+        "cd249ddd-8edb-52a1-bc14-9421c44faded",
+        "19878e0f-5b1e-5ed0-afd5-a8be9908dd69",
+        "2afccf33-fbd9-5443-b186-e8e107ce4979"
+      ],
+      "expected_facts": [
+        "Evolution towards multimodal retrieval incorporates visual and sensory modalities.",
+        "Evolution towards graph-augmented RAG structures unstructured text into interconnected semantic knowledge graphs."
+      ],
+      "reference_answer": "The literature documents an evolution from plain-text passage vectors toward multimodal retrieval integrating visual/audio data (2504.08748) and graph-augmented architectures providing explicit semantic relationships (2601.05254).",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2504.08748",
+          "paper-arxiv-2601.05254"
+        ],
+        "evidence_notes": "Aggregates multi-year architectural evolution toward multimodal and graph RAG."
+      }
+    },
+    {
+      "id": "EVAL-039",
+      "category": "relationship_aggregation",
+      "difficulty": "hard",
+      "question": "What common challenges in handling scientific and academic text are identified across paper-arxiv-2411.18583, paper-arxiv-2607.01852, and paper-arxiv-2607.24767?",
+      "ground_truth_entities": [
+        "paper:automated-literature-review",
+        "paper:evaluating-chunking-academic",
+        "paper:effect-chunk-size-rag"
+      ],
+      "ground_truth_chunk_ids": [
+        "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+        "d55eb84a-1e7d-5d8b-9f4f-192c731940ee",
+        "fc2ea74d-bbfa-51bf-94ad-2d1bf0a8943f",
+        "2e85652e-32f6-5278-afc2-7c4739d21cce",
+        "f750dca5-5376-5377-9ffb-cd4e4b01a625",
+        "4e07b601-ed79-5bf1-932b-857f1edb76f8"
+      ],
+      "expected_facts": [
+        "Rapidly growing volume of publications creates information overload.",
+        "Academic papers have complex section hierarchies that are disrupted by naive chunking.",
+        "Improper chunk sizing leads to degraded answer quality or lost context."
+      ],
+      "reference_answer": "Academic text poses severe challenges: massive publication volume (2411.18583), hierarchical discourse structures requiring semantic clustering (2607.01852), and high sensitivity to chunk size variations (2607.24767).",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2411.18583",
+          "paper-arxiv-2607.01852",
+          "paper-arxiv-2607.24767"
+        ],
+        "evidence_notes": "Aggregates shared challenges in academic literature retrieval and processing."
+      }
+    },
+    {
+      "id": "EVAL-040",
+      "category": "relationship_aggregation",
+      "difficulty": "hard",
+      "question": "Compare the hallucination mitigation techniques discussed across FAIR-RAG (paper-arxiv-2510.22344) and Metacognitive RAG (paper-arxiv-2402.11626).",
+      "ground_truth_entities": [
+        "paper:fair-rag",
+        "paper:metacognitive-rag"
+      ],
+      "ground_truth_chunk_ids": [
+        "611b595e-4e2f-52ff-872d-f516ba94dbc4",
+        "d4d166f7-b1ca-55f2-bda7-66eb6845874a",
+        "ef4aded5-d2b3-5400-af1d-13ad643ead4d",
+        "909459c5-d0fc-5d5a-bbd2-63783edceaad"
+      ],
+      "expected_facts": [
+        "FAIR-RAG enforces faithful iterative refinement across multi-hop contexts.",
+        "Metacognitive RAG employs self-monitoring reflection over retrieval quality."
+      ],
+      "reference_answer": "To mitigate hallucinations, FAIR-RAG validates intermediate reasoning through faithful iterative refinement loops, while Metacognitive RAG uses self-reflective evaluation to monitor evidence sufficiency.",
+      "metadata": {
+        "status": "verified",
+        "source_paper_ids": [
+          "paper-arxiv-2510.22344",
+          "paper-arxiv-2402.11626"
+        ],
+        "evidence_notes": "Aggregates hallucination mitigation approaches in iterative vs metacognitive RAG."
+      }
+    },
+    {
+      "id": "EVAL-041",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "What is the recommended lithium-ion battery charging protocol for electric vehicles described in the harvested papers?",
+      "ground_truth_entities": [],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [],
+      "reference_answer": "The retrieved scientific literature does not contain information to answer this question as it falls outside the domain of retrieval-augmented generation and natural language processing.",
+      "metadata": {
+        "status": "verified_out_of_scope",
+        "source_paper_ids": [],
+        "evidence_notes": "Deliberately unanswerable out-of-domain question to test hallucination refusal."
+      }
+    },
+    {
+      "id": "EVAL-042",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "Which paper details the catalytic synthesis of ammonia using Haber-Bosch ruthenium nanoparticles?",
+      "ground_truth_entities": [],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [],
+      "reference_answer": "The retrieved scientific literature does not contain information to answer this question as it falls outside the domain of retrieval-augmented generation and natural language processing.",
+      "metadata": {
+        "status": "verified_out_of_scope",
+        "source_paper_ids": [],
+        "evidence_notes": "Deliberately unanswerable out-of-domain question to test hallucination refusal."
+      }
+    },
+    {
+      "id": "EVAL-043",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "What were the quarterly revenue earnings of Apple Inc in Q4 2024 according to the corpus?",
+      "ground_truth_entities": [],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [],
+      "reference_answer": "The retrieved scientific literature does not contain information to answer this question as it falls outside the domain of retrieval-augmented generation and natural language processing.",
+      "metadata": {
+        "status": "verified_out_of_scope",
+        "source_paper_ids": [],
+        "evidence_notes": "Deliberately unanswerable out-of-domain question to test hallucination refusal."
+      }
+    },
+    {
+      "id": "EVAL-044",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "How is CRISPR-Cas9 base editing applied to sickle cell disease mutations in the provided papers?",
+      "ground_truth_entities": [],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [],
+      "reference_answer": "The retrieved scientific literature does not contain information to answer this question as it falls outside the domain of retrieval-augmented generation and natural language processing.",
+      "metadata": {
+        "status": "verified_out_of_scope",
+        "source_paper_ids": [],
+        "evidence_notes": "Deliberately unanswerable out-of-domain question to test hallucination refusal."
+      }
+    },
+    {
+      "id": "EVAL-045",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "What is the gravitational wave frequency detected by LIGO for neutron star collision GW170817?",
+      "ground_truth_entities": [],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [],
+      "reference_answer": "The retrieved scientific literature does not contain information to answer this question as it falls outside the domain of retrieval-augmented generation and natural language processing.",
+      "metadata": {
+        "status": "verified_out_of_scope",
+        "source_paper_ids": [],
+        "evidence_notes": "Deliberately unanswerable out-of-domain question to test hallucination refusal."
+      }
+    },
+    {
+      "id": "EVAL-046",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "Which paper describes the aerodynamic drag coefficient of supersonic transport aircraft wings?",
+      "ground_truth_entities": [],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [],
+      "reference_answer": "The retrieved scientific literature does not contain information to answer this question as it falls outside the domain of retrieval-augmented generation and natural language processing.",
+      "metadata": {
+        "status": "verified_out_of_scope",
+        "source_paper_ids": [],
+        "evidence_notes": "Deliberately unanswerable out-of-domain question to test hallucination refusal."
+      }
+    },
+    {
+      "id": "EVAL-047",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "What are the clinical trial outcomes for mRNA cancer vaccines against metastatic melanoma in the corpus?",
+      "ground_truth_entities": [],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [],
+      "reference_answer": "The retrieved scientific literature does not contain information to answer this question as it falls outside the domain of retrieval-augmented generation and natural language processing.",
+      "metadata": {
+        "status": "verified_out_of_scope",
+        "source_paper_ids": [],
+        "evidence_notes": "Deliberately unanswerable out-of-domain question to test hallucination refusal."
+      }
+    },
+    {
+      "id": "EVAL-048",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "What architectural guidelines are given for deploying microservices on Kubernetes in AWS us-east-1?",
+      "ground_truth_entities": [],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [],
+      "reference_answer": "The retrieved scientific literature does not contain information to answer this question as it falls outside the domain of retrieval-augmented generation and natural language processing.",
+      "metadata": {
+        "status": "verified_out_of_scope",
+        "source_paper_ids": [],
+        "evidence_notes": "Deliberately unanswerable out-of-domain question to test hallucination refusal."
+      }
+    },
+    {
+      "id": "EVAL-049",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "How do optical telescope mirrors in the James Webb Space Telescope achieve cryogenic beryllium alignment?",
+      "ground_truth_entities": [],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [],
+      "reference_answer": "The retrieved scientific literature does not contain information to answer this question as it falls outside the domain of retrieval-augmented generation and natural language processing.",
+      "metadata": {
+        "status": "verified_out_of_scope",
+        "source_paper_ids": [],
+        "evidence_notes": "Deliberately unanswerable out-of-domain question to test hallucination refusal."
+      }
+    },
+    {
+      "id": "EVAL-050",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "Which paper provides the seismic resistance code specifications for high-rise buildings in Tokyo?",
+      "ground_truth_entities": [],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [],
+      "reference_answer": "The retrieved scientific literature does not contain information to answer this question as it falls outside the domain of retrieval-augmented generation and natural language processing.",
+      "metadata": {
+        "status": "verified_out_of_scope",
+        "source_paper_ids": [],
+        "evidence_notes": "Deliberately unanswerable out-of-domain question to test hallucination refusal."
+      }
+    }
+  ]
+}

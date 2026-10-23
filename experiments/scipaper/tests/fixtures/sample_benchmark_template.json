@@ -1,0 +1,987 @@
+{
+  "version": "1.0.0-template",
+  "domain": "scientific_papers_rag",
+  "total_questions": 50,
+  "questions": [
+    {
+      "id": "EVAL-001",
+      "category": "single_hop_direct_fact",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 1 for single_hop_direct_fact regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 1 for single_hop_direct_fact"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 1.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-002",
+      "category": "single_hop_direct_fact",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 2 for single_hop_direct_fact regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 2 for single_hop_direct_fact"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 2.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-003",
+      "category": "single_hop_direct_fact",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 3 for single_hop_direct_fact regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 3 for single_hop_direct_fact"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 3.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-004",
+      "category": "single_hop_direct_fact",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 4 for single_hop_direct_fact regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 4 for single_hop_direct_fact"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 4.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-005",
+      "category": "single_hop_direct_fact",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 5 for single_hop_direct_fact regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 5 for single_hop_direct_fact"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 5.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-006",
+      "category": "single_hop_direct_fact",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 6 for single_hop_direct_fact regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 6 for single_hop_direct_fact"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 6.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-007",
+      "category": "single_hop_direct_fact",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 7 for single_hop_direct_fact regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 7 for single_hop_direct_fact"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 7.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-008",
+      "category": "single_hop_direct_fact",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 8 for single_hop_direct_fact regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 8 for single_hop_direct_fact"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 8.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-009",
+      "category": "single_hop_direct_fact",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 9 for single_hop_direct_fact regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 9 for single_hop_direct_fact"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 9.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-010",
+      "category": "single_hop_direct_fact",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 10 for single_hop_direct_fact regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 10 for single_hop_direct_fact"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 10.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-011",
+      "category": "2_hop_relationship",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 1 for 2_hop_relationship regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 1 for 2_hop_relationship"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 11.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-012",
+      "category": "2_hop_relationship",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 2 for 2_hop_relationship regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 2 for 2_hop_relationship"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 12.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-013",
+      "category": "2_hop_relationship",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 3 for 2_hop_relationship regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 3 for 2_hop_relationship"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 13.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-014",
+      "category": "2_hop_relationship",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 4 for 2_hop_relationship regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 4 for 2_hop_relationship"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 14.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-015",
+      "category": "2_hop_relationship",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 5 for 2_hop_relationship regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 5 for 2_hop_relationship"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 15.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-016",
+      "category": "2_hop_relationship",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 6 for 2_hop_relationship regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 6 for 2_hop_relationship"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 16.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-017",
+      "category": "2_hop_relationship",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 7 for 2_hop_relationship regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 7 for 2_hop_relationship"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 17.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-018",
+      "category": "2_hop_relationship",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 8 for 2_hop_relationship regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 8 for 2_hop_relationship"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 18.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-019",
+      "category": "2_hop_relationship",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 9 for 2_hop_relationship regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 9 for 2_hop_relationship"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 19.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-020",
+      "category": "2_hop_relationship",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 10 for 2_hop_relationship regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 10 for 2_hop_relationship"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 20.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-021",
+      "category": "3_hop_dependency",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 1 for 3_hop_dependency regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 1 for 3_hop_dependency"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 21.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-022",
+      "category": "3_hop_dependency",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 2 for 3_hop_dependency regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 2 for 3_hop_dependency"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 22.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-023",
+      "category": "3_hop_dependency",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 3 for 3_hop_dependency regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 3 for 3_hop_dependency"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 23.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-024",
+      "category": "3_hop_dependency",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 4 for 3_hop_dependency regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 4 for 3_hop_dependency"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 24.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-025",
+      "category": "3_hop_dependency",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 5 for 3_hop_dependency regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 5 for 3_hop_dependency"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 25.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-026",
+      "category": "3_hop_dependency",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 6 for 3_hop_dependency regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 6 for 3_hop_dependency"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 26.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-027",
+      "category": "3_hop_dependency",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 7 for 3_hop_dependency regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 7 for 3_hop_dependency"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 27.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-028",
+      "category": "3_hop_dependency",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 8 for 3_hop_dependency regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 8 for 3_hop_dependency"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 28.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-029",
+      "category": "3_hop_dependency",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 9 for 3_hop_dependency regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 9 for 3_hop_dependency"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 29.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-030",
+      "category": "3_hop_dependency",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 10 for 3_hop_dependency regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 10 for 3_hop_dependency"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 30.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-031",
+      "category": "relationship_aggregation",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 1 for relationship_aggregation regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 1 for relationship_aggregation"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 31.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-032",
+      "category": "relationship_aggregation",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 2 for relationship_aggregation regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 2 for relationship_aggregation"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 32.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-033",
+      "category": "relationship_aggregation",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 3 for relationship_aggregation regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 3 for relationship_aggregation"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 33.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-034",
+      "category": "relationship_aggregation",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 4 for relationship_aggregation regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 4 for relationship_aggregation"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 34.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-035",
+      "category": "relationship_aggregation",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 5 for relationship_aggregation regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 5 for relationship_aggregation"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 35.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-036",
+      "category": "relationship_aggregation",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 6 for relationship_aggregation regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 6 for relationship_aggregation"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 36.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-037",
+      "category": "relationship_aggregation",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 7 for relationship_aggregation regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 7 for relationship_aggregation"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 37.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-038",
+      "category": "relationship_aggregation",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 8 for relationship_aggregation regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 8 for relationship_aggregation"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 38.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-039",
+      "category": "relationship_aggregation",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 9 for relationship_aggregation regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 9 for relationship_aggregation"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 39.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-040",
+      "category": "relationship_aggregation",
+      "difficulty": "medium",
+      "question": "[SYNTHETIC TEMPLATE] Evaluation inquiry 10 for relationship_aggregation regarding RAG mechanisms?",
+      "ground_truth_entities": [
+        "model:rag",
+        "model:dpr"
+      ],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [
+        "Factual proposition 10 for relationship_aggregation"
+      ],
+      "reference_answer": "Authoritative reference answer template for evaluation question 40.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": [
+          "paper-arxiv-2005.11401"
+        ]
+      }
+    },
+    {
+      "id": "EVAL-041",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "[SYNTHETIC TEMPLATE] Out of scope question 1 regarding unincluded scientific topics?",
+      "ground_truth_entities": [],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [],
+      "reference_answer": "The retrieved scientific literature does not contain information to answer this question.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": []
+      }
+    },
+    {
+      "id": "EVAL-042",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "[SYNTHETIC TEMPLATE] Out of scope question 2 regarding unincluded scientific topics?",
+      "ground_truth_entities": [],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [],
+      "reference_answer": "The retrieved scientific literature does not contain information to answer this question.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": []
+      }
+    },
+    {
+      "id": "EVAL-043",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "[SYNTHETIC TEMPLATE] Out of scope question 3 regarding unincluded scientific topics?",
+      "ground_truth_entities": [],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [],
+      "reference_answer": "The retrieved scientific literature does not contain information to answer this question.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": []
+      }
+    },
+    {
+      "id": "EVAL-044",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "[SYNTHETIC TEMPLATE] Out of scope question 4 regarding unincluded scientific topics?",
+      "ground_truth_entities": [],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [],
+      "reference_answer": "The retrieved scientific literature does not contain information to answer this question.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": []
+      }
+    },
+    {
+      "id": "EVAL-045",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "[SYNTHETIC TEMPLATE] Out of scope question 5 regarding unincluded scientific topics?",
+      "ground_truth_entities": [],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [],
+      "reference_answer": "The retrieved scientific literature does not contain information to answer this question.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": []
+      }
+    },
+    {
+      "id": "EVAL-046",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "[SYNTHETIC TEMPLATE] Out of scope question 6 regarding unincluded scientific topics?",
+      "ground_truth_entities": [],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [],
+      "reference_answer": "The retrieved scientific literature does not contain information to answer this question.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": []
+      }
+    },
+    {
+      "id": "EVAL-047",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "[SYNTHETIC TEMPLATE] Out of scope question 7 regarding unincluded scientific topics?",
+      "ground_truth_entities": [],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [],
+      "reference_answer": "The retrieved scientific literature does not contain information to answer this question.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": []
+      }
+    },
+    {
+      "id": "EVAL-048",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "[SYNTHETIC TEMPLATE] Out of scope question 8 regarding unincluded scientific topics?",
+      "ground_truth_entities": [],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [],
+      "reference_answer": "The retrieved scientific literature does not contain information to answer this question.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": []
+      }
+    },
+    {
+      "id": "EVAL-049",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "[SYNTHETIC TEMPLATE] Out of scope question 9 regarding unincluded scientific topics?",
+      "ground_truth_entities": [],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [],
+      "reference_answer": "The retrieved scientific literature does not contain information to answer this question.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": []
+      }
+    },
+    {
+      "id": "EVAL-050",
+      "category": "out_of_scope",
+      "difficulty": "easy",
+      "question": "[SYNTHETIC TEMPLATE] Out of scope question 10 regarding unincluded scientific topics?",
+      "ground_truth_entities": [],
+      "ground_truth_chunk_ids": [],
+      "expected_facts": [],
+      "reference_answer": "The retrieved scientific literature does not contain information to answer this question.",
+      "metadata": {
+        "status": "template_unverified",
+        "source_paper_ids": []
+      }
+    }
+  ]
+}

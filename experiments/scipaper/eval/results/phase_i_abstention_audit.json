@@ -1,0 +1,73 @@
+{
+  "audit_phase": "Phase I Audit E \u2014 Out-of-Scope Abstention Audit",
+  "benchmark_out_of_scope_questions_count": 10,
+  "benchmark_answerable_questions_count": 40,
+  "abstention_mechanism": "Local cosine similarity threshold gate on vector retrieval top score (evaluate_local_abstention)",
+  "offline_evaluation_caveat": "Evaluates retrieval-level score gating only. End-to-end LLM answer generation refusal is not executed offline per safety rules (zero external APIs).",
+  "threshold_grid_analysis": [
+    {
+      "threshold": 0.35,
+      "answerable_availability": 0.975,
+      "answerable_refusals": 1,
+      "out_of_scope_refusals": 9,
+      "out_of_scope_pass": 1,
+      "refusal_precision": 0.9,
+      "refusal_recall": 0.9
+    },
+    {
+      "threshold": 0.4,
+      "answerable_availability": 0.975,
+      "answerable_refusals": 1,
+      "out_of_scope_refusals": 10,
+      "out_of_scope_pass": 0,
+      "refusal_precision": 0.9091,
+      "refusal_recall": 1.0
+    },
+    {
+      "threshold": 0.45,
+      "answerable_availability": 0.875,
+      "answerable_refusals": 5,
+      "out_of_scope_refusals": 10,
+      "out_of_scope_pass": 0,
+      "refusal_precision": 0.6667,
+      "refusal_recall": 1.0
+    },
+    {
+      "threshold": 0.5,
+      "answerable_availability": 0.725,
+      "answerable_refusals": 11,
+      "out_of_scope_refusals": 10,
+      "out_of_scope_pass": 0,
+      "refusal_precision": 0.4762,
+      "refusal_recall": 1.0
+    },
+    {
+      "threshold": 0.55,
+      "answerable_availability": 0.475,
+      "answerable_refusals": 21,
+      "out_of_scope_refusals": 10,
+      "out_of_scope_pass": 0,
+      "refusal_precision": 0.3226,
+      "refusal_recall": 1.0
+    },
+    {
+      "threshold": 0.6,
+      "answerable_availability": 0.175,
+      "answerable_refusals": 33,
+      "out_of_scope_refusals": 10,
+      "out_of_scope_pass": 0,
+      "refusal_precision": 0.2326,
+      "refusal_recall": 1.0
+    }
+  ],
+  "findings": {
+    "at_threshold_0_40": {
+      "out_of_scope_refusal_rate": "100.0% (10/10 out-of-scope queries refused)",
+      "answerable_false_refusals": "1 query falsely refused (2.5% false refusal rate)",
+      "answerable_availability": "97.5% (39/40 answerable queries passed to retriever)"
+    },
+    "abstention_behavior": "At threshold 0.40, all 10 out-of-scope questions score < 0.40 cosine similarity against the corpus chunks, yielding 10/10 correct refusals. 1 answerable query (EVAL-035) has top similarity 0.384, resulting in a false refusal.",
+    "threshold_disclosure": "Threshold 0.40 was identified as the optimal exploratory operating point in Phase E and confirmed in Phase H. The Phase H report accurately reports 10/10 OOS questions correctly handled, but omitted noting that 1 answerable question is gated out at 0.40."
+  },
+  "verdict": "ACCURATELY_EVALUATED_WITH_DISCLOSED_THRESHOLD"
+}

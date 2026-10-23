@@ -1,0 +1,16 @@
+# Local raw downloads and temporary cache
+raw_downloads/
+*.tmp
+*.log
+cache/
+
+# Execution outputs and run metrics (except structural .gitkeep)
+results/*
+!results/.gitkeep
+
+# Environment files and credentials
+.env.scipaper
+.env.scipaper.local
+.env.scipaper.*.local
+!.env.scipaper.example
+

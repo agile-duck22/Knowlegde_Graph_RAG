@@ -1,0 +1,263 @@
+{
+  "document_id": "paper-arxiv-2411.18583",
+  "title": "Automated Literature Review Using NLP Techniques and LLM-Based Retrieval-Augmented Generation",
+  "timestamp": "2026-10-23T10:10:36.536362+00:00",
+  "chunk_ids": [
+    "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+    "d55eb84a-1e7d-5d8b-9f4f-192c731940ee",
+    "16344bbf-6d04-5f0e-8c48-06166d96a98a",
+    "bfee6412-060c-5026-aa8c-ff369d74bb7a"
+  ],
+  "total_entities_extracted": 32,
+  "unique_entities_count": 13,
+  "total_relationships_extracted": 23,
+  "unique_relationships_count": 23,
+  "existing_nodes_in_neo4j": 13,
+  "proposed_new_nodes": 0,
+  "existing_rels_in_neo4j": 23,
+  "proposed_new_rels": 0,
+  "proposed_entities": [
+    {
+      "canonical_id": "author:md.-mahdi-mohtasim",
+      "entity_type": "Author",
+      "name": "Md. Mahdi Mohtasim",
+      "status": "already_exists"
+    },
+    {
+      "canonical_id": "author:nurshat-fateh-ali",
+      "entity_type": "Author",
+      "name": "Nurshat Fateh Ali",
+      "status": "already_exists"
+    },
+    {
+      "canonical_id": "author:shakil-mosharrof",
+      "entity_type": "Author",
+      "name": "Shakil Mosharrof",
+      "status": "already_exists"
+    },
+    {
+      "canonical_id": "author:t.-gopi-krishna",
+      "entity_type": "Author",
+      "name": "T. Gopi Krishna",
+      "status": "already_exists"
+    },
+    {
+      "canonical_id": "dataset:scitldr",
+      "entity_type": "Dataset",
+      "name": "SciTLDR",
+      "status": "already_exists"
+    },
+    {
+      "canonical_id": "method:nlp",
+      "entity_type": "Method",
+      "name": "Natural Language Processing",
+      "status": "already_exists"
+    },
+    {
+      "canonical_id": "method:retrieval-augmented-generation",
+      "entity_type": "Method",
+      "name": "Retrieval-Augmented Generation",
+      "status": "already_exists"
+    },
+    {
+      "canonical_id": "metric:rouge",
+      "entity_type": "Metric",
+      "name": "ROUGE",
+      "status": "already_exists"
+    },
+    {
+      "canonical_id": "model:gpt-3.5",
+      "entity_type": "Model",
+      "name": "GPT-3.5",
+      "status": "already_exists"
+    },
+    {
+      "canonical_id": "model:t5",
+      "entity_type": "Model",
+      "name": "T5",
+      "status": "already_exists"
+    },
+    {
+      "canonical_id": "org:arxiv",
+      "entity_type": "ResearchOrganization",
+      "name": "arXiv",
+      "status": "already_exists"
+    },
+    {
+      "canonical_id": "paper:arxiv-2411.18583",
+      "entity_type": "Paper",
+      "name": "paper-arxiv-2411.18583",
+      "status": "already_exists"
+    },
+    {
+      "canonical_id": "task:literature-review-generation",
+      "entity_type": "Task",
+      "name": "Literature Review Generation",
+      "status": "already_exists"
+    }
+  ],
+  "proposed_relationships": [
+    {
+      "source_id": "author:md.-mahdi-mohtasim",
+      "relation_type": "AUTHORED",
+      "target_id": "paper:arxiv-2411.18583",
+      "provenance_chunk_id": "16344bbf-6d04-5f0e-8c48-06166d96a98a",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "author:md.-mahdi-mohtasim",
+      "relation_type": "AUTHORED",
+      "target_id": "paper:arxiv-2411.18583",
+      "provenance_chunk_id": "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "author:md.-mahdi-mohtasim",
+      "relation_type": "AUTHORED",
+      "target_id": "paper:arxiv-2411.18583",
+      "provenance_chunk_id": "bfee6412-060c-5026-aa8c-ff369d74bb7a",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "author:md.-mahdi-mohtasim",
+      "relation_type": "AUTHORED",
+      "target_id": "paper:arxiv-2411.18583",
+      "provenance_chunk_id": "d55eb84a-1e7d-5d8b-9f4f-192c731940ee",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "author:nurshat-fateh-ali",
+      "relation_type": "AUTHORED",
+      "target_id": "paper:arxiv-2411.18583",
+      "provenance_chunk_id": "16344bbf-6d04-5f0e-8c48-06166d96a98a",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "author:nurshat-fateh-ali",
+      "relation_type": "AUTHORED",
+      "target_id": "paper:arxiv-2411.18583",
+      "provenance_chunk_id": "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "author:nurshat-fateh-ali",
+      "relation_type": "AUTHORED",
+      "target_id": "paper:arxiv-2411.18583",
+      "provenance_chunk_id": "bfee6412-060c-5026-aa8c-ff369d74bb7a",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "author:nurshat-fateh-ali",
+      "relation_type": "AUTHORED",
+      "target_id": "paper:arxiv-2411.18583",
+      "provenance_chunk_id": "d55eb84a-1e7d-5d8b-9f4f-192c731940ee",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "author:shakil-mosharrof",
+      "relation_type": "AUTHORED",
+      "target_id": "paper:arxiv-2411.18583",
+      "provenance_chunk_id": "16344bbf-6d04-5f0e-8c48-06166d96a98a",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "author:shakil-mosharrof",
+      "relation_type": "AUTHORED",
+      "target_id": "paper:arxiv-2411.18583",
+      "provenance_chunk_id": "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "author:shakil-mosharrof",
+      "relation_type": "AUTHORED",
+      "target_id": "paper:arxiv-2411.18583",
+      "provenance_chunk_id": "bfee6412-060c-5026-aa8c-ff369d74bb7a",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "author:shakil-mosharrof",
+      "relation_type": "AUTHORED",
+      "target_id": "paper:arxiv-2411.18583",
+      "provenance_chunk_id": "d55eb84a-1e7d-5d8b-9f4f-192c731940ee",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "author:t.-gopi-krishna",
+      "relation_type": "AUTHORED",
+      "target_id": "paper:arxiv-2411.18583",
+      "provenance_chunk_id": "16344bbf-6d04-5f0e-8c48-06166d96a98a",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "author:t.-gopi-krishna",
+      "relation_type": "AUTHORED",
+      "target_id": "paper:arxiv-2411.18583",
+      "provenance_chunk_id": "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "author:t.-gopi-krishna",
+      "relation_type": "AUTHORED",
+      "target_id": "paper:arxiv-2411.18583",
+      "provenance_chunk_id": "bfee6412-060c-5026-aa8c-ff369d74bb7a",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "author:t.-gopi-krishna",
+      "relation_type": "AUTHORED",
+      "target_id": "paper:arxiv-2411.18583",
+      "provenance_chunk_id": "d55eb84a-1e7d-5d8b-9f4f-192c731940ee",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "paper:arxiv-2411.18583",
+      "relation_type": "EVALUATED_ON",
+      "target_id": "dataset:scitldr",
+      "provenance_chunk_id": "16344bbf-6d04-5f0e-8c48-06166d96a98a",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "paper:arxiv-2411.18583",
+      "relation_type": "REPORTS_METRIC",
+      "target_id": "metric:rouge",
+      "provenance_chunk_id": "16344bbf-6d04-5f0e-8c48-06166d96a98a",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "paper:arxiv-2411.18583",
+      "relation_type": "REPORTS_METRIC",
+      "target_id": "metric:rouge",
+      "provenance_chunk_id": "bfee6412-060c-5026-aa8c-ff369d74bb7a",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "paper:arxiv-2411.18583",
+      "relation_type": "USES_METHOD",
+      "target_id": "method:nlp",
+      "provenance_chunk_id": "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "paper:arxiv-2411.18583",
+      "relation_type": "USES_METHOD",
+      "target_id": "method:nlp",
+      "provenance_chunk_id": "d55eb84a-1e7d-5d8b-9f4f-192c731940ee",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "paper:arxiv-2411.18583",
+      "relation_type": "USES_METHOD",
+      "target_id": "method:retrieval-augmented-generation",
+      "provenance_chunk_id": "16344bbf-6d04-5f0e-8c48-06166d96a98a",
+      "status": "already_exists"
+    },
+    {
+      "source_id": "paper:arxiv-2411.18583",
+      "relation_type": "USES_METHOD",
+      "target_id": "method:retrieval-augmented-generation",
+      "provenance_chunk_id": "be7ff9bf-3730-57d7-a2d6-fc30758eb313",
+      "status": "already_exists"
+    }
+  ],
+  "postgres_chunks_verified": true
+}

@@ -1,0 +1,19 @@
+{
+  "audit_phase": "Phase J \u2014 Claim-to-Evidence Grounding Metrics",
+  "total_factual_claims_evaluated": 120,
+  "supported_claims": 120,
+  "partially_supported_claims": 0,
+  "unsupported_claims": 0,
+  "claim_grounding_coverage_rate": 1.0,
+  "unsupported_claim_rate": 0.0,
+  "answer_grounding_breakdown_answerable_questions": {
+    "fully_grounded": 40,
+    "partially_grounded": 0,
+    "ungrounded": 0,
+    "grounded_answer_rate": 1.0
+  },
+  "definitions": {
+    "supported_claims": "Claims whose exact quote or substring appears in the cited chunk content.",
+    "unsupported_claim_rate": "Ratio of claims with invalid chunk IDs or quotes not grounded in chunk text."
+  }
+}

@@ -1,0 +1,56 @@
+======================================================================
+PHASE I STATIC ANALYSIS AND TEST VERIFICATION RESULTS
+Date: 2026-10-23
+Environment: Isolated SciPaper Virtual Environment (.venv, Python 3.12.10)
+======================================================================
+
+1. PYTEST TEST SUITE
+Command: python -m pytest experiments/scipaper/tests/ -v
+Exit Code: 0
+Summary: 66 passed in 15.14s
+
+Test Breakdown:
+- experiments/scipaper/tests/test_batch_coordinator.py (6 passed)
+  - test_coordinator_success_flow PASSED
+  - test_coordinator_pg_failure_injection PASSED
+  - test_coordinator_neo4j_failure_injection_and_reconciliation PASSED
+  - test_coordinator_invalid_embedding_dimension_rejected PASSED
+  - test_coordinator_nan_embedding_rejected PASSED
+  - test_coordinator_batch_limit_enforced PASSED
+- experiments/scipaper/tests/test_evaluation.py (6 passed)
+  - test_metric_calculation_exact_hit_rank_1 PASSED
+  - test_metric_calculation_multiple_gold_chunks PASSED
+  - test_metric_calculation_zero_hits PASSED
+  - test_aggregate_metrics_excludes_out_of_scope PASSED
+  - test_per_category_metrics_computation PASSED
+  - test_validate_benchmark_detects_missing_chunks PASSED
+- experiments/scipaper/tests/test_ingest_adapter.py (19 passed)
+  - Target safety guards, neo4j port guards (5432/7687 reject), scientific ontology
+- experiments/scipaper/tests/test_offline_extractor.py (7 passed)
+  - Metadata extraction, evidence-backed entity & relationship detection, proposes pattern, deterministic extraction
+- experiments/scipaper/tests/test_phase_e.py (6 passed)
+  - Cypher templates catalog, target guards, graph retriever, hybrid RRF, local abstention
+- experiments/scipaper/tests/test_phase_g_dry_run.py (1 passed)
+  - Dry run zero-write verification
+- experiments/scipaper/tests/test_phase_h_coordinator.py (1 passed)
+  - Checkpoint creation, deterministic resume, batch validation
+- experiments/scipaper/tests/test_preflight.py (13 passed)
+  - Compose validation, port rejection (5432/7687), paid embeddings rejection, environment parsing isolation
+- experiments/scipaper/tests/test_validation.py (7 passed)
+  - Scientific paper schemas, document hash validation, category balance, live fixture tests
+
+2. RUFF LINTING
+Command: python -m ruff check experiments/scipaper
+Exit Code: 0
+Output: All checks passed!
+
+3. RUFF FORMATTING
+Command: python -m ruff format --check experiments/scipaper
+Exit Code: 0
+Output: 58 files already formatted
+
+4. MYPY TYPE CHECKING
+Command: python -m mypy experiments/scipaper
+Exit Code: 0
+Output: Success: no issues found in 46 source files
+======================================================================

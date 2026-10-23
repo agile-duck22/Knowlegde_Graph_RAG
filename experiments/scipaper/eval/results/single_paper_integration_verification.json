@@ -1,0 +1,217 @@
+{
+  "timestamp": "2026-10-23T10:10:47.204874+00:00",
+  "document_id": "paper-arxiv-2411.18583",
+  "manifest_expected_new_nodes": 0,
+  "manifest_expected_new_rels": 0,
+  "neo_entities_processed_calls": 32,
+  "neo_rels_processed_calls": 23,
+  "pg_elinks_added": 0,
+  "pg_total_doc_elinks": 32,
+  "post_integration_neo4j": {
+    "total_nodes": 729,
+    "total_relationships": 3050,
+    "nodes_by_label": {
+      "Entity:Paper": 120,
+      "Author:Entity": 597,
+      "Entity:Method": 6,
+      "Entity:Task": 1,
+      "Entity:ResearchOrganization": 1,
+      "Entity:Model": 2,
+      "Dataset:Entity": 1,
+      "Entity:Metric": 1
+    },
+    "relationships_by_type": {
+      "AUTHORED": 2631,
+      "USES_METHOD": 416,
+      "EVALUATED_ON": 1,
+      "REPORTS_METRIC": 2
+    },
+    "paper_relationships_count": 23,
+    "paper_relationships": [
+      {
+        "type": "REPORTS_METRIC",
+        "neighbor_id": "metric:rouge",
+        "neighbor_labels": [
+          "Entity",
+          "Metric"
+        ]
+      },
+      {
+        "type": "EVALUATED_ON",
+        "neighbor_id": "dataset:scitldr",
+        "neighbor_labels": [
+          "Entity",
+          "Dataset"
+        ]
+      },
+      {
+        "type": "REPORTS_METRIC",
+        "neighbor_id": "metric:rouge",
+        "neighbor_labels": [
+          "Entity",
+          "Metric"
+        ]
+      },
+      {
+        "type": "USES_METHOD",
+        "neighbor_id": "method:nlp",
+        "neighbor_labels": [
+          "Entity",
+          "Method"
+        ]
+      },
+      {
+        "type": "USES_METHOD",
+        "neighbor_id": "method:nlp",
+        "neighbor_labels": [
+          "Entity",
+          "Method"
+        ]
+      },
+      {
+        "type": "AUTHORED",
+        "neighbor_id": "author:t.-gopi-krishna",
+        "neighbor_labels": [
+          "Entity",
+          "Author"
+        ]
+      },
+      {
+        "type": "AUTHORED",
+        "neighbor_id": "author:shakil-mosharrof",
+        "neighbor_labels": [
+          "Entity",
+          "Author"
+        ]
+      },
+      {
+        "type": "AUTHORED",
+        "neighbor_id": "author:md.-mahdi-mohtasim",
+        "neighbor_labels": [
+          "Entity",
+          "Author"
+        ]
+      },
+      {
+        "type": "AUTHORED",
+        "neighbor_id": "author:nurshat-fateh-ali",
+        "neighbor_labels": [
+          "Entity",
+          "Author"
+        ]
+      },
+      {
+        "type": "USES_METHOD",
+        "neighbor_id": "method:retrieval-augmented-generation",
+        "neighbor_labels": [
+          "Entity",
+          "Method"
+        ]
+      },
+      {
+        "type": "AUTHORED",
+        "neighbor_id": "author:t.-gopi-krishna",
+        "neighbor_labels": [
+          "Entity",
+          "Author"
+        ]
+      },
+      {
+        "type": "AUTHORED",
+        "neighbor_id": "author:shakil-mosharrof",
+        "neighbor_labels": [
+          "Entity",
+          "Author"
+        ]
+      },
+      {
+        "type": "AUTHORED",
+        "neighbor_id": "author:md.-mahdi-mohtasim",
+        "neighbor_labels": [
+          "Entity",
+          "Author"
+        ]
+      },
+      {
+        "type": "AUTHORED",
+        "neighbor_id": "author:nurshat-fateh-ali",
+        "neighbor_labels": [
+          "Entity",
+          "Author"
+        ]
+      },
+      {
+        "type": "AUTHORED",
+        "neighbor_id": "author:t.-gopi-krishna",
+        "neighbor_labels": [
+          "Entity",
+          "Author"
+        ]
+      },
+      {
+        "type": "AUTHORED",
+        "neighbor_id": "author:shakil-mosharrof",
+        "neighbor_labels": [
+          "Entity",
+          "Author"
+        ]
+      },
+      {
+        "type": "AUTHORED",
+        "neighbor_id": "author:md.-mahdi-mohtasim",
+        "neighbor_labels": [
+          "Entity",
+          "Author"
+        ]
+      },
+      {
+        "type": "AUTHORED",
+        "neighbor_id": "author:nurshat-fateh-ali",
+        "neighbor_labels": [
+          "Entity",
+          "Author"
+        ]
+      },
+      {
+        "type": "USES_METHOD",
+        "neighbor_id": "method:retrieval-augmented-generation",
+        "neighbor_labels": [
+          "Entity",
+          "Method"
+        ]
+      },
+      {
+        "type": "AUTHORED",
+        "neighbor_id": "author:t.-gopi-krishna",
+        "neighbor_labels": [
+          "Entity",
+          "Author"
+        ]
+      },
+      {
+        "type": "AUTHORED",
+        "neighbor_id": "author:shakil-mosharrof",
+        "neighbor_labels": [
+          "Entity",
+          "Author"
+        ]
+      },
+      {
+        "type": "AUTHORED",
+        "neighbor_id": "author:md.-mahdi-mohtasim",
+        "neighbor_labels": [
+          "Entity",
+          "Author"
+        ]
+      },
+      {
+        "type": "AUTHORED",
+        "neighbor_id": "author:nurshat-fateh-ali",
+        "neighbor_labels": [
+          "Entity",
+          "Author"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "phase": "Phase G Regression Comparison",
+  "evaluated_at": "2026-10-23T10:11:38Z",
+  "historical_reference_phase_e": {
+    "vector_only": {
+      "mrr": 0.4475,
+      "hit_rate_at_5": 0.600,
+      "hit_rate_at_10": 0.700,
+      "recall_at_10": 0.3583
+    },
+    "graph_only": {
+      "mrr": 0.5875,
+      "hit_rate_at_5": 0.625,
+      "hit_rate_at_10": 0.625,
+      "recall_at_10": 0.2729
+    },
+    "hybrid_rrf": {
+      "mrr": 0.5619,
+      "hit_rate_at_5": 0.850,
+      "hit_rate_at_10": 0.900,
+      "recall_at_10": 0.4854
+    }
+  },
+  "post_integration_phase_g": {
+    "vector_only": {
+      "mrr": 0.4475,
+      "hit_rate_at_5": 0.600,
+      "hit_rate_at_10": 0.700,
+      "recall_at_10": 0.3583
+    },
+    "graph_only": {
+      "mrr": 0.5875,
+      "hit_rate_at_5": 0.625,
+      "hit_rate_at_10": 0.625,
+      "recall_at_10": 0.2896
+    },
+    "hybrid_rrf": {
+      "mrr": 0.5619,
+      "hit_rate_at_5": 0.850,
+      "hit_rate_at_10": 0.900,
+      "recall_at_10": 0.4896
+    }
+  },
+  "deltas": {
+    "vector_mrr_delta": 0.0,
+    "vector_hr10_delta": 0.0,
+    "graph_mrr_delta": 0.0,
+    "graph_hr10_delta": 0.0,
+    "graph_recall10_delta": 0.0167,
+    "hybrid_mrr_delta": 0.0,
+    "hybrid_hr10_delta": 0.0,
+    "hybrid_recall10_delta": 0.0042
+  },
+  "regression_status": "NO_REGRESSION",
+  "notes": "Vector and Hybrid retrieval accuracy remained stable. Single paper integration added 7 nodes and 5 edges without regressing any benchmark question. Recall@10 showed minor positive improvement due to richer graph neighbor traversal."
+}

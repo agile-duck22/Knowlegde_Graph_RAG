@@ -1,0 +1,50 @@
+======================================================================
+PHASE J.1 ADVERSARIAL GROUNDING AUDIT STATIC ANALYSIS & TEST RESULTS
+Date: 2026-10-23
+Environment: Isolated SciPaper Virtual Environment (.venv, Python 3.12.10)
+======================================================================
+
+1. PYTEST TEST SUITE
+Command: python -m pytest experiments/scipaper/tests/ -v
+Exit Code: 0
+Summary: 88 passed in 26.49s (0 failures)
+
+Test Breakdown:
+- experiments/scipaper/tests/test_phase_j1_adversarial.py (11 passed)
+  - test_real_chunk_with_false_title PASSED
+  - test_real_chunk_wrong_parent_doc PASSED
+  - test_valid_quote_unsupported_inference PASSED
+  - test_fabricated_quote PASSED
+  - test_quote_omits_negation_vulnerability PASSED
+  - test_unrelated_verbatim_sentence PASSED
+  - test_multiple_claims_sharing_one_citation PASSED
+  - test_missing_citation_for_claim PASSED
+  - test_citation_to_nonexistent_chunk PASSED
+  - test_comparison_one_side_only PASSED
+  - test_conflicting_claims_across_chunks PASSED
+- experiments/scipaper/tests/test_phase_j_synthesis.py (11 passed)
+- experiments/scipaper/tests/test_batch_coordinator.py (6 passed)
+- experiments/scipaper/tests/test_evaluation.py (6 passed)
+- experiments/scipaper/tests/test_ingest_adapter.py (19 passed)
+- experiments/scipaper/tests/test_offline_extractor.py (7 passed)
+- experiments/scipaper/tests/test_phase_e.py (6 passed)
+- experiments/scipaper/tests/test_phase_g_dry_run.py (1 passed)
+- experiments/scipaper/tests/test_phase_h_coordinator.py (1 passed)
+- experiments/scipaper/tests/test_preflight.py (13 passed)
+- experiments/scipaper/tests/test_validation.py (7 passed)
+
+2. RUFF LINTING
+Command: python -m ruff check experiments/scipaper
+Exit Code: 0
+Output: All checks passed!
+
+3. RUFF FORMATTING
+Command: python -m ruff format --check experiments/scipaper
+Exit Code: 0
+Output: 67 files already formatted
+
+4. MYPY TYPE CHECKING
+Command: python -m mypy experiments/scipaper
+Exit Code: 0
+Output: Success: no issues found in 53 source files
+======================================================================

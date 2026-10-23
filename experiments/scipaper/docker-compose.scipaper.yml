@@ -1,0 +1,65 @@
+# Isolated Docker Compose configuration for the Scientific-Paper RAG Experiment
+# Completely isolated from enterprise storage infrastructure:
+# - Distinct ports: PostgreSQL (5433), Neo4j HTTP (7475), Neo4j Bolt (7688)
+# - Distinct container names: kgr-scipaper-postgres, kgr-scipaper-neo4j
+# - Distinct volumes: kgr_scipaper_pgdata, kgr_scipaper_neo4jdata
+# - Distinct bridge network: kgr-scipaper-net
+#
+# NOTE: Never run or start this stack using default enterprise environment variables.
+# Usage requires specifying the isolated env file:
+#   docker compose -f experiments/scipaper/docker-compose.scipaper.yml --env-file experiments/scipaper/.env.scipaper up -d
+
+services:
+  scipaper-postgres:
+    image: pgvector/pgvector:pg16
+    container_name: kgr-scipaper-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-scipaper_db}
+      POSTGRES_USER: ${POSTGRES_USER:-scipaper_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set in .env.scipaper}
+    ports:
+      - "127.0.0.1:5433:5432"
+    volumes:
+      - kgr_scipaper_pgdata:/var/lib/postgresql/data
+    networks:
+      - kgr-scipaper-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-scipaper_user} -d $${POSTGRES_DB:-scipaper_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+  scipaper-neo4j:
+    image: neo4j:5.18-community
+    container_name: kgr-scipaper-neo4j
+    restart: unless-stopped
+    environment:
+      NEO4J_AUTH: neo4j/${NEO4J_PASSWORD:?NEO4J_PASSWORD must be set in .env.scipaper}
+      NEO4J_PLUGINS: '["apoc"]'
+      NEO4J_dbms_memory_heap_initial__size: 512m
+      NEO4J_dbms_memory_heap_max__size: 1G
+    ports:
+      - "127.0.0.1:7475:7474" # HTTP Browser UI (Localhost only)
+      - "127.0.0.1:7688:7687" # Bolt Protocol (Localhost only)
+    volumes:
+      - kgr_scipaper_neo4jdata:/data
+    networks:
+      - kgr-scipaper-net
+    healthcheck:
+      test: ["CMD-SHELL", "cypher-shell -u neo4j -p ${NEO4J_PASSWORD} 'RETURN 1'"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 15s
+
+volumes:
+  kgr_scipaper_pgdata:
+    name: kgr_scipaper_pgdata
+  kgr_scipaper_neo4jdata:
+    name: kgr_scipaper_neo4jdata
+
+networks:
+  kgr-scipaper-net:
+    name: kgr-scipaper-net

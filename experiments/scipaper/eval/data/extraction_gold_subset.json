@@ -1,0 +1,241 @@
+{
+  "description": "Gold annotations for Phase F scientific extraction evaluation across 10 diverse papers",
+  "papers": [
+    {
+      "document_id": "paper-arxiv-2411.18583",
+      "gold_entities": [
+        {"entity_type": "Paper", "canonical_id": "paper:arxiv-2411.18583", "name": "Automated Literature Review Using NLP Techniques and LLM-Based Retrieval-Augmented Generation"},
+        {"entity_type": "Author", "canonical_id": "author:nurshat-fateh-ali", "name": "Nurshat Fateh Ali"},
+        {"entity_type": "Author", "canonical_id": "author:md.-mahdi-mohtasim", "name": "Md. Mahdi Mohtasim"},
+        {"entity_type": "Author", "canonical_id": "author:shakil-mosharrof", "name": "Shakil Mosharrof"},
+        {"entity_type": "Author", "canonical_id": "author:t.-gopi-krishna", "name": "T. Gopi Krishna"},
+        {"entity_type": "Method", "canonical_id": "method:retrieval-augmented-generation", "name": "Retrieval-Augmented Generation"},
+        {"entity_type": "Method", "canonical_id": "method:natural-language-processing", "name": "Natural Language Processing"},
+        {"entity_type": "Model", "canonical_id": "model:gpt-3.5-turbo", "name": "GPT-3.5-turbo"},
+        {"entity_type": "Model", "canonical_id": "model:t5", "name": "T5"},
+        {"entity_type": "Dataset", "canonical_id": "dataset:scitldr", "name": "SciTLDR"},
+        {"entity_type": "Metric", "canonical_id": "metric:rouge", "name": "ROUGE"}
+      ],
+      "gold_relationships": [
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:nurshat-fateh-ali", "target_canonical_id": "paper:arxiv-2411.18583"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:md.-mahdi-mohtasim", "target_canonical_id": "paper:arxiv-2411.18583"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:shakil-mosharrof", "target_canonical_id": "paper:arxiv-2411.18583"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:t.-gopi-krishna", "target_canonical_id": "paper:arxiv-2411.18583"},
+        {"relation_type": "USES_METHOD", "source_canonical_id": "paper:arxiv-2411.18583", "target_canonical_id": "method:retrieval-augmented-generation"},
+        {"relation_type": "USES_METHOD", "source_canonical_id": "paper:arxiv-2411.18583", "target_canonical_id": "method:natural-language-processing"},
+        {"relation_type": "EVALUATED_ON", "source_canonical_id": "paper:arxiv-2411.18583", "target_canonical_id": "dataset:scitldr"},
+        {"relation_type": "REPORTS_METRIC", "source_canonical_id": "paper:arxiv-2411.18583", "target_canonical_id": "metric:rouge"}
+      ]
+    },
+    {
+      "document_id": "paper-arxiv-2502.00306",
+      "gold_entities": [
+        {"entity_type": "Paper", "canonical_id": "paper:arxiv-2502.00306", "name": "Riddle Me This! Stealthy Membership Inference for Retrieval-Augmented Generation"},
+        {"entity_type": "Author", "canonical_id": "author:ali-naseh", "name": "Ali Naseh"},
+        {"entity_type": "Author", "canonical_id": "author:yuefeng-peng", "name": "Yuefeng Peng"},
+        {"entity_type": "Author", "canonical_id": "author:anshuman-suri", "name": "Anshuman Suri"},
+        {"entity_type": "Author", "canonical_id": "author:harsh-chaudhari", "name": "Harsh Chaudhari"},
+        {"entity_type": "Author", "canonical_id": "author:alina-oprea", "name": "Alina Oprea"},
+        {"entity_type": "Author", "canonical_id": "author:amir-houmansadr", "name": "Amir Houmansadr"},
+        {"entity_type": "Method", "canonical_id": "method:retrieval-augmented-generation", "name": "Retrieval-Augmented Generation"}
+      ],
+      "gold_relationships": [
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:ali-naseh", "target_canonical_id": "paper:arxiv-2502.00306"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:yuefeng-peng", "target_canonical_id": "paper:arxiv-2502.00306"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:anshuman-suri", "target_canonical_id": "paper:arxiv-2502.00306"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:harsh-chaudhari", "target_canonical_id": "paper:arxiv-2502.00306"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:alina-oprea", "target_canonical_id": "paper:arxiv-2502.00306"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:amir-houmansadr", "target_canonical_id": "paper:arxiv-2502.00306"},
+        {"relation_type": "USES_METHOD", "source_canonical_id": "paper:arxiv-2502.00306", "target_canonical_id": "method:retrieval-augmented-generation"}
+      ]
+    },
+    {
+      "document_id": "paper-arxiv-2507.23334",
+      "gold_entities": [
+        {"entity_type": "Paper", "canonical_id": "paper:arxiv-2507.23334", "name": "MUST-RAG: MUSical Text Question Answering with Retrieval Augmented Generation"},
+        {"entity_type": "Author", "canonical_id": "author:daeyong-kwon", "name": "Daeyong Kwon"},
+        {"entity_type": "Author", "canonical_id": "author:seungheon-doh", "name": "SeungHeon Doh"},
+        {"entity_type": "Author", "canonical_id": "author:juhan-nam", "name": "Juhan Nam"},
+        {"entity_type": "Method", "canonical_id": "method:retrieval-augmented-generation", "name": "Retrieval-Augmented Generation"},
+        {"entity_type": "Task", "canonical_id": "task:question-answering", "name": "Question Answering"}
+      ],
+      "gold_relationships": [
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:daeyong-kwon", "target_canonical_id": "paper:arxiv-2507.23334"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:seungheon-doh", "target_canonical_id": "paper:arxiv-2507.23334"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:juhan-nam", "target_canonical_id": "paper:arxiv-2507.23334"},
+        {"relation_type": "USES_METHOD", "source_canonical_id": "paper:arxiv-2507.23334", "target_canonical_id": "method:retrieval-augmented-generation"}
+      ]
+    },
+    {
+      "document_id": "paper-arxiv-2510.22344",
+      "gold_entities": [
+        {"entity_type": "Paper", "canonical_id": "paper:arxiv-2510.22344", "name": "FAIR-RAG: Faithful Adaptive Iterative Refinement for Retrieval-Augmented Generation"},
+        {"entity_type": "Author", "canonical_id": "author:mohammad-aghajani-asl", "name": "Mohammad Aghajani Asl"},
+        {"entity_type": "Author", "canonical_id": "author:majid-asgari-bidhendi", "name": "Majid Asgari-Bidhendi"},
+        {"entity_type": "Author", "canonical_id": "author:behrooz-minaei-bidgoli", "name": "Behrooz Minaei-Bidgoli"},
+        {"entity_type": "Method", "canonical_id": "method:retrieval-augmented-generation", "name": "Retrieval-Augmented Generation"},
+        {"entity_type": "Dataset", "canonical_id": "dataset:hotpotqa", "name": "HotpotQA"},
+        {"entity_type": "Dataset", "canonical_id": "dataset:2wikimultihopqa", "name": "2WikiMultiHopQA"},
+        {"entity_type": "Dataset", "canonical_id": "dataset:musique", "name": "MusiQue"},
+        {"entity_type": "Metric", "canonical_id": "metric:f1-score", "name": "F1-Score"}
+      ],
+      "gold_relationships": [
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:mohammad-aghajani-asl", "target_canonical_id": "paper:arxiv-2510.22344"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:majid-asgari-bidhendi", "target_canonical_id": "paper:arxiv-2510.22344"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:behrooz-minaei-bidgoli", "target_canonical_id": "paper:arxiv-2510.22344"},
+        {"relation_type": "USES_METHOD", "source_canonical_id": "paper:arxiv-2510.22344", "target_canonical_id": "method:retrieval-augmented-generation"},
+        {"relation_type": "EVALUATED_ON", "source_canonical_id": "paper:arxiv-2510.22344", "target_canonical_id": "dataset:hotpotqa"},
+        {"relation_type": "EVALUATED_ON", "source_canonical_id": "paper:arxiv-2510.22344", "target_canonical_id": "dataset:2wikimultihopqa"},
+        {"relation_type": "EVALUATED_ON", "source_canonical_id": "paper:arxiv-2510.22344", "target_canonical_id": "dataset:musique"},
+        {"relation_type": "REPORTS_METRIC", "source_canonical_id": "paper:arxiv-2510.22344", "target_canonical_id": "metric:f1-score"}
+      ]
+    },
+    {
+      "document_id": "paper-arxiv-2503.16581",
+      "gold_entities": [
+        {"entity_type": "Paper", "canonical_id": "paper:arxiv-2503.16581", "name": "Investigating Retrieval-Augmented Generation in Quranic Studies: A Study of 13 Open-Source Large Language Models"},
+        {"entity_type": "Author", "canonical_id": "author:zahra-khalila", "name": "Zahra Khalila"},
+        {"entity_type": "Author", "canonical_id": "author:arbi-haza-nasution", "name": "Arbi Haza Nasution"},
+        {"entity_type": "Author", "canonical_id": "author:winda-monika", "name": "Winda Monika"},
+        {"entity_type": "Author", "canonical_id": "author:aytug-onan", "name": "Aytug Onan"},
+        {"entity_type": "Author", "canonical_id": "author:yohei-murakami", "name": "Yohei Murakami"},
+        {"entity_type": "Author", "canonical_id": "author:yasir-bin-ismail-radi", "name": "Yasir Bin Ismail Radi"},
+        {"entity_type": "Author", "canonical_id": "author:noor-mohammad-osmani", "name": "Noor Mohammad Osmani"},
+        {"entity_type": "Method", "canonical_id": "method:retrieval-augmented-generation", "name": "Retrieval-Augmented Generation"},
+        {"entity_type": "Model", "canonical_id": "model:llama-3", "name": "Llama 3"},
+        {"entity_type": "Model", "canonical_id": "model:gemma", "name": "Gemma"},
+        {"entity_type": "Model", "canonical_id": "model:phi-3", "name": "Phi-3"}
+      ],
+      "gold_relationships": [
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:zahra-khalila", "target_canonical_id": "paper:arxiv-2503.16581"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:arbi-haza-nasution", "target_canonical_id": "paper:arxiv-2503.16581"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:winda-monika", "target_canonical_id": "paper:arxiv-2503.16581"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:aytug-onan", "target_canonical_id": "paper:arxiv-2503.16581"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:yohei-murakami", "target_canonical_id": "paper:arxiv-2503.16581"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:yasir-bin-ismail-radi", "target_canonical_id": "paper:arxiv-2503.16581"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:noor-mohammad-osmani", "target_canonical_id": "paper:arxiv-2503.16581"},
+        {"relation_type": "USES_METHOD", "source_canonical_id": "paper:arxiv-2503.16581", "target_canonical_id": "method:retrieval-augmented-generation"}
+      ]
+    },
+    {
+      "document_id": "paper-arxiv-2609.29075",
+      "gold_entities": [
+        {"entity_type": "Paper", "canonical_id": "paper:arxiv-2609.29075", "name": "CRISS: A Retrieval-Augmented AI Chatbot for Assisting Cancer Registrars"},
+        {"entity_type": "Author", "canonical_id": "author:vani-seth", "name": "Vani Seth"},
+        {"entity_type": "Author", "canonical_id": "author:mohammad-beheshti", "name": "Mohammad Beheshti"},
+        {"entity_type": "Author", "canonical_id": "author:anirudh-kambhampati", "name": "Anirudh Kambhampati"},
+        {"entity_type": "Author", "canonical_id": "author:vishwa-bhayani", "name": "Vishwa Bhayani"},
+        {"entity_type": "Author", "canonical_id": "author:lucinda-ham", "name": "Lucinda Ham"},
+        {"entity_type": "Author", "canonical_id": "author:prasad-calyam", "name": "Prasad Calyam"},
+        {"entity_type": "Author", "canonical_id": "author:iris-zachary", "name": "Iris Zachary"},
+        {"entity_type": "Method", "canonical_id": "method:retrieval-augmented-generation", "name": "Retrieval-Augmented Generation"},
+        {"entity_type": "Method", "canonical_id": "method:dense-retrieval", "name": "Dense Retrieval"},
+        {"entity_type": "Model", "canonical_id": "model:gemini", "name": "Gemini"},
+        {"entity_type": "Model", "canonical_id": "model:gpt-4", "name": "GPT-4"}
+      ],
+      "gold_relationships": [
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:vani-seth", "target_canonical_id": "paper:arxiv-2609.29075"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:mohammad-beheshti", "target_canonical_id": "paper:arxiv-2609.29075"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:anirudh-kambhampati", "target_canonical_id": "paper:arxiv-2609.29075"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:vishwa-bhayani", "target_canonical_id": "paper:arxiv-2609.29075"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:lucinda-ham", "target_canonical_id": "paper:arxiv-2609.29075"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:prasad-calyam", "target_canonical_id": "paper:arxiv-2609.29075"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:iris-zachary", "target_canonical_id": "paper:arxiv-2609.29075"},
+        {"relation_type": "USES_METHOD", "source_canonical_id": "paper:arxiv-2609.29075", "target_canonical_id": "method:retrieval-augmented-generation"},
+        {"relation_type": "USES_METHOD", "source_canonical_id": "paper:arxiv-2609.29075", "target_canonical_id": "method:dense-retrieval"}
+      ]
+    },
+    {
+      "document_id": "paper-arxiv-2504.08748",
+      "gold_entities": [
+        {"entity_type": "Paper", "canonical_id": "paper:arxiv-2504.08748", "name": "A Survey of Multimodal Retrieval-Augmented Generation"},
+        {"entity_type": "Author", "canonical_id": "author:lang-mei", "name": "Lang Mei"},
+        {"entity_type": "Author", "canonical_id": "author:siyu-mo", "name": "Siyu Mo"},
+        {"entity_type": "Author", "canonical_id": "author:zhihan-yang", "name": "Zhihan Yang"},
+        {"entity_type": "Author", "canonical_id": "author:chong-chen", "name": "Chong Chen"},
+        {"entity_type": "Method", "canonical_id": "method:retrieval-augmented-generation", "name": "Retrieval-Augmented Generation"},
+        {"entity_type": "Task", "canonical_id": "task:question-answering", "name": "Question Answering"}
+      ],
+      "gold_relationships": [
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:lang-mei", "target_canonical_id": "paper:arxiv-2504.08748"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:siyu-mo", "target_canonical_id": "paper:arxiv-2504.08748"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:zhihan-yang", "target_canonical_id": "paper:arxiv-2504.08748"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:chong-chen", "target_canonical_id": "paper:arxiv-2504.08748"},
+        {"relation_type": "USES_METHOD", "source_canonical_id": "paper:arxiv-2504.08748", "target_canonical_id": "method:retrieval-augmented-generation"}
+      ]
+    },
+    {
+      "document_id": "paper-arxiv-2402.11794",
+      "gold_entities": [
+        {"entity_type": "Paper", "canonical_id": "paper:arxiv-2402.11794", "name": "Unveiling the Magic: Investigating Attention Distillation in Retrieval-augmented Generation"},
+        {"entity_type": "Author", "canonical_id": "author:zizhong-li", "name": "Zizhong Li"},
+        {"entity_type": "Author", "canonical_id": "author:haopeng-zhang", "name": "Haopeng Zhang"},
+        {"entity_type": "Author", "canonical_id": "author:jiawei-zhang", "name": "Jiawei Zhang"},
+        {"entity_type": "Method", "canonical_id": "method:retrieval-augmented-generation", "name": "Retrieval-Augmented Generation"}
+      ],
+      "gold_relationships": [
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:zizhong-li", "target_canonical_id": "paper:arxiv-2402.11794"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:haopeng-zhang", "target_canonical_id": "paper:arxiv-2402.11794"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:jiawei-zhang", "target_canonical_id": "paper:arxiv-2402.11794"},
+        {"relation_type": "USES_METHOD", "source_canonical_id": "paper:arxiv-2402.11794", "target_canonical_id": "method:retrieval-augmented-generation"}
+      ]
+    },
+    {
+      "document_id": "paper-arxiv-2402.11626",
+      "gold_entities": [
+        {"entity_type": "Paper", "canonical_id": "paper:arxiv-2402.11626", "name": "Metacognitive Retrieval-Augmented Large Language Models"},
+        {"entity_type": "Author", "canonical_id": "author:yujia-zhou", "name": "Yujia Zhou"},
+        {"entity_type": "Author", "canonical_id": "author:zheng-liu", "name": "Zheng Liu"},
+        {"entity_type": "Author", "canonical_id": "author:jiajie-jin", "name": "Jiajie Jin"},
+        {"entity_type": "Author", "canonical_id": "author:jian-yun-nie", "name": "Jian-Yun Nie"},
+        {"entity_type": "Author", "canonical_id": "author:zhicheng-dou", "name": "Zhicheng Dou"},
+        {"entity_type": "Method", "canonical_id": "method:retrieval-augmented-generation", "name": "Retrieval-Augmented Generation"},
+        {"entity_type": "Method", "canonical_id": "method:natural-language-processing", "name": "Natural Language Processing"},
+        {"entity_type": "Task", "canonical_id": "task:multi-hop-reasoning", "name": "Multi-hop Reasoning"}
+      ],
+      "gold_relationships": [
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:yujia-zhou", "target_canonical_id": "paper:arxiv-2402.11626"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:zheng-liu", "target_canonical_id": "paper:arxiv-2402.11626"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:jiajie-jin", "target_canonical_id": "paper:arxiv-2402.11626"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:jian-yun-nie", "target_canonical_id": "paper:arxiv-2402.11626"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:zhicheng-dou", "target_canonical_id": "paper:arxiv-2402.11626"},
+        {"relation_type": "USES_METHOD", "source_canonical_id": "paper:arxiv-2402.11626", "target_canonical_id": "method:retrieval-augmented-generation"},
+        {"relation_type": "USES_METHOD", "source_canonical_id": "paper:arxiv-2402.11626", "target_canonical_id": "method:natural-language-processing"}
+      ]
+    },
+    {
+      "document_id": "paper-arxiv-2506.21931",
+      "gold_entities": [
+        {"entity_type": "Paper", "canonical_id": "paper:arxiv-2506.21931", "name": "ARAG: Agentic Retrieval Augmented Generation for Personalized Recommendation"},
+        {"entity_type": "Author", "canonical_id": "author:reza-yousefi-maragheh", "name": "Reza Yousefi Maragheh"},
+        {"entity_type": "Author", "canonical_id": "author:pratheek-vadla", "name": "Pratheek Vadla"},
+        {"entity_type": "Author", "canonical_id": "author:priyank-gupta", "name": "Priyank Gupta"},
+        {"entity_type": "Author", "canonical_id": "author:kai-zhao", "name": "Kai Zhao"},
+        {"entity_type": "Author", "canonical_id": "author:aysenur-inan", "name": "Aysenur Inan"},
+        {"entity_type": "Author", "canonical_id": "author:kehui-yao", "name": "Kehui Yao"},
+        {"entity_type": "Author", "canonical_id": "author:jianpeng-xu", "name": "Jianpeng Xu"},
+        {"entity_type": "Author", "canonical_id": "author:praveen-kanumala", "name": "Praveen Kanumala"},
+        {"entity_type": "Author", "canonical_id": "author:jason-cho", "name": "Jason Cho"},
+        {"entity_type": "Author", "canonical_id": "author:sushant-kumar", "name": "Sushant Kumar"},
+        {"entity_type": "Method", "canonical_id": "method:retrieval-augmented-generation", "name": "Retrieval-Augmented Generation"},
+        {"entity_type": "Metric", "canonical_id": "metric:ndcg", "name": "NDCG"},
+        {"entity_type": "Metric", "canonical_id": "metric:hit-rate", "name": "Hit Rate"}
+      ],
+      "gold_relationships": [
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:reza-yousefi-maragheh", "target_canonical_id": "paper:arxiv-2506.21931"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:pratheek-vadla", "target_canonical_id": "paper:arxiv-2506.21931"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:priyank-gupta", "target_canonical_id": "paper:arxiv-2506.21931"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:kai-zhao", "target_canonical_id": "paper:arxiv-2506.21931"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:aysenur-inan", "target_canonical_id": "paper:arxiv-2506.21931"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:kehui-yao", "target_canonical_id": "paper:arxiv-2506.21931"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:jianpeng-xu", "target_canonical_id": "paper:arxiv-2506.21931"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:praveen-kanumala", "target_canonical_id": "paper:arxiv-2506.21931"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:jason-cho", "target_canonical_id": "paper:arxiv-2506.21931"},
+        {"relation_type": "AUTHORED", "source_canonical_id": "author:sushant-kumar", "target_canonical_id": "paper:arxiv-2506.21931"},
+        {"relation_type": "USES_METHOD", "source_canonical_id": "paper:arxiv-2506.21931", "target_canonical_id": "method:retrieval-augmented-generation"},
+        {"relation_type": "REPORTS_METRIC", "source_canonical_id": "paper:arxiv-2506.21931", "target_canonical_id": "metric:ndcg"},
+        {"relation_type": "REPORTS_METRIC", "source_canonical_id": "paper:arxiv-2506.21931", "target_canonical_id": "metric:hit-rate"}
+      ]
+    }
+  ]
+}

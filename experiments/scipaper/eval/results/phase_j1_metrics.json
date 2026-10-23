@@ -1,0 +1,36 @@
+{
+  "audit_phase": "Phase J.1 \u2014 Adversarial Grounding & Relevance Audit",
+  "total_benchmark_questions_reviewed": 50,
+  "out_of_scope_questions": {
+    "total": 10,
+    "correctly_refused": 10,
+    "refusal_accuracy": 1.0
+  },
+  "answerable_questions_audit": {
+    "total_answerable": 40,
+    "relevant_answers": 39,
+    "relevance_rate": 0.975,
+    "complete_answers": 33,
+    "completeness_rate": 0.825,
+    "verdict_breakdown": {
+      "ADEQUATE": 33,
+      "PARTIALLY_ADEQUATE (Relevant but incomplete/one-sided/truncated)": 6,
+      "DEFICIENT (Irrelevant or falsely attributed)": 1
+    }
+  },
+  "adversarial_claim_vulnerabilities": {
+    "total_adversarial_cases": 12,
+    "vulnerabilities_exposed_count": 3,
+    "key_vulnerabilities": [
+      "Verbatim related-work citations marked as paper contributions.",
+      "Mentioned but unused datasets marked as experimental benchmarks.",
+      "Unmeasured future metrics marked as evaluated results.",
+      "Extractive one-sided answers to comparative questions passing validation as 100% grounded.",
+      "Mutually conflicting quotes from different chunks passing without contradiction detection."
+    ]
+  },
+  "eval_035_case_study": {
+    "verdict": "PARTIALLY_ADEQUATE_ONE_SIDED",
+    "finding": "EVAL-035 was answered without vector-gate false refusal, but the answer covers only TagRAG and completely omits HetaRAG because HetaRAG chunks were not in the top-5 candidate window. The answer is 100% verbatim grounded to TagRAG, but incomplete with respect to the comparative question."
+  }
+}

@@ -1,0 +1,56 @@
+[
+  {
+    "threshold": 0.35,
+    "answerable_availability": 0.975,
+    "answerable_refusals": 1,
+    "out_of_scope_refusals": 9,
+    "out_of_scope_pass": 1,
+    "refusal_precision": 0.9,
+    "refusal_recall": 0.9
+  },
+  {
+    "threshold": 0.4,
+    "answerable_availability": 0.975,
+    "answerable_refusals": 1,
+    "out_of_scope_refusals": 10,
+    "out_of_scope_pass": 0,
+    "refusal_precision": 0.9091,
+    "refusal_recall": 1.0
+  },
+  {
+    "threshold": 0.45,
+    "answerable_availability": 0.875,
+    "answerable_refusals": 5,
+    "out_of_scope_refusals": 10,
+    "out_of_scope_pass": 0,
+    "refusal_precision": 0.6667,
+    "refusal_recall": 1.0
+  },
+  {
+    "threshold": 0.5,
+    "answerable_availability": 0.725,
+    "answerable_refusals": 11,
+    "out_of_scope_refusals": 10,
+    "out_of_scope_pass": 0,
+    "refusal_precision": 0.4762,
+    "refusal_recall": 1.0
+  },
+  {
+    "threshold": 0.55,
+    "answerable_availability": 0.475,
+    "answerable_refusals": 21,
+    "out_of_scope_refusals": 10,
+    "out_of_scope_pass": 0,
+    "refusal_precision": 0.3226,
+    "refusal_recall": 1.0
+  },
+  {
+    "threshold": 0.6,
+    "answerable_availability": 0.175,
+    "answerable_refusals": 33,
+    "out_of_scope_refusals": 10,
+    "out_of_scope_pass": 0,
+    "refusal_precision": 0.2326,
+    "refusal_recall": 1.0
+  }
+]

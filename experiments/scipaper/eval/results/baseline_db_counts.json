@@ -1,0 +1,24 @@
+{
+  "timestamp": "2026-10-23T10:03:15.383493+00:00",
+  "phase": "Phase G Baseline",
+  "postgresql": {
+    "documents": 120,
+    "chunks": 474,
+    "entity_links": 3519,
+    "embedding_384_count": 474,
+    "embedding_1536_count": 0
+  },
+  "neo4j": {
+    "total_nodes": 722,
+    "total_relationships": 3045,
+    "nodes_by_label": {
+      "Entity:Paper": 120,
+      "Author:Entity": 597,
+      "Entity:Method": 5
+    },
+    "relationships_by_type": {
+      "AUTHORED": 2631,
+      "USES_METHOD": 414
+    }
+  }
+}

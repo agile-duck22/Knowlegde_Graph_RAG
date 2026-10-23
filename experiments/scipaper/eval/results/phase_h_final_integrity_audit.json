@@ -1,0 +1,39 @@
+{
+  "timestamp": "2026-10-23T10:35:56.197581+00:00",
+  "phase": "Phase H Final Integrity Audit",
+  "postgresql_audit": {
+    "documents_count": 120,
+    "chunks_count": 474,
+    "entity_links_count": 4065,
+    "embedding_384_count": 474,
+    "embedding_1536_count": 0,
+    "orphaned_entity_links": 0,
+    "orphaned_chunks": 0,
+    "corpus_preserved": true
+  },
+  "neo4j_audit": {
+    "total_nodes": 819,
+    "total_relationships": 3384,
+    "paper_nodes_count": 120,
+    "nodes_by_label": {
+      "Entity:Paper": 120,
+      "Author:Entity": 597,
+      "Entity:Method": 56,
+      "Entity:Task": 8,
+      "Entity:ResearchOrganization": 5,
+      "Entity:Model": 11,
+      "Dataset:Entity": 10,
+      "Entity:Metric": 12
+    },
+    "relationships_by_type": {
+      "AUTHORED": 2631,
+      "USES_METHOD": 563,
+      "EVALUATED_ON": 34,
+      "REPORTS_METRIC": 116,
+      "PROPOSES": 40
+    },
+    "duplicate_canonical_ids": 0,
+    "orphan_relationships": 0,
+    "integrity_passed": true
+  }
+}

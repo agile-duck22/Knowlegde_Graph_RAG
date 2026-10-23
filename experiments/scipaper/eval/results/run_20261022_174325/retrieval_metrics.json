@@ -1,0 +1,18 @@
+{
+  "total_questions": 50,
+  "evaluated_questions": 40,
+  "mrr": 0.4475,
+  "hit_rate": {
+    "hit_rate@1": 0.325,
+    "hit_rate@3": 0.525,
+    "hit_rate@5": 0.6,
+    "hit_rate@10": 0.7
+  },
+  "recall": {
+    "recall@1": 0.0813,
+    "recall@3": 0.2125,
+    "recall@5": 0.2625,
+    "recall@10": 0.3583
+  },
+  "zero_result_queries": 0
+}

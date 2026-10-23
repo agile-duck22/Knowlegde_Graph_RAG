@@ -1,0 +1,17 @@
+{
+  "audit_phase": "Phase J \u2014 Abstention & Scope Refusal Metrics",
+  "out_of_scope_questions_count": 10,
+  "out_of_scope_correct_refusals": 10,
+  "out_of_scope_refusal_accuracy": 1.0,
+  "answerable_questions_count": 40,
+  "answerable_false_refusals": 0,
+  "answerable_false_refusal_rate": 0.0,
+  "answerable_availability": 1.0,
+  "eval_035_status": {
+    "question_id": "EVAL-035",
+    "category": "relationship_aggregation",
+    "retrieval_mode": "hybrid",
+    "abstained": false,
+    "explanation": "In hybrid retrieval mode, EVAL-035 leverages graph-retrieved chunk 2afccf33-fbd9-5443-b186-e8e107ce4979 and vector candidates, generating a grounded answer without false refusal under hybrid fusion."
+  }
+}

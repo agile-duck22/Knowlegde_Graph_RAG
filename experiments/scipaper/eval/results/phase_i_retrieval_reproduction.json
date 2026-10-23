@@ -1,0 +1,62 @@
+{
+  "audit_phase": "Phase I Audit D \u2014 Retrieval Benchmark Reproducibility",
+  "benchmark_file": "experiments/scipaper/eval/benchmark_scipaper_50.json",
+  "benchmark_sha256": "6a62c6819ba140748e067a3ebef7b32e54b268d981a71d492c10d9bf312f5bb5",
+  "total_benchmark_questions": 50,
+  "benchmark_categories": {
+    "single_hop_direct_fact": 10,
+    "2_hop_relationship": 10,
+    "3_hop_dependency": 10,
+    "relationship_aggregation": 10,
+    "out_of_scope": 10
+  },
+  "category_terminology_note": "Earlier documentation referred to 'relationship_aggregation', while Phase H narrative referred to 'cross_document_synthesis'. In benchmark_scipaper_50.json, the category field is literally named 'relationship_aggregation' containing multi-document comparative questions.",
+  "reported_vs_reproduced": {
+    "vector_only": {
+      "reported_phase_h": {
+        "mrr": 0.4475,
+        "hit_rate_at_5": 0.6,
+        "hit_rate_at_10": 0.7,
+        "recall_at_10": 0.3583
+      },
+      "reproduced_fresh": {
+        "mrr": 0.4475,
+        "hit_rate_at_5": 0.6,
+        "hit_rate_at_10": 0.7,
+        "recall_at_10": 0.3583
+      },
+      "variance": "IDENTICAL"
+    },
+    "graph_only": {
+      "reported_phase_h": {
+        "mrr": 0.8875,
+        "hit_rate_at_5": 0.925,
+        "hit_rate_at_10": 0.925,
+        "recall_at_10": 0.4292
+      },
+      "reproduced_fresh": {
+        "mrr": 0.8875,
+        "hit_rate_at_5": 0.925,
+        "hit_rate_at_10": 0.925,
+        "recall_at_10": 0.4292
+      },
+      "variance": "IDENTICAL"
+    },
+    "hybrid_rrf": {
+      "reported_phase_h": {
+        "mrr": 0.6708,
+        "hit_rate_at_5": 0.95,
+        "hit_rate_at_10": 0.95,
+        "recall_at_10": 0.5854
+      },
+      "reproduced_fresh": {
+        "mrr": 0.6708,
+        "hit_rate_at_5": 0.95,
+        "hit_rate_at_10": 0.95,
+        "recall_at_10": 0.5854
+      },
+      "variance": "IDENTICAL"
+    }
+  },
+  "reproducibility_verdict": "PERFECTLY_REPRODUCED"
+}
