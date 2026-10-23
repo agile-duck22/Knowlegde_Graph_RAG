@@ -197,11 +197,13 @@ class GroundedScientificSynthesizer:
                             "develop",
                             "achieve",
                             "demonstrate",
+                            "enhance",
+                            "survey",
+                            "investigate",
                         ]
                     ):
                         overlap += 2
-                    if overlap > 0:
-                        scored_sentences.append((overlap, s))
+                    scored_sentences.append((overlap, s))
 
                 scored_sentences.sort(key=lambda x: x[0], reverse=True)
 

@@ -92,7 +92,14 @@ class CitationValidator:
                     aligned = False
                 else:
                     words = [w for w in quote_clean.split() if len(w) > 3]
-                    if len(words) >= 3:
+                    # Also check for numerical values/percentages in quote_clean
+                    import re
+
+                    quote_numbers = set(re.findall(r"\b\d+(?:\.\d+)?%?\b", quote_clean))
+                    content_numbers = set(re.findall(r"\b\d+(?:\.\d+)?%?\b", content_clean))
+                    if quote_numbers and not quote_numbers.issubset(content_numbers):
+                        aligned = False
+                    elif len(words) >= 3:
                         found_ngram = False
                         for i in range(len(words) - 2):
                             ngram = f"{words[i]} {words[i + 1]} {words[i + 2]}"

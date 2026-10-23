@@ -28,12 +28,12 @@ Phase K resolves these challenges **deterministically and offline** without requ
 | Relevant but Incomplete Answers    |  6 / 40 (15.0%)  |  6 / 40 (15.0%) |  0 / 40 (0.0%)|
 | Off-Topic Deficient Answers        |  1 / 40 ( 2.5%)  |  1 / 40 ( 2.5%) |  0 / 40 (0.0%)|
 | Out-of-Scope Correct Refusals      | 10 / 10 (100.0%) | 10 / 10 (100.0%)| 10 / 10 (100%)|
-| Total Citations Emitted            | 83               | 83              | 81           |
+| Total Citations Emitted            | 83               | 83              | 83           |
 | Citation Corpus Validity Rate      | 100.0%           | 100.0%          | 100.0%       |
 | Excerpt Quote Alignment Rate       | 100.0%           | 100.0%          | 100.0%       |
-| Total Factual Claims Evaluated     | 120              | 120             | 81           |
+| Total Factual Claims Evaluated     | 120              | 120             | 83           |
 | Claim Grounding Rate               | 100.0%           | 100.0%          | 100.0%       |
-| Passing Unit & Regression Tests    | 77 passing       | 88 passing      | 95 passing   |
+| Passing Unit & Regression Tests    | 77 passing       | 88 passing      | 99 passing   |
 +---------------------------------------------------------------------------------------+
 ```
 
@@ -108,10 +108,10 @@ All deliverables have been created and validated:
 | Answers JSONL | `experiments/scipaper/eval/results/phase_k_answers.jsonl` | 50 records generated |
 | Coverage Analysis JSON | `experiments/scipaper/eval/results/phase_k_coverage_analysis.json` | 50 diagnoses recorded |
 | Metrics JSON | `experiments/scipaper/eval/results/phase_k_metrics.json` | Computed & verified |
-| Full Test Results | `experiments/scipaper/eval/results/phase_k_test_results.txt` | 95 / 95 passing |
+| Full Test Results | `experiments/scipaper/eval/results/phase_k_test_results.txt` | 99 / 99 passing |
 
 ### Test Suite Execution
-- **Pytest**: 95 passing tests (`pytest experiments/scipaper/tests/ -v`).
+- **Pytest**: 99 passing tests (`pytest experiments/scipaper/tests/ -v`).
 - **Ruff**: Passed (`ruff check experiments/scipaper`).
 - **Ruff Formatter**: Passed (`ruff format --check experiments/scipaper`).
 - **Mypy**: Passed (`mypy experiments/scipaper` with zero errors across 58 source files).

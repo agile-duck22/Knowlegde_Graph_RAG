@@ -16,15 +16,15 @@
     "unrestricted_queries": 10
   },
   "citation_metrics": {
-    "total_citations": 81,
-    "valid_citations_in_corpus": 81,
+    "total_citations": 83,
+    "valid_citations_in_corpus": 83,
     "citation_validity_rate": 1.0,
     "metadata_completeness_rate": 1.0,
     "evidence_quote_alignment_rate": 1.0
   },
   "claim_grounding_metrics": {
-    "total_claims": 81,
-    "supported_claims": 81,
+    "total_claims": 83,
+    "supported_claims": 83,
     "partially_supported_claims": 0,
     "unsupported_claims": 0,
     "claim_grounding_coverage_rate": 1.0,
@@ -34,6 +34,7 @@
     "out_of_scope_refusal_rate": 1.0,
     "out_of_scope_correct_refusals": 10,
     "answerable_refusals_total": 0,
+    "answerable_false_refusal_rate": 0.0,
     "answerable_off_topic_abstentions": 0
   },
   "specific_case_resolutions": {

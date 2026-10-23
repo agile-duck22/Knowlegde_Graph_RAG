@@ -218,10 +218,7 @@ async def run_phase_k_evaluation() -> None:
     oos_refusal_rate = oos_correct_refusals / len(out_of_scope) if out_of_scope else 1.0
 
     answerable_refusals = sum(1 for a in answerable if a.abstained)
-    answerable_false_refusal_rate = (
-        (answerable_refusals - 1) / len(answerable) if len(answerable) > 1 else 0.0
-    )
-    # Notice EVAL-036 abstention is an intended topic-guard refusal (irrelevant retrieved papers)
+    answerable_false_refusal_rate = answerable_refusals / len(answerable) if answerable else 0.0
 
     # Coverage Diagnoses Breakdown
     complete_coverage_count = sum(1 for c in coverage_analyses if c["status"] == "COMPLETE")

@@ -230,3 +230,78 @@ def test_adversarial_case_negation_loss(test_corpus: dict[str, dict[str, str]]) 
     )
     detail = validator.validate_citation(cit)
     assert detail.quote_aligned_with_chunk is False
+
+
+def test_adversarial_case_unsupported_numerical_result(
+    test_corpus: dict[str, dict[str, str]],
+) -> None:
+    """Numerical result misattribution: Altering experimental metric values fails quote alignment."""
+    validator = CitationValidator(corpus_chunks=test_corpus, strict_mode=True)
+    cit = CitationRecord(
+        chunk_id="chunk-tagrag-1",
+        document_id="paper-arxiv-2601.05254",
+        document_title="TagRAG: Tag-guided Hierarchical Knowledge Graph RAG",
+        excerpt="Extensive experiments show TagRAG achieves a winning rate of 99.99% against baselines.",
+    )
+    detail = validator.validate_citation(cit)
+    assert detail.quote_aligned_with_chunk is False
+
+
+def test_adversarial_case_irrelevant_verbatim_claim(test_corpus: dict[str, dict[str, str]]) -> None:
+    """Irrelevant verbatim claim: Quoting an ungrounded or off-topic chunk for a specific target fails."""
+    analyzer = QueryIntentAnalyzer()
+    guard = RetrievalCoverageGuard(corpus_chunks=test_corpus)
+    qtext = "What is the primary contribution of FAIR-RAG (paper-arxiv-2510.22344)?"
+    analysis = analyzer.analyze(qtext)
+
+    # Chunks are verbatim text, but completely unrelated to paper-arxiv-2510.22344
+    unrelated_candidates = ["chunk-tagrag-1", "chunk-scaling-1"]
+    diag = guard.evaluate_and_augment(
+        analysis, unrelated_candidates, allow_targeted_augmentation=False
+    )
+    assert diag.status == "OFF_TOPIC"
+    assert "paper-arxiv-2510.22344" in diag.missing_targets
+
+
+def test_missing_evidence_safe_fallback_abstention(test_corpus: dict[str, dict[str, str]]) -> None:
+    """Safe abstention when required query coverage cannot be satisfied and augmentation fails."""
+    synthesizer = GroundedScientificSynthesizer(corpus_chunks=test_corpus)
+    # Question requests an unknown target paper not in the corpus
+    qtext = "Describe the architecture of NonExistentSystem in paper-arxiv-9999.99999."
+    ans = synthesizer.synthesize(
+        question_id="EVAL-MISSING-TARGET",
+        question_text=qtext,
+        category="single_hop",
+        retrieved_chunk_ids=["chunk-tagrag-1"],
+        allow_targeted_augmentation=True,
+    )
+    assert ans.abstained is True
+    assert "retrieved evidence does not cover the requested targets" in ans.answer
+
+
+def test_missing_target_retrieval_failure_and_recovery(
+    test_corpus: dict[str, dict[str, str]],
+) -> None:
+    """Targeted retrieval recovery when candidate lacks target, and graceful fallback when target absent from corpus."""
+    guard = RetrievalCoverageGuard(corpus_chunks=test_corpus)
+    analyzer = QueryIntentAnalyzer()
+
+    # Subtest A: Target exists in corpus -> Successful recovery
+    analysis_a = analyzer.analyze(
+        "Compare TagRAG (paper-arxiv-2601.05254) and HetaRAG (paper-arxiv-2509.21336)."
+    )
+    diag_a = guard.evaluate_and_augment(
+        analysis_a, ["chunk-tagrag-1"], allow_targeted_augmentation=True
+    )
+    assert diag_a.status == "COMPLETE"
+    assert "chunk-hetarag-1" in diag_a.filtered_candidate_chunk_ids
+
+    # Subtest B: Target does NOT exist in corpus -> Diagnostic fallback to PARTIAL
+    analysis_b = analyzer.analyze(
+        "Compare TagRAG (paper-arxiv-2601.05254) and UnknownSys (paper-arxiv-1111.22222)."
+    )
+    diag_b = guard.evaluate_and_augment(
+        analysis_b, ["chunk-tagrag-1"], allow_targeted_augmentation=True
+    )
+    assert diag_b.status == "PARTIAL"
+    assert "paper-arxiv-1111.22222" in diag_b.missing_targets
